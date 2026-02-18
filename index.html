@@ -7,148 +7,120 @@
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #0d0f14;
-    --surface: #131720;
-    --surface2: #1a1f2e;
-    --border: #252d3d;
-    --accent: #4f9eff;
-    --accent2: #7c5cfc;
-    --green: #3dd68c;
-    --orange: #f59e0b;
-    --red: #f87171;
-    --muted: #4a5568;
-    --text: #e2e8f0;
-    --text2: #8892a4;
-    --mono: 'JetBrains Mono', monospace;
-    --sans: 'Syne', sans-serif;
+    --bg:#0d0f14; --surface:#131720; --surface2:#1a1f2e; --border:#252d3d;
+    --accent:#4f9eff; --accent2:#7c5cfc; --green:#3dd68c; --orange:#f59e0b;
+    --red:#f87171; --muted:#4a5568; --text:#e2e8f0; --text2:#8892a4;
+    --mono:'JetBrains Mono',monospace; --sans:'Syne',sans-serif;
   }
-  * { margin:0; padding:0; box-sizing:border-box; }
-  body { background:var(--bg); color:var(--text); font-family:var(--mono); font-size:14px; line-height:1.6; min-height:100vh; padding:24px; }
-
-  .editor-chrome { max-width:1160px; margin:0 auto; border:1px solid var(--border); border-radius:12px; overflow:hidden; box-shadow:0 32px 80px rgba(0,0,0,0.6); }
-
-  .titlebar { background:#0a0c10; padding:10px 16px; display:flex; align-items:center; gap:12px; border-bottom:1px solid var(--border); flex-wrap:wrap; }
-  .dots { display:flex; gap:6px; }
-  .dot { width:12px; height:12px; border-radius:50%; }
-  .dot.r { background:#ff5f57; } .dot.y { background:#febc2e; } .dot.g { background:#28c840; }
-  .tabs { display:flex; flex-wrap:wrap; flex:1; margin-left:8px; }
-  .tab { padding:4px 14px; font-family:var(--mono); font-size:11px; color:var(--text2); border-right:1px solid var(--border); cursor:pointer; transition:all 0.2s; white-space:nowrap; }
-  .tab.active { background:var(--surface); color:var(--accent); border-bottom:2px solid var(--accent); }
-  .tab:hover:not(.active) { color:var(--text); background:var(--surface2); }
-
-  .content { background:var(--surface); display:none; animation:fadeIn 0.2s ease; }
-  .content.active { display:block; }
-  @keyframes fadeIn { from { opacity:0; transform:translateY(4px); } to { opacity:1; transform:translateY(0); } }
-
-  .code-view { display:flex; min-height:500px; }
-  .line-nums { background:#0a0c10; padding:20px 0; min-width:48px; text-align:right; border-right:1px solid var(--border); user-select:none; flex-shrink:0; }
-  .line-nums span { display:block; padding:0 12px 0 8px; color:var(--muted); font-size:12px; line-height:1.8; font-family:var(--mono); }
-  .code-body { flex:1; padding:20px 24px; overflow-x:auto; }
-
-  .section { margin-bottom:32px; }
-  .section-header { display:flex; align-items:center; gap:10px; margin-bottom:12px; padding-bottom:8px; border-bottom:1px solid var(--border); }
-  .section-icon { font-size:16px; }
-  .section-title { font-family:var(--sans); font-weight:700; font-size:13px; letter-spacing:0.12em; text-transform:uppercase; color:var(--accent); }
-  .section-comment { font-family:var(--mono); font-size:11px; color:var(--muted); margin-left:auto; }
-
-  table { width:100%; border-collapse:collapse; font-size:13px; }
-  th { background:#0d0f14; color:var(--text2); font-family:var(--mono); font-size:11px; font-weight:600; text-transform:uppercase; letter-spacing:0.08em; padding:8px 12px; text-align:left; border:1px solid var(--border); }
-  td { padding:8px 12px; border:1px solid var(--border); font-family:var(--mono); font-size:13px; vertical-align:middle; }
-  tr:nth-child(even) td { background:rgba(255,255,255,0.02); }
-  tr:hover td { background:rgba(79,158,255,0.05); }
-
-  .badge { display:inline-block; padding:2px 8px; border-radius:4px; font-size:11px; font-weight:600; font-family:var(--mono); }
-  .badge-green { background:rgba(61,214,140,0.15); color:var(--green); border:1px solid rgba(61,214,140,0.3); }
-  .badge-orange { background:rgba(245,158,11,0.15); color:var(--orange); border:1px solid rgba(245,158,11,0.3); }
-  .badge-blue { background:rgba(79,158,255,0.15); color:var(--accent); border:1px solid rgba(79,158,255,0.3); }
-  .badge-red { background:rgba(248,113,113,0.15); color:var(--red); border:1px solid rgba(248,113,113,0.3); }
-  .badge-purple { background:rgba(124,92,252,0.15); color:var(--accent2); border:1px solid rgba(124,92,252,0.3); }
-  .badge-muted { background:rgba(255,255,255,0.05); color:var(--muted); border:1px solid var(--border); }
-
-  .progress-wrap { display:flex; align-items:center; gap:10px; }
-  .progress-bar { height:6px; border-radius:3px; background:var(--border); flex:1; overflow:hidden; }
-  .progress-fill { height:100%; border-radius:3px; }
-  .fill-blue { background:linear-gradient(90deg, var(--accent2), var(--accent)); }
-  .fill-green { background:linear-gradient(90deg, var(--green), #7eefc0); }
-  .progress-val { font-size:11px; color:var(--text2); white-space:nowrap; min-width:80px; text-align:right; }
-
-  code { background:rgba(79,158,255,0.1); color:var(--accent); padding:1px 6px; border-radius:3px; font-family:var(--mono); font-size:12px; }
-  .highlight { color:var(--green); font-weight:600; }
-  .warn { color:var(--orange); }
-  .err-text { color:var(--red); }
-  .muted { color:var(--text2); }
-  .comment { color:#4a6080; font-style:italic; }
-
-  .sched-grid { display:grid; grid-template-columns:90px 50px 155px repeat(3,1fr); gap:2px; font-size:12px; }
-  .sg-head { background:#0a0c10; color:var(--text2); padding:8px 10px; font-weight:600; text-transform:uppercase; font-size:10px; letter-spacing:0.1em; }
-  .sg-cell { padding:9px 8px; background:var(--surface2); display:flex; align-items:center; border:1px solid var(--border); font-size:11px; }
-  .sg-cell.ub { background:rgba(79,158,255,0.08); border-color:rgba(79,158,255,0.2); color:var(--accent); }
-  .sg-cell.ua { background:rgba(61,214,140,0.08); border-color:rgba(61,214,140,0.2); color:var(--green); }
-  .sg-cell.lo { background:rgba(245,158,11,0.08); border-color:rgba(245,158,11,0.2); color:var(--orange); }
-  .sg-cell.done { opacity:0.5; }
-  .sg-cell.now { box-shadow:inset 0 0 0 1px var(--accent); animation:pulse 2s infinite; }
-  .sg-cell.skip { background:rgba(248,113,113,0.05); color:var(--muted); border-color:rgba(248,113,113,0.15); font-style:italic; }
-  .sg-cell.deload { background:rgba(255,255,255,0.03); color:var(--muted); font-style:italic; }
-  .sg-row-label { background:#0a0c10; border:1px solid var(--border); color:var(--text2); padding:9px 8px; font-size:11px; font-weight:600; display:flex; align-items:center; }
-  .sg-row-label.current { color:var(--accent); }
-  @keyframes pulse { 0%,100% { box-shadow:inset 0 0 0 1px var(--accent),0 0 8px rgba(79,158,255,0.2); } 50% { box-shadow:inset 0 0 0 1px var(--accent),0 0 16px rgba(79,158,255,0.4); } }
-
-  .supp-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(190px,1fr)); gap:10px; }
-  .supp-card { background:var(--surface2); border:1px solid var(--border); border-radius:8px; padding:12px; }
-  .supp-name { font-weight:700; color:var(--text); margin-bottom:4px; font-size:13px; }
-  .supp-product { color:var(--text2); font-size:11px; margin-bottom:8px; }
-  .supp-meta { display:flex; gap:6px; flex-wrap:wrap; }
-
-  .workout-row { display:grid; grid-template-columns:2fr 1fr 2fr; gap:2px; margin-bottom:2px; }
-  .wr-cell { padding:9px 12px; background:var(--surface2); border:1px solid var(--border); font-size:12px; }
-  .wr-cell.prog { background:rgba(61,214,140,0.08); border-color:rgba(61,214,140,0.25); color:var(--green); font-weight:600; }
-
-  .alert { padding:10px 14px; border-radius:6px; margin-bottom:10px; display:flex; align-items:flex-start; gap:10px; font-size:12px; border-left:3px solid; }
-  .alert-warn { background:rgba(245,158,11,0.08); border-color:var(--orange); }
-  .alert-err { background:rgba(248,113,113,0.08); border-color:var(--red); }
-  .alert-info { background:rgba(79,158,255,0.08); border-color:var(--accent); }
-  .alert-icon { flex-shrink:0; font-size:14px; }
-
-  .report-block { background:#0a0c10; border:1px solid var(--border); border-radius:8px; padding:16px 20px; font-family:var(--mono); font-size:12px; line-height:2; margin-bottom:20px; }
-  .rb-line { display:flex; gap:12px; align-items:center; }
-  .rb-num { color:var(--muted); min-width:24px; }
-  .rb-ex { color:var(--text); flex:1; }
-  .rb-input { background:rgba(255,255,255,0.05); border:1px solid var(--border); border-radius:3px; padding:1px 8px; color:var(--accent); min-width:60px; font-family:var(--mono); font-size:11px; }
-
-  .stat-row { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin-bottom:16px; }
-  .stat-card { background:var(--surface2); border:1px solid var(--border); border-radius:8px; padding:14px; text-align:center; }
-  .stat-val { font-size:28px; font-weight:800; font-family:var(--sans); }
-  .stat-label { font-size:10px; text-transform:uppercase; letter-spacing:0.1em; color:var(--text2); margin-top:2px; }
-
-  /* Plan tab */
-  .plan-grid { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
-  @media(max-width:800px) { .plan-grid { grid-template-columns:1fr; } }
-  .plan-card { background:var(--surface2); border:1px solid var(--border); border-radius:8px; overflow:hidden; }
-  .plan-card-header { padding:10px 14px; display:flex; align-items:center; gap:8px; border-bottom:1px solid var(--border); }
-  .plan-card-body { padding:0; }
-  .plan-ex { display:grid; grid-template-columns:1fr 60px 70px 70px; border-bottom:1px solid var(--border); }
-  .plan-ex:last-child { border-bottom:none; }
-  .plan-ex-name { padding:8px 12px; font-size:12px; }
-  .plan-ex-cell { padding:8px 8px; font-size:11px; color:var(--text2); text-align:center; border-left:1px solid var(--border); display:flex; align-items:center; justify-content:center; }
-  .plan-ex-head { background:#0a0c10; }
-  .plan-note { padding:8px 12px; font-size:11px; color:var(--orange); border-top:1px solid var(--border); font-style:italic; }
-
-  /* Summary tab */
-  .summary-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(160px,1fr)); gap:10px; margin-bottom:20px; }
-  .vol-card { background:var(--surface2); border:1px solid var(--border); border-radius:8px; padding:12px; }
-  .vol-muscle { font-size:12px; font-weight:700; margin-bottom:6px; }
-  .vol-bar-wrap { display:flex; align-items:center; gap:8px; }
-  .vol-bar { height:4px; border-radius:2px; flex:1; background:var(--border); overflow:hidden; }
-  .vol-fill { height:100%; border-radius:2px; }
-  .vol-num { font-size:11px; color:var(--text2); min-width:32px; text-align:right; }
-
-  .freq-grid { display:grid; grid-template-columns:repeat(7,1fr); gap:4px; margin-bottom:20px; }
-  .freq-day { background:var(--surface2); border:1px solid var(--border); border-radius:6px; padding:6px 4px; text-align:center; font-size:10px; }
-  .freq-day-name { color:var(--text2); margin-bottom:4px; }
-  .freq-dot { width:8px; height:8px; border-radius:50%; margin:2px auto; }
-
-  .two-col { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
-  @media(max-width:700px) { .two-col { grid-template-columns:1fr; } }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{background:var(--bg);color:var(--text);font-family:var(--mono);font-size:14px;line-height:1.6;min-height:100vh;padding:24px;}
+  .editor-chrome{max-width:1200px;margin:0 auto;border:1px solid var(--border);border-radius:12px;overflow:hidden;box-shadow:0 32px 80px rgba(0,0,0,0.6);}
+  .titlebar{background:#0a0c10;padding:10px 16px;display:flex;align-items:center;gap:12px;border-bottom:1px solid var(--border);flex-wrap:wrap;}
+  .dots{display:flex;gap:6px;}
+  .dot{width:12px;height:12px;border-radius:50%;}
+  .dot.r{background:#ff5f57;}.dot.y{background:#febc2e;}.dot.g{background:#28c840;}
+  .tabs{display:flex;flex-wrap:wrap;flex:1;margin-left:8px;}
+  .tab{padding:4px 13px;font-family:var(--mono);font-size:11px;color:var(--text2);border-right:1px solid var(--border);cursor:pointer;transition:all .2s;white-space:nowrap;}
+  .tab.active{background:var(--surface);color:var(--accent);border-bottom:2px solid var(--accent);}
+  .tab:hover:not(.active){color:var(--text);background:var(--surface2);}
+  .toolbar{background:#0d0f14;padding:8px 16px;display:flex;gap:8px;align-items:center;border-bottom:1px solid var(--border);}
+  .btn{padding:5px 14px;border-radius:5px;font-family:var(--mono);font-size:11px;cursor:pointer;border:1px solid;transition:all .2s;}
+  .btn-edit{background:rgba(79,158,255,0.1);color:var(--accent);border-color:rgba(79,158,255,0.3);}
+  .btn-edit:hover{background:rgba(79,158,255,0.2);}
+  .btn-save{background:rgba(61,214,140,0.1);color:var(--green);border-color:rgba(61,214,140,0.3);}
+  .btn-save:hover{background:rgba(61,214,140,0.2);}
+  .btn-export{background:rgba(124,92,252,0.1);color:var(--accent2);border-color:rgba(124,92,252,0.3);}
+  .btn-export:hover{background:rgba(124,92,252,0.2);}
+  .btn-cancel{background:rgba(248,113,113,0.1);color:var(--red);border-color:rgba(248,113,113,0.3);}
+  .edit-mode-indicator{font-size:11px;color:var(--orange);margin-left:auto;display:none;}
+  .edit-mode-indicator.visible{display:block;}
+  .content{background:var(--surface);display:none;animation:fadeIn .2s ease;}
+  .content.active{display:block;}
+  @keyframes fadeIn{from{opacity:0;transform:translateY(4px);}to{opacity:1;transform:translateY(0);}}
+  .code-view{display:flex;min-height:500px;}
+  .line-nums{background:#0a0c10;padding:20px 0;min-width:48px;text-align:right;border-right:1px solid var(--border);user-select:none;flex-shrink:0;}
+  .line-nums span{display:block;padding:0 12px 0 8px;color:var(--muted);font-size:12px;line-height:1.8;font-family:var(--mono);}
+  .code-body{flex:1;padding:20px 24px;overflow-x:auto;}
+  .section{margin-bottom:32px;}
+  .section-header{display:flex;align-items:center;gap:10px;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid var(--border);}
+  .section-icon{font-size:16px;}
+  .section-title{font-family:var(--sans);font-weight:700;font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);}
+  .section-comment{font-family:var(--mono);font-size:11px;color:var(--muted);margin-left:auto;}
+  table{width:100%;border-collapse:collapse;font-size:13px;}
+  th{background:#0d0f14;color:var(--text2);font-family:var(--mono);font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;padding:8px 12px;text-align:left;border:1px solid var(--border);}
+  td{padding:8px 12px;border:1px solid var(--border);font-family:var(--mono);font-size:13px;vertical-align:middle;}
+  tr:nth-child(even) td{background:rgba(255,255,255,.02);}
+  tr:hover td{background:rgba(79,158,255,.05);}
+  .editable{outline:none;cursor:text;}
+  .edit-mode .editable{background:rgba(79,158,255,.07);border-radius:3px;padding:1px 4px;border:1px dashed rgba(79,158,255,.3);}
+  .edit-mode .editable:focus{background:rgba(79,158,255,.15);border-color:var(--accent);}
+  .badge{display:inline-block;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:600;font-family:var(--mono);}
+  .badge-green{background:rgba(61,214,140,.15);color:var(--green);border:1px solid rgba(61,214,140,.3);}
+  .badge-orange{background:rgba(245,158,11,.15);color:var(--orange);border:1px solid rgba(245,158,11,.3);}
+  .badge-blue{background:rgba(79,158,255,.15);color:var(--accent);border:1px solid rgba(79,158,255,.3);}
+  .badge-red{background:rgba(248,113,113,.15);color:var(--red);border:1px solid rgba(248,113,113,.3);}
+  .badge-purple{background:rgba(124,92,252,.15);color:var(--accent2);border:1px solid rgba(124,92,252,.3);}
+  .badge-muted{background:rgba(255,255,255,.05);color:var(--muted);border:1px solid var(--border);}
+  .progress-wrap{display:flex;align-items:center;gap:10px;}
+  .progress-bar{height:6px;border-radius:3px;background:var(--border);flex:1;overflow:hidden;}
+  .progress-fill{height:100%;border-radius:3px;}
+  .fill-blue{background:linear-gradient(90deg,var(--accent2),var(--accent));}
+  .fill-green{background:linear-gradient(90deg,var(--green),#7eefc0);}
+  .progress-val{font-size:11px;color:var(--text2);white-space:nowrap;min-width:80px;text-align:right;}
+  code{background:rgba(79,158,255,.1);color:var(--accent);padding:1px 6px;border-radius:3px;font-family:var(--mono);font-size:12px;}
+  .highlight{color:var(--green);font-weight:600;}
+  .warn{color:var(--orange);}
+  .muted-text{color:var(--text2);}
+  .comment{color:#4a6080;font-style:italic;}
+  .sched-grid{display:grid;grid-template-columns:90px 50px 155px repeat(3,1fr);gap:2px;font-size:12px;}
+  .sg-head{background:#0a0c10;color:var(--text2);padding:8px 10px;font-weight:600;text-transform:uppercase;font-size:10px;letter-spacing:.1em;}
+  .sg-cell{padding:9px 8px;background:var(--surface2);display:flex;align-items:center;border:1px solid var(--border);font-size:11px;}
+  .sg-cell.ub{background:rgba(79,158,255,.08);border-color:rgba(79,158,255,.2);color:var(--accent);}
+  .sg-cell.ua{background:rgba(61,214,140,.08);border-color:rgba(61,214,140,.2);color:var(--green);}
+  .sg-cell.lo{background:rgba(245,158,11,.08);border-color:rgba(245,158,11,.2);color:var(--orange);}
+  .sg-cell.done{opacity:.5;}
+  .sg-cell.now{box-shadow:inset 0 0 0 1px var(--accent);animation:pulse 2s infinite;}
+  .sg-cell.skip{background:rgba(248,113,113,.05);color:var(--muted);border-color:rgba(248,113,113,.15);font-style:italic;}
+  .sg-cell.deload{background:rgba(255,255,255,.03);color:var(--muted);font-style:italic;}
+  .sg-row-label{background:#0a0c10;border:1px solid var(--border);color:var(--text2);padding:9px 8px;font-size:11px;font-weight:600;display:flex;align-items:center;}
+  .sg-row-label.current{color:var(--accent);}
+  @keyframes pulse{0%,100%{box-shadow:inset 0 0 0 1px var(--accent),0 0 8px rgba(79,158,255,.2);}50%{box-shadow:inset 0 0 0 1px var(--accent),0 0 16px rgba(79,158,255,.4);}}
+  .supp-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:10px;}
+  .supp-card{background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:12px;}
+  .supp-name{font-weight:700;color:var(--text);margin-bottom:4px;font-size:13px;}
+  .supp-product{color:var(--text2);font-size:11px;margin-bottom:8px;}
+  .supp-meta{display:flex;gap:6px;flex-wrap:wrap;}
+  .workout-row{display:grid;grid-template-columns:2fr 1fr 2fr;gap:2px;margin-bottom:2px;}
+  .wr-cell{padding:9px 12px;background:var(--surface2);border:1px solid var(--border);font-size:12px;}
+  .wr-cell.prog{background:rgba(61,214,140,.08);border-color:rgba(61,214,140,.25);color:var(--green);font-weight:600;}
+  .alert{padding:10px 14px;border-radius:6px;margin-bottom:10px;display:flex;align-items:flex-start;gap:10px;font-size:12px;border-left:3px solid;}
+  .alert-warn{background:rgba(245,158,11,.08);border-color:var(--orange);}
+  .alert-err{background:rgba(248,113,113,.08);border-color:var(--red);}
+  .alert-info{background:rgba(79,158,255,.08);border-color:var(--accent);}
+  .alert-icon{flex-shrink:0;font-size:14px;}
+  .report-block{background:#0a0c10;border:1px solid var(--border);border-radius:8px;padding:16px 20px;font-family:var(--mono);font-size:12px;line-height:2;margin-bottom:20px;}
+  .rb-line{display:flex;gap:12px;align-items:center;}
+  .rb-num{color:var(--muted);min-width:24px;}
+  .rb-ex{color:var(--text);flex:1;}
+  .rb-input{background:rgba(255,255,255,.05);border:1px solid var(--border);border-radius:3px;padding:1px 8px;color:var(--accent);min-width:60px;font-family:var(--mono);font-size:11px;}
+  .stat-row{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:16px;}
+  .stat-card{background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:14px;text-align:center;}
+  .stat-val{font-size:28px;font-weight:800;font-family:var(--sans);}
+  .stat-label{font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:var(--text2);margin-top:2px;}
+  .plan-card{background:var(--surface2);border:1px solid var(--border);border-radius:8px;overflow:hidden;margin-bottom:20px;}
+  .plan-card-header{padding:10px 14px;display:flex;align-items:center;gap:8px;border-bottom:1px solid var(--border);}
+  .plan-ex{display:grid;border-bottom:1px solid var(--border);}
+  .plan-ex:last-child{border-bottom:none;}
+  .plan-ex-name{padding:8px 12px;font-size:12px;}
+  .plan-ex-cell{padding:8px 8px;font-size:11px;color:var(--text2);text-align:center;border-left:1px solid var(--border);display:flex;align-items:center;justify-content:center;}
+  .plan-ex-head{background:#0a0c10;}
+  .plan-note{padding:8px 12px;font-size:11px;color:var(--orange);border-top:1px solid var(--border);font-style:italic;}
+  .two-col{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+  /* tempo badge */
+  .tempo{font-size:10px;color:var(--accent2);font-family:var(--mono);background:rgba(124,92,252,.1);padding:1px 5px;border-radius:3px;border:1px solid rgba(124,92,252,.2);}
+  .change-up{color:var(--green);font-weight:700;}
+  .change-new{color:var(--accent);font-weight:700;}
+  .change-move{color:var(--orange);}
 </style>
 </head>
 <body>
@@ -165,13 +137,19 @@
       <div class="tab" onclick="showTab('summary',this)">📊 podsumowanie.md</div>
     </div>
   </div>
+  <div class="toolbar">
+    <button class="btn btn-edit" onclick="toggleEdit()">✏️ Tryb edycji</button>
+    <button class="btn btn-save" onclick="saveChanges()" style="display:none" id="btn-save">💾 Zapisz zmiany</button>
+    <button class="btn btn-cancel" onclick="cancelEdit()" style="display:none" id="btn-cancel">✕ Anuluj</button>
+    <button class="btn btn-export" onclick="exportHTML()">⬇️ Eksportuj HTML</button>
+    <span class="edit-mode-indicator" id="edit-indicator">● TRYB EDYCJI — kliknij na dowolny tekst aby go zmienić</span>
+  </div>
 
-  <!-- ═══════════════════════════════════════════════════ PROFIL -->
+  <!-- ══════════════════════════════════════════════════════ PROFIL -->
   <div id="tab-profil" class="content active">
     <div class="code-view">
       <div class="line-nums" id="ln-profil"></div>
       <div class="code-body">
-
         <div class="section">
           <div class="section-header">
             <span class="section-icon">👤</span><span class="section-title">Profil</span>
@@ -179,455 +157,371 @@
           </div>
           <table>
             <tr><th>Parametr</th><th>Wartość</th></tr>
-            <tr><td class="muted">Wiek</td><td>38 lat</td></tr>
-            <tr><td class="muted">Wzrost</td><td>190 cm</td></tr>
-            <tr><td class="muted">Waga</td><td>86 kg</td></tr>
-            <tr><td class="muted">Staż</td><td>2 lata</td></tr>
-            <tr><td class="muted">System</td><td>Upper / Lower × 3/tydzień &nbsp;<span class="badge badge-blue">Wt / Czw / Nd</span></td></tr>
-            <tr><td class="muted">Cykl</td><td>8 tygodni + deload <span class="comment">// 09–15.03.2026</span></td></tr>
+            <tr><td class="muted-text">Wiek</td><td><span class="editable" contenteditable="false">38 lat</span></td></tr>
+            <tr><td class="muted-text">Wzrost</td><td><span class="editable" contenteditable="false">190 cm</span></td></tr>
+            <tr><td class="muted-text">Waga</td><td><span class="editable" contenteditable="false">86 kg</span></td></tr>
+            <tr><td class="muted-text">Staż</td><td>2 lata</td></tr>
+            <tr><td class="muted-text">System</td><td>Upper / Lower × 3/tydzień &nbsp;<span class="badge badge-blue">Wt / Czw / Nd</span></td></tr>
+            <tr><td class="muted-text">Cykl</td><td>8 tygodni + deload <span class="comment">// 09–15.03.2026</span></td></tr>
           </table>
         </div>
 
         <div class="section">
-          <div class="section-header">
-            <span class="section-icon">🚫</span><span class="section-title">Ograniczenia</span>
-          </div>
-          <div class="alert alert-err">
-            <span class="alert-icon">⛔</span>
-            <div><strong>Lędźwie</strong> — unikać: RDL, wiosłowania w opadzie, OHP stojąc</div>
-          </div>
-          <div class="alert alert-warn">
-            <span class="alert-icon">⚡</span>
-            <div><strong>12.02.2026</strong> — dyskomfort lędźwiowy po Lower (przeciążeniowo, nie ból). Monitorować przy każdym Lower.</div>
-          </div>
-          <div class="alert alert-info">
-            <span class="alert-icon">✓</span>
-            <div><strong>Historia</strong> — rozcięgno podeszwowe / ostrogi piętowe — <span class="highlight">ustąpiło od treningu</span></div>
-          </div>
+          <div class="section-header"><span class="section-icon">🚫</span><span class="section-title">Ograniczenia</span></div>
+          <div class="alert alert-err"><span class="alert-icon">⛔</span><div><strong>Lędźwie</strong> — unikać: RDL, wiosłowania w opadzie, OHP stojąc</div></div>
+          <div class="alert alert-warn"><span class="alert-icon">⚡</span><div><strong>12.02.2026</strong> — dyskomfort lędźwiowy po Lower (przeciążeniowo). Monitorować.</div></div>
+          <div class="alert alert-info"><span class="alert-icon">✓</span><div><strong>Historia</strong> — rozcięgno podeszwowe / ostrogi piętowe — <span class="highlight">ustąpiło od treningu</span></div></div>
         </div>
 
         <div class="section">
-          <div class="section-header">
-            <span class="section-icon">🎯</span><span class="section-title">Cele długoterminowe</span>
-          </div>
+          <div class="section-header"><span class="section-icon">🎯</span><span class="section-title">Cele długoterminowe</span></div>
           <div style="margin-bottom:20px;">
-            <div style="margin-bottom:6px; font-size:12px; color:var(--text2);">Ławka sztanga</div>
+            <div style="margin-bottom:6px;font-size:12px;color:var(--text2);">Ławka sztanga</div>
             <div class="progress-wrap">
               <span style="font-size:11px;color:var(--muted);min-width:60px;">Start 60 kg</span>
-              <div class="progress-bar"><div class="progress-fill fill-blue" style="width:52%;"></div></div>
-              <span class="progress-val"><code>67,5 kg</code> → <span class="highlight">85 kg</span></span>
+              <div class="progress-bar"><div class="progress-fill fill-blue" style="width:52%"></div></div>
+              <span class="progress-val"><code class="editable" contenteditable="false">67,5 kg</code> → <span class="highlight editable" contenteditable="false">85 kg</span></span>
             </div>
-            <div style="font-size:11px;color:var(--muted);margin-top:4px;">ostatnio: 5-5-5-5-6 &nbsp;|&nbsp; next: AMRAP ≥8 → 70 kg</div>
+            <div style="font-size:11px;color:var(--text2);margin-top:4px;">ostatnio: <span class="editable" contenteditable="false">5-5-5-5-6</span> &nbsp;|&nbsp; next: AMRAP ≥8 → 70 kg</div>
           </div>
           <div>
-            <div style="margin-bottom:6px; font-size:12px; color:var(--text2);">Podciąganie</div>
+            <div style="margin-bottom:6px;font-size:12px;color:var(--text2);">Podciąganie</div>
             <div class="progress-wrap">
               <span style="font-size:11px;color:var(--muted);min-width:60px;">Start -25 kg</span>
-              <div class="progress-bar"><div class="progress-fill fill-green" style="width:20%;"></div></div>
-              <span class="progress-val"><code>-20 kg</code> → <span class="highlight">BW</span></span>
+              <div class="progress-bar"><div class="progress-fill fill-green" style="width:20%"></div></div>
+              <span class="progress-val"><code class="editable" contenteditable="false">-20 kg</code> → <span class="highlight">BW</span></span>
             </div>
-            <div style="font-size:11px;color:var(--muted);margin-top:4px;">ostatnio: 8-7-6-6-6 &nbsp;|&nbsp; next: 5×6-8 stabilnie → -17,5 kg</div>
+            <div style="font-size:11px;color:var(--text2);margin-top:4px;">ostatnio: <span class="editable" contenteditable="false">8-7-6-6-6</span> &nbsp;|&nbsp; next: 5×6-8 stabilnie → -17,5 kg</div>
           </div>
         </div>
 
         <div class="section">
-          <div class="section-header">
-            <span class="section-icon">💊</span><span class="section-title">Suplementacja</span>
-          </div>
+          <div class="section-header"><span class="section-icon">💊</span><span class="section-title">Suplementacja</span></div>
           <div class="supp-grid">
-            <div class="supp-card">
-              <div class="supp-name">D3 + K2</div>
-              <div class="supp-product">SFD / OstroVit</div>
-              <div class="supp-meta"><span class="badge badge-blue">2000 IU</span><span class="badge badge-purple">po obiedzie</span></div>
-            </div>
-            <div class="supp-card">
-              <div class="supp-name">Omega-3</div>
-              <div class="supp-product">NOW Foods Ultra</div>
-              <div class="supp-meta"><span class="badge badge-blue">2250mg EPA+DHA</span><span class="badge badge-purple">do posiłków</span></div>
-            </div>
-            <div class="supp-card">
-              <div class="supp-name">Magnez</div>
-              <div class="supp-product">Doctor's Best Biglicynian</div>
-              <div class="supp-meta"><span class="badge badge-blue">400mg</span><span class="badge badge-purple">wieczorem</span></div>
-            </div>
-            <div class="supp-card">
-              <div class="supp-name">Kreatyna</div>
-              <div class="supp-product">TREC</div>
-              <div class="supp-meta"><span class="badge badge-blue">5g</span><span class="badge badge-purple">codziennie</span></div>
-            </div>
-            <div class="supp-card">
-              <div class="supp-name">Cytrulina</div>
-              <div class="supp-product" style="color:var(--orange);">do rozważenia</div>
-              <div class="supp-meta"><span class="badge badge-orange">6-8g</span><span class="badge badge-orange">pre-workout</span></div>
-            </div>
+            <div class="supp-card"><div class="supp-name">D3 + K2</div><div class="supp-product">SFD / OstroVit</div><div class="supp-meta"><span class="badge badge-blue">2000 IU</span><span class="badge badge-purple">po obiedzie</span></div></div>
+            <div class="supp-card"><div class="supp-name">Omega-3</div><div class="supp-product">NOW Foods Ultra</div><div class="supp-meta"><span class="badge badge-blue">2250mg EPA+DHA</span><span class="badge badge-purple">do posiłków</span></div></div>
+            <div class="supp-card"><div class="supp-name">Magnez</div><div class="supp-product">Doctor's Best Biglicynian</div><div class="supp-meta"><span class="badge badge-blue">400mg</span><span class="badge badge-purple">wieczorem</span></div></div>
+            <div class="supp-card"><div class="supp-name">Kreatyna</div><div class="supp-product">TREC</div><div class="supp-meta"><span class="badge badge-blue">5g</span><span class="badge badge-purple">codziennie</span></div></div>
+            <div class="supp-card"><div class="supp-name">Cytrulina</div><div class="supp-product" style="color:var(--orange)">do rozważenia</div><div class="supp-meta"><span class="badge badge-orange">6-8g</span><span class="badge badge-orange">pre-workout</span></div></div>
           </div>
         </div>
-
       </div>
     </div>
   </div>
 
-  <!-- ═══════════════════════════════════════════════ HARMONOGRAM -->
+  <!-- ══════════════════════════════════════════════ HARMONOGRAM -->
   <div id="tab-harmonogram" class="content">
     <div class="code-view">
       <div class="line-nums" id="ln-harmonogram"></div>
       <div class="code-body">
-
         <div class="section">
           <div class="section-header">
             <span class="section-icon">📅</span><span class="section-title">Harmonogram</span>
             <span class="section-comment"># tydzień 6 / 8 | dziś: Śr 18.02.2026</span>
           </div>
-
           <div style="display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap;">
             <span class="badge badge-blue">UB = Upper B</span>
             <span class="badge badge-green">UA = Upper A</span>
             <span class="badge badge-orange">L = Lower</span>
-            <span class="badge badge-muted">brak = dzień wolny / zastępczy</span>
+            <span class="badge badge-muted">brak = dzień wolny</span>
             <span class="badge badge-muted">✓ = wykonany</span>
           </div>
-
           <div class="sched-grid">
-            <div class="sg-head">Faza</div>
-            <div class="sg-head">#</div>
-            <div class="sg-head">Pn–Nd</div>
-            <div class="sg-head">Wtorek</div>
-            <div class="sg-head">Czwartek</div>
-            <div class="sg-head">Niedziela</div>
-
-            <!-- Tydzień 1: UA - L - UB -->
-            <div class="sg-row-label muted">Budowa</div>
-            <div class="sg-row-label muted">1</div>
-            <div class="sg-cell done muted">12–18.01</div>
-            <div class="sg-cell ua done">✓ UA</div>
-            <div class="sg-cell lo done">✓ L</div>
-            <div class="sg-cell ub done">✓ UB</div>
-
-            <!-- Tydzień 2: L - UA - brak -->
-            <div class="sg-row-label muted">Budowa</div>
-            <div class="sg-row-label muted">2</div>
-            <div class="sg-cell done muted">19–25.01</div>
-            <div class="sg-cell lo done">✓ L</div>
-            <div class="sg-cell ua done">✓ UA</div>
-            <div class="sg-cell skip done">— brak</div>
-
-            <!-- Tydzień 3: brak - brak - UB -->
-            <div class="sg-row-label muted">Budowa</div>
-            <div class="sg-row-label muted">3</div>
-            <div class="sg-cell done muted">26.01–01.02</div>
-            <div class="sg-cell skip done">— brak</div>
-            <div class="sg-cell skip done">— brak</div>
-            <div class="sg-cell ub done">✓ UB</div>
-
-            <!-- Tydzień 4: L - UA - L -->
-            <div class="sg-row-label muted">Budowa</div>
-            <div class="sg-row-label muted">4</div>
-            <div class="sg-cell done muted">02–08.02</div>
-            <div class="sg-cell lo done">✓ L</div>
-            <div class="sg-cell ua done">✓ UA</div>
-            <div class="sg-cell lo done">✓ L</div>
-
-            <!-- Tydzień 5: UB - L - brak -->
-            <div class="sg-row-label muted">Budowa</div>
-            <div class="sg-row-label muted">5</div>
-            <div class="sg-cell done muted">09–15.02</div>
-            <div class="sg-cell ub done">✓ UB (10 Wt)</div>
-            <div class="sg-cell lo done">✓ L (12 Czw)</div>
-            <div class="sg-cell skip done">— brak</div>
-
-            <!-- Tydzień 6: UA - UB - L — aktualny -->
-            <div class="sg-row-label current">← teraz</div>
-            <div class="sg-row-label current">6</div>
-            <div class="sg-cell muted">16–22.02</div>
-            <div class="sg-cell ua done">✓ UA (17 Wt)</div>
-            <div class="sg-cell ub now">▶ UB (19 Czw)</div>
-            <div class="sg-cell lo">L (22 Nd)</div>
-
-            <!-- Tydzień 7 -->
-            <div class="sg-row-label">Budowa</div>
-            <div class="sg-row-label">7</div>
-            <div class="sg-cell muted">23.02–01.03</div>
-            <div class="sg-cell lo">L (24 Wt)</div>
-            <div class="sg-cell ub">UB (26 Czw)</div>
-            <div class="sg-cell ua">UA (01 Nd)</div>
-
-            <!-- Tydzień 8 -->
-            <div class="sg-row-label">Budowa</div>
-            <div class="sg-row-label">8</div>
-            <div class="sg-cell muted">02–08.03</div>
-            <div class="sg-cell ua">UA (03 Wt)</div>
-            <div class="sg-cell lo">L (05 Czw)</div>
-            <div class="sg-cell ub">UB (08 Nd)</div>
-
-            <!-- Deload -->
-            <div class="sg-row-label deload">Deload</div>
-            <div class="sg-row-label deload">—</div>
-            <div class="sg-cell deload">09–15.03</div>
-            <div class="sg-cell deload">L (10 Wt)</div>
-            <div class="sg-cell deload">UA (12 Czw)</div>
-            <div class="sg-cell deload">UB (15 Nd)</div>
+            <div class="sg-head">Faza</div><div class="sg-head">#</div><div class="sg-head">Pn–Nd</div>
+            <div class="sg-head">Wtorek</div><div class="sg-head">Czwartek</div><div class="sg-head">Niedziela</div>
+            <div class="sg-row-label muted-text">Budowa</div><div class="sg-row-label muted-text">1</div><div class="sg-cell done muted-text">12–18.01</div>
+            <div class="sg-cell ua done">✓ UA</div><div class="sg-cell lo done">✓ L</div><div class="sg-cell ub done">✓ UB</div>
+            <div class="sg-row-label muted-text">Budowa</div><div class="sg-row-label muted-text">2</div><div class="sg-cell done muted-text">19–25.01</div>
+            <div class="sg-cell lo done">✓ L</div><div class="sg-cell ua done">✓ UA</div><div class="sg-cell skip done">— brak</div>
+            <div class="sg-row-label muted-text">Budowa</div><div class="sg-row-label muted-text">3</div><div class="sg-cell done muted-text">26.01–01.02</div>
+            <div class="sg-cell skip done">— brak</div><div class="sg-cell skip done">— brak</div><div class="sg-cell ub done">✓ UB</div>
+            <div class="sg-row-label muted-text">Budowa</div><div class="sg-row-label muted-text">4</div><div class="sg-cell done muted-text">02–08.02</div>
+            <div class="sg-cell lo done">✓ L</div><div class="sg-cell ua done">✓ UA</div><div class="sg-cell lo done">✓ L</div>
+            <div class="sg-row-label muted-text">Budowa</div><div class="sg-row-label muted-text">5</div><div class="sg-cell done muted-text">09–15.02</div>
+            <div class="sg-cell ub done">✓ UB (10 Wt)</div><div class="sg-cell lo done">✓ L (12 Czw)</div><div class="sg-cell skip done">— brak</div>
+            <div class="sg-row-label current">← teraz</div><div class="sg-row-label current">6</div><div class="sg-cell muted-text">16–22.02</div>
+            <div class="sg-cell ua done">✓ UA (17 Wt)</div><div class="sg-cell ub now">▶ UB (19 Czw)</div><div class="sg-cell lo">L (22 Nd)</div>
+            <div class="sg-row-label">Budowa</div><div class="sg-row-label">7</div><div class="sg-cell muted-text">23.02–01.03</div>
+            <div class="sg-cell lo">L (24 Wt)</div><div class="sg-cell ub">UB (26 Czw)</div><div class="sg-cell ua">UA (01 Nd)</div>
+            <div class="sg-row-label">Budowa</div><div class="sg-row-label">8</div><div class="sg-cell muted-text">02–08.03</div>
+            <div class="sg-cell ua">UA (03 Wt)</div><div class="sg-cell lo">L (05 Czw)</div><div class="sg-cell ub">UB (08 Nd)</div>
+            <div class="sg-row-label deload">Deload</div><div class="sg-row-label deload">—</div><div class="sg-cell deload">09–15.03</div>
+            <div class="sg-cell deload">L (10 Wt)</div><div class="sg-cell deload">UA (12 Czw)</div><div class="sg-cell deload">UB (15 Nd)</div>
           </div>
         </div>
-
         <div class="section">
-          <div class="section-header">
-            <span class="section-icon">📊</span><span class="section-title">Bilans treningów (tyg 1–6)</span>
-          </div>
+          <div class="section-header"><span class="section-icon">📊</span><span class="section-title">Bilans treningów (tyg 1–6)</span></div>
           <div class="stat-row">
-            <div class="stat-card">
-              <div class="stat-val" style="color:var(--green);">8</div>
-              <div class="stat-label">Upper A</div>
-            </div>
-            <div class="stat-card">
-              <div class="stat-val" style="color:var(--accent);">8</div>
-              <div class="stat-label">Upper B</div>
-            </div>
-            <div class="stat-card">
-              <div class="stat-val" style="color:var(--orange);">9</div>
-              <div class="stat-label">Lower</div>
-            </div>
+            <div class="stat-card"><div class="stat-val" style="color:var(--green)">8</div><div class="stat-label">Upper A</div></div>
+            <div class="stat-card"><div class="stat-val" style="color:var(--accent)">8</div><div class="stat-label">Upper B</div></div>
+            <div class="stat-card"><div class="stat-val" style="color:var(--orange)">9</div><div class="stat-label">Lower</div></div>
           </div>
-          <div class="alert alert-warn">
-            <span class="alert-icon">📌</span>
-            <div>Tygodnie 3 i 5 miały pominięte treningi — bilans jest nierówny. Tyg 7–8 uzupełniają: po 1× UA, UB, L każdy.</div>
-          </div>
+          <div class="alert alert-warn"><span class="alert-icon">📌</span><div>Tygodnie 3 i 5 miały pominięte treningi. Tyg 7–8 wyrównują bilans.</div></div>
         </div>
-
       </div>
     </div>
   </div>
 
-  <!-- ═══════════════════════════════════════════════════ PLAN -->
+  <!-- ══════════════════════════════════════════════════════ PLAN -->
   <div id="tab-plan" class="content">
     <div class="code-view">
       <div class="line-nums" id="ln-plan"></div>
       <div class="code-body">
 
+        <!-- UPPER A -->
         <div class="section">
-          <div class="section-header">
-            <span class="section-icon">🏋️</span><span class="section-title">Upper A</span>
-            <span class="section-comment"># push-pull + barki + ramiona | ~75–90 min</span>
-          </div>
+          <div class="section-header"><span class="section-icon">🏋️</span><span class="section-title">Upper A</span><span class="section-comment"># push-pull + barki + ramiona | ~75–90 min</span></div>
           <div class="plan-card">
-            <div class="plan-card-header" style="background:rgba(61,214,140,0.06);">
-              <span class="badge badge-green">UA</span>
-              <span style="font-size:12px;color:var(--text2);margin-left:8px;">Wt / Czw / Nd — rotacja</span>
-            </div>
-            <div class="plan-card-body">
-              <div class="plan-ex plan-ex-head">
-                <div class="plan-ex-name" style="font-size:11px;color:var(--text2);padding:6px 12px;">Ćwiczenie</div>
-                <div class="plan-ex-cell plan-ex-head" style="font-size:10px;">Serie</div>
-                <div class="plan-ex-cell plan-ex-head" style="font-size:10px;">Powt.</div>
-                <div class="plan-ex-cell plan-ex-head" style="font-size:10px;">Przerwa</div>
+            <div class="plan-card-header" style="background:rgba(61,214,140,.06)"><span class="badge badge-green">UA</span></div>
+            <div>
+              <div class="plan-ex" style="grid-template-columns:2fr 50px 80px 90px 70px 80px">
+                <div class="plan-ex-name plan-ex-head" style="font-size:10px;color:var(--text2);padding:6px 12px">Ćwiczenie</div>
+                <div class="plan-ex-cell plan-ex-head" style="font-size:10px">Serie</div>
+                <div class="plan-ex-cell plan-ex-head" style="font-size:10px">Powt.</div>
+                <div class="plan-ex-cell plan-ex-head" style="font-size:10px">Tempo</div>
+                <div class="plan-ex-cell plan-ex-head" style="font-size:10px">Przerwa</div>
+                <div class="plan-ex-cell plan-ex-head" style="font-size:10px">Ciężar</div>
               </div>
-              <div class="plan-ex">
-                <div class="plan-ex-name"><strong>Ławka sztanga</strong> <span class="badge badge-green" style="font-size:10px;">główne</span></div>
-                <div class="plan-ex-cell">4</div>
+              <div class="plan-ex" style="grid-template-columns:2fr 50px 80px 90px 70px 80px">
+                <div class="plan-ex-name"><strong>Ławka sztanga</strong> <span class="badge badge-green" style="font-size:9px">główne</span></div>
+                <div class="plan-ex-cell editable" contenteditable="false">4</div>
                 <div class="plan-ex-cell">5–8</div>
+                <div class="plan-ex-cell"><span class="tempo">3-1-1-0</span></div>
                 <div class="plan-ex-cell">3 min</div>
+                <div class="plan-ex-cell editable" contenteditable="false">67,5 kg</div>
               </div>
-              <div class="plan-ex">
+              <div class="plan-ex" style="grid-template-columns:2fr 50px 80px 90px 70px 80px">
                 <div class="plan-ex-name">Hantle skos (30°)</div>
-                <div class="plan-ex-cell">3</div>
-                <div class="plan-ex-cell">10–12</div>
-                <div class="plan-ex-cell">2 min</div>
+                <div class="plan-ex-cell">3</div><div class="plan-ex-cell">10–12</div>
+                <div class="plan-ex-cell"><span class="tempo">3-1-1-0</span></div>
+                <div class="plan-ex-cell">2 min</div><div class="plan-ex-cell editable" contenteditable="false">—</div>
               </div>
-              <div class="plan-ex">
-                <div class="plan-ex-name">Wiosłowanie hantlą (jednostronne)</div>
-                <div class="plan-ex-cell">3</div>
-                <div class="plan-ex-cell">8–12</div>
-                <div class="plan-ex-cell">90 s</div>
+              <div class="plan-ex" style="grid-template-columns:2fr 50px 80px 90px 70px 80px">
+                <div class="plan-ex-name">Wiosłowanie hantlą</div>
+                <div class="plan-ex-cell">3</div><div class="plan-ex-cell">8–12</div>
+                <div class="plan-ex-cell"><span class="tempo">2-1-1-0</span></div>
+                <div class="plan-ex-cell">90 s</div><div class="plan-ex-cell editable" contenteditable="false">27,5 kg</div>
               </div>
-              <div class="plan-ex">
+              <div class="plan-ex" style="grid-template-columns:2fr 50px 80px 90px 70px 80px">
                 <div class="plan-ex-name">Ściąganie podchwytem</div>
-                <div class="plan-ex-cell">3</div>
-                <div class="plan-ex-cell">8–12</div>
-                <div class="plan-ex-cell">2 min</div>
+                <div class="plan-ex-cell">3</div><div class="plan-ex-cell">8–12</div>
+                <div class="plan-ex-cell"><span class="tempo">2-1-2-0</span></div>
+                <div class="plan-ex-cell">2 min</div><div class="plan-ex-cell editable" contenteditable="false">55 kg</div>
               </div>
-              <div class="plan-ex">
-                <div class="plan-ex-name">Wyciskanie barki (siedząc / maszyna)</div>
-                <div class="plan-ex-cell">3</div>
-                <div class="plan-ex-cell">10–12</div>
-                <div class="plan-ex-cell">2 min</div>
+              <div class="plan-ex" style="grid-template-columns:2fr 50px 80px 90px 70px 80px">
+                <div class="plan-ex-name">Wyciskanie barki (siedząc)</div>
+                <div class="plan-ex-cell">3</div><div class="plan-ex-cell">10–12</div>
+                <div class="plan-ex-cell"><span class="tempo">2-1-1-0</span></div>
+                <div class="plan-ex-cell">2 min</div><div class="plan-ex-cell editable" contenteditable="false">—</div>
               </div>
-              <div class="plan-ex">
+              <div class="plan-ex" style="grid-template-columns:2fr 50px 80px 90px 70px 80px">
                 <div class="plan-ex-name">Unoszenie bokiem</div>
-                <div class="plan-ex-cell">3</div>
-                <div class="plan-ex-cell">12–15</div>
-                <div class="plan-ex-cell">60 s</div>
+                <div class="plan-ex-cell">3</div><div class="plan-ex-cell">12–15</div>
+                <div class="plan-ex-cell"><span class="tempo">2-0-2-0</span></div>
+                <div class="plan-ex-cell">60 s</div><div class="plan-ex-cell editable" contenteditable="false">—</div>
               </div>
-              <div class="plan-ex">
+              <div class="plan-ex" style="grid-template-columns:2fr 50px 80px 90px 70px 80px">
                 <div class="plan-ex-name">Face pulls</div>
-                <div class="plan-ex-cell">3</div>
-                <div class="plan-ex-cell">15</div>
-                <div class="plan-ex-cell">60 s</div>
+                <div class="plan-ex-cell">3</div><div class="plan-ex-cell">15</div>
+                <div class="plan-ex-cell"><span class="tempo">2-1-2-0</span></div>
+                <div class="plan-ex-cell">60 s</div><div class="plan-ex-cell editable" contenteditable="false">—</div>
               </div>
-              <div class="plan-ex">
+              <div class="plan-ex" style="grid-template-columns:2fr 50px 80px 90px 70px 80px">
                 <div class="plan-ex-name">Wiosłowanie maszyna</div>
-                <div class="plan-ex-cell">3</div>
-                <div class="plan-ex-cell">12</div>
-                <div class="plan-ex-cell">90 s</div>
+                <div class="plan-ex-cell">3</div><div class="plan-ex-cell">12</div>
+                <div class="plan-ex-cell"><span class="tempo">2-1-2-0</span></div>
+                <div class="plan-ex-cell">90 s</div><div class="plan-ex-cell editable" contenteditable="false">—</div>
               </div>
-              <div class="plan-ex">
+              <div class="plan-ex" style="grid-template-columns:2fr 50px 80px 90px 70px 80px">
                 <div class="plan-ex-name">Francuskie (triceps)</div>
-                <div class="plan-ex-cell">3</div>
-                <div class="plan-ex-cell">10–12</div>
-                <div class="plan-ex-cell">90 s</div>
+                <div class="plan-ex-cell">3</div><div class="plan-ex-cell">10–12</div>
+                <div class="plan-ex-cell"><span class="tempo">3-0-1-0</span></div>
+                <div class="plan-ex-cell">90 s</div><div class="plan-ex-cell editable" contenteditable="false">—</div>
               </div>
-              <div class="plan-ex">
+              <div class="plan-ex" style="grid-template-columns:2fr 50px 80px 90px 70px 80px">
                 <div class="plan-ex-name">Prostowanie nad głową (triceps)</div>
-                <div class="plan-ex-cell">3</div>
-                <div class="plan-ex-cell">12</div>
-                <div class="plan-ex-cell">60 s</div>
+                <div class="plan-ex-cell">3</div><div class="plan-ex-cell">12</div>
+                <div class="plan-ex-cell"><span class="tempo">2-0-2-0</span></div>
+                <div class="plan-ex-cell">60 s</div><div class="plan-ex-cell editable" contenteditable="false">—</div>
               </div>
-              <div class="plan-ex">
+              <div class="plan-ex" style="grid-template-columns:2fr 50px 80px 90px 70px 80px">
                 <div class="plan-ex-name">Uginanie z rotacją (biceps)</div>
-                <div class="plan-ex-cell">3</div>
-                <div class="plan-ex-cell">10–12</div>
-                <div class="plan-ex-cell">60 s</div>
+                <div class="plan-ex-cell">3</div><div class="plan-ex-cell">10–12</div>
+                <div class="plan-ex-cell"><span class="tempo">2-1-2-0</span></div>
+                <div class="plan-ex-cell">60 s</div><div class="plan-ex-cell editable" contenteditable="false">—</div>
               </div>
             </div>
-            <div class="plan-note">⚡ Progresja: gdy górna granica powt. × wszystkie serie → +2,5 kg lub +1 seria</div>
+            <div class="plan-note">⚡ Progresja: gdy górna granica powt. we wszystkich seriach → +2,5 kg lub +1 seria</div>
           </div>
         </div>
 
+        <!-- UPPER B -->
         <div class="section">
-          <div class="section-header">
-            <span class="section-icon">🏋️</span><span class="section-title">Upper B</span>
-            <span class="section-comment"># podciąganie + klatka + barki + ramiona | ~70–85 min</span>
-          </div>
+          <div class="section-header"><span class="section-icon">🏋️</span><span class="section-title">Upper B</span><span class="section-comment"># podciąganie + klatka + barki + ramiona | ~80–90 min</span></div>
           <div class="plan-card">
-            <div class="plan-card-header" style="background:rgba(79,158,255,0.06);">
-              <span class="badge badge-blue">UB</span>
-              <span style="font-size:12px;color:var(--text2);margin-left:8px;">Wt / Czw / Nd — rotacja</span>
-            </div>
-            <div class="plan-card-body">
-              <div class="plan-ex plan-ex-head">
-                <div class="plan-ex-name" style="font-size:11px;color:var(--text2);padding:6px 12px;">Ćwiczenie</div>
-                <div class="plan-ex-cell plan-ex-head" style="font-size:10px;">Serie</div>
-                <div class="plan-ex-cell plan-ex-head" style="font-size:10px;">Powt.</div>
-                <div class="plan-ex-cell plan-ex-head" style="font-size:10px;">Przerwa</div>
+            <div class="plan-card-header" style="background:rgba(79,158,255,.06)"><span class="badge badge-blue">UB</span><span style="font-size:11px;color:var(--text2);margin-left:12px">Tempo format: ekscentryczna–pauza dół–koncentryczna–pauza góra</span></div>
+            <div>
+              <div class="plan-ex" style="grid-template-columns:2fr 50px 80px 90px 70px 80px 90px">
+                <div class="plan-ex-name plan-ex-head" style="font-size:10px;color:var(--text2);padding:6px 12px">#&nbsp; Ćwiczenie</div>
+                <div class="plan-ex-cell plan-ex-head" style="font-size:10px">Serie</div>
+                <div class="plan-ex-cell plan-ex-head" style="font-size:10px">Powt.</div>
+                <div class="plan-ex-cell plan-ex-head" style="font-size:10px">Tempo</div>
+                <div class="plan-ex-cell plan-ex-head" style="font-size:10px">Przerwa</div>
+                <div class="plan-ex-cell plan-ex-head" style="font-size:10px">Ciężar</div>
+                <div class="plan-ex-cell plan-ex-head" style="font-size:10px">Zmiana</div>
               </div>
-              <div class="plan-ex">
-                <div class="plan-ex-name"><strong>Podciąganie (z asystą)</strong> <span class="badge badge-blue" style="font-size:10px;">główne</span></div>
-                <div class="plan-ex-cell">5</div>
+              <div class="plan-ex" style="grid-template-columns:2fr 50px 80px 90px 70px 80px 90px">
+                <div class="plan-ex-name"><strong>1. Podciąganie (asysta)</strong> <span class="badge badge-blue" style="font-size:9px">główne</span></div>
+                <div class="plan-ex-cell editable" contenteditable="false">5</div>
                 <div class="plan-ex-cell">6–8</div>
-                <div class="plan-ex-cell">3 min</div>
+                <div class="plan-ex-cell"><span class="tempo">3-1-1-0</span></div>
+                <div class="plan-ex-cell">120 s</div>
+                <div class="plan-ex-cell editable" contenteditable="false">-20 kg</div>
+                <div class="plan-ex-cell">–</div>
               </div>
-              <div class="plan-ex">
-                <div class="plan-ex-name">Wyciskanie hantli (płaska)</div>
-                <div class="plan-ex-cell">4</div>
-                <div class="plan-ex-cell">10</div>
-                <div class="plan-ex-cell">2 min</div>
-              </div>
-              <div class="plan-ex">
-                <div class="plan-ex-name">Arnoldki</div>
-                <div class="plan-ex-cell">3</div>
-                <div class="plan-ex-cell">8–10</div>
-                <div class="plan-ex-cell">2 min</div>
-              </div>
-              <div class="plan-ex">
-                <div class="plan-ex-name">Rozpiętki Butterfly (maszyna)</div>
-                <div class="plan-ex-cell">3</div>
-                <div class="plan-ex-cell">10–12</div>
+              <div class="plan-ex" style="grid-template-columns:2fr 50px 80px 90px 70px 80px 90px">
+                <div class="plan-ex-name">2. Hantle płaska</div>
+                <div class="plan-ex-cell">4</div><div class="plan-ex-cell">8–10</div>
+                <div class="plan-ex-cell"><span class="tempo">3-1-1-0</span></div>
                 <div class="plan-ex-cell">90 s</div>
+                <div class="plan-ex-cell editable" contenteditable="false">25 kg</div>
+                <div class="plan-ex-cell">–</div>
               </div>
-              <div class="plan-ex">
-                <div class="plan-ex-name">Odwrotne rozpiętki</div>
-                <div class="plan-ex-cell">3</div>
-                <div class="plan-ex-cell">10–12</div>
-                <div class="plan-ex-cell">90 s</div>
-              </div>
-              <div class="plan-ex">
-                <div class="plan-ex-name">Wyciąg dolny (siedzenie)</div>
-                <div class="plan-ex-cell">3</div>
-                <div class="plan-ex-cell">12</div>
-                <div class="plan-ex-cell">90 s</div>
-              </div>
-              <div class="plan-ex">
-                <div class="plan-ex-name">Unoszenie linka (barki)</div>
-                <div class="plan-ex-cell">4</div>
-                <div class="plan-ex-cell">10–12</div>
+              <div class="plan-ex" style="grid-template-columns:2fr 50px 80px 90px 70px 80px 90px">
+                <div class="plan-ex-name">3. Rozpiętki Butterfly</div>
+                <div class="plan-ex-cell">3</div><div class="plan-ex-cell">10–12</div>
+                <div class="plan-ex-cell"><span class="tempo">2-1-2-0</span></div>
                 <div class="plan-ex-cell">60 s</div>
+                <div class="plan-ex-cell editable" contenteditable="false">50 kg</div>
+                <div class="plan-ex-cell"><span class="change-move">↕ przesunięte</span></div>
               </div>
-              <div class="plan-ex">
-                <div class="plan-ex-name">Prostowanie triceps (linka)</div>
-                <div class="plan-ex-cell">3</div>
-                <div class="plan-ex-cell">12–15</div>
-                <div class="plan-ex-cell">60 s</div>
+              <div class="plan-ex" style="grid-template-columns:2fr 50px 80px 90px 70px 80px 90px">
+                <div class="plan-ex-name">4. Chest Press maszyna <span class="badge badge-blue" style="font-size:9px">NOWE</span></div>
+                <div class="plan-ex-cell">3</div><div class="plan-ex-cell">10–12</div>
+                <div class="plan-ex-cell"><span class="tempo">2-1-2-0</span></div>
+                <div class="plan-ex-cell">75 s</div>
+                <div class="plan-ex-cell editable" contenteditable="false">?</div>
+                <div class="plan-ex-cell"><span class="change-new">✓ nowe</span></div>
               </div>
-              <div class="plan-ex">
-                <div class="plan-ex-name">Uginanie linka (biceps)</div>
-                <div class="plan-ex-cell">2</div>
-                <div class="plan-ex-cell">10–12</div>
-                <div class="plan-ex-cell">60 s</div>
-              </div>
-              <div class="plan-ex">
-                <div class="plan-ex-name">Dipy (BW)</div>
-                <div class="plan-ex-cell">2</div>
-                <div class="plan-ex-cell">8–12</div>
+              <div class="plan-ex" style="grid-template-columns:2fr 50px 80px 90px 70px 80px 90px">
+                <div class="plan-ex-name">5. Arnoldki</div>
+                <div class="plan-ex-cell">3</div><div class="plan-ex-cell">8–10</div>
+                <div class="plan-ex-cell"><span class="tempo">2-1-1-0</span></div>
                 <div class="plan-ex-cell">90 s</div>
+                <div class="plan-ex-cell editable" contenteditable="false">17,5 kg</div>
+                <div class="plan-ex-cell"><span class="change-move">↕ przesunięte</span></div>
+              </div>
+              <div class="plan-ex" style="grid-template-columns:2fr 50px 80px 90px 70px 80px 90px">
+                <div class="plan-ex-name">6. Odwrotne rozpiętki</div>
+                <div class="plan-ex-cell">3</div><div class="plan-ex-cell">10–12</div>
+                <div class="plan-ex-cell"><span class="tempo">2-1-2-0</span></div>
+                <div class="plan-ex-cell">45 s</div>
+                <div class="plan-ex-cell editable" contenteditable="false">40 kg</div>
+                <div class="plan-ex-cell">–</div>
+              </div>
+              <div class="plan-ex" style="grid-template-columns:2fr 50px 80px 90px 70px 80px 90px">
+                <div class="plan-ex-name">7. Wyciąg dolny</div>
+                <div class="plan-ex-cell">3</div><div class="plan-ex-cell">10–12</div>
+                <div class="plan-ex-cell"><span class="tempo">2-1-2-0</span></div>
+                <div class="plan-ex-cell">90 s</div>
+                <div class="plan-ex-cell editable" contenteditable="false">60 kg</div>
+                <div class="plan-ex-cell">–</div>
+              </div>
+              <div class="plan-ex" style="grid-template-columns:2fr 50px 80px 90px 70px 80px 90px">
+                <div class="plan-ex-name">8. Unoszenie linka (barki)</div>
+                <div class="plan-ex-cell">4</div><div class="plan-ex-cell">10–12</div>
+                <div class="plan-ex-cell"><span class="tempo">2-0-2-0</span></div>
+                <div class="plan-ex-cell">90 s</div>
+                <div class="plan-ex-cell editable" contenteditable="false">7,5 kg</div>
+                <div class="plan-ex-cell">–</div>
+              </div>
+              <div class="plan-ex" style="grid-template-columns:2fr 50px 80px 90px 70px 80px 90px">
+                <div class="plan-ex-name">9. Prostowanie triceps (linka)</div>
+                <div class="plan-ex-cell">3</div><div class="plan-ex-cell">12–15</div>
+                <div class="plan-ex-cell"><span class="tempo">2-0-2-0</span></div>
+                <div class="plan-ex-cell">60 s</div>
+                <div class="plan-ex-cell editable" contenteditable="false">40 kg</div>
+                <div class="plan-ex-cell">–</div>
+              </div>
+              <div class="plan-ex" style="grid-template-columns:2fr 50px 80px 90px 70px 80px 90px">
+                <div class="plan-ex-name">10. Uginanie linka (biceps)</div>
+                <div class="plan-ex-cell">2</div><div class="plan-ex-cell">10–12</div>
+                <div class="plan-ex-cell"><span class="tempo">2-1-2-0</span></div>
+                <div class="plan-ex-cell">60 s</div>
+                <div class="plan-ex-cell editable" contenteditable="false">50 kg</div>
+                <div class="plan-ex-cell">–</div>
+              </div>
+              <div class="plan-ex" style="grid-template-columns:2fr 50px 80px 90px 70px 80px 90px">
+                <div class="plan-ex-name">O. Dipy (opcjonalne)</div>
+                <div class="plan-ex-cell">2</div><div class="plan-ex-cell">8–12</div>
+                <div class="plan-ex-cell"><span class="tempo">2-1-2-0</span></div>
+                <div class="plan-ex-cell">90 s</div>
+                <div class="plan-ex-cell">BW</div>
+                <div class="plan-ex-cell">–</div>
               </div>
             </div>
-            <div class="plan-note">⚡ Progresja podciągań: 5×6-8 stabilnie → zmniejsz asystę o 2,5 kg</div>
+            <div class="plan-note">⚡ Chest Press maszyna — dobierz ciężar na pierwszej sesji (cel: ostatnia seria z RIR=2). Dipy opcjonalne jeśli zostaje energia.</div>
           </div>
         </div>
 
+        <!-- LOWER -->
         <div class="section">
-          <div class="section-header">
-            <span class="section-icon">🦵</span><span class="section-title">Lower</span>
-            <span class="section-comment"># nogi + pośladki + core | ~75–90 min</span>
-          </div>
+          <div class="section-header"><span class="section-icon">🦵</span><span class="section-title">Lower</span><span class="section-comment"># nogi + pośladki | ~75–90 min</span></div>
           <div class="plan-card">
-            <div class="plan-card-header" style="background:rgba(245,158,11,0.06);">
-              <span class="badge badge-orange">L</span>
-              <span style="font-size:12px;color:var(--text2);margin-left:8px;">Wt / Czw / Nd — rotacja</span>
-            </div>
-            <div class="plan-card-body">
-              <div class="plan-ex plan-ex-head">
-                <div class="plan-ex-name" style="font-size:11px;color:var(--text2);padding:6px 12px;">Ćwiczenie</div>
-                <div class="plan-ex-cell plan-ex-head" style="font-size:10px;">Serie</div>
-                <div class="plan-ex-cell plan-ex-head" style="font-size:10px;">Powt.</div>
-                <div class="plan-ex-cell plan-ex-head" style="font-size:10px;">Przerwa</div>
+            <div class="plan-card-header" style="background:rgba(245,158,11,.06)"><span class="badge badge-orange">L</span></div>
+            <div>
+              <div class="plan-ex" style="grid-template-columns:2fr 50px 80px 90px 70px 80px">
+                <div class="plan-ex-name plan-ex-head" style="font-size:10px;color:var(--text2);padding:6px 12px">Ćwiczenie</div>
+                <div class="plan-ex-cell plan-ex-head" style="font-size:10px">Serie</div>
+                <div class="plan-ex-cell plan-ex-head" style="font-size:10px">Powt.</div>
+                <div class="plan-ex-cell plan-ex-head" style="font-size:10px">Tempo</div>
+                <div class="plan-ex-cell plan-ex-head" style="font-size:10px">Przerwa</div>
+                <div class="plan-ex-cell plan-ex-head" style="font-size:10px">Ciężar</div>
               </div>
-              <div class="plan-ex">
-                <div class="plan-ex-name"><strong>Front squat</strong> <span class="badge badge-orange" style="font-size:10px;">główne</span></div>
-                <div class="plan-ex-cell">4</div>
-                <div class="plan-ex-cell">6–8</div>
+              <div class="plan-ex" style="grid-template-columns:2fr 50px 80px 90px 70px 80px">
+                <div class="plan-ex-name"><strong>Front squat</strong> <span class="badge badge-orange" style="font-size:9px">główne</span></div>
+                <div class="plan-ex-cell">4</div><div class="plan-ex-cell">6–8</div>
+                <div class="plan-ex-cell"><span class="tempo">3-1-1-0</span></div>
                 <div class="plan-ex-cell">3 min</div>
+                <div class="plan-ex-cell editable" contenteditable="false">70 kg</div>
               </div>
-              <div class="plan-ex">
-                <div class="plan-ex-name"><strong>Trap bar deadlift</strong> <span class="badge badge-orange" style="font-size:10px;">główne</span></div>
-                <div class="plan-ex-cell">4</div>
-                <div class="plan-ex-cell">6–8</div>
+              <div class="plan-ex" style="grid-template-columns:2fr 50px 80px 90px 70px 80px">
+                <div class="plan-ex-name"><strong>Trap bar deadlift</strong> <span class="badge badge-orange" style="font-size:9px">główne</span></div>
+                <div class="plan-ex-cell">4</div><div class="plan-ex-cell">6–8</div>
+                <div class="plan-ex-cell"><span class="tempo">2-1-1-0</span></div>
                 <div class="plan-ex-cell">3 min</div>
+                <div class="plan-ex-cell editable" contenteditable="false">95 kg</div>
               </div>
-              <div class="plan-ex">
+              <div class="plan-ex" style="grid-template-columns:2fr 50px 80px 90px 70px 80px">
                 <div class="plan-ex-name">Hack squat</div>
-                <div class="plan-ex-cell">3</div>
-                <div class="plan-ex-cell">10–12</div>
+                <div class="plan-ex-cell">3</div><div class="plan-ex-cell">10–12</div>
+                <div class="plan-ex-cell"><span class="tempo">3-1-1-0</span></div>
                 <div class="plan-ex-cell">2 min</div>
+                <div class="plan-ex-cell editable" contenteditable="false">55 kg</div>
               </div>
-              <div class="plan-ex">
-                <div class="plan-ex-name">Zginanie leżąc (leg curl)</div>
-                <div class="plan-ex-cell">3</div>
-                <div class="plan-ex-cell">10–12</div>
+              <div class="plan-ex" style="grid-template-columns:2fr 50px 80px 90px 70px 80px">
+                <div class="plan-ex-name">Zginanie leżąc</div>
+                <div class="plan-ex-cell">3</div><div class="plan-ex-cell">10–12</div>
+                <div class="plan-ex-cell"><span class="tempo">2-1-2-0</span></div>
                 <div class="plan-ex-cell">90 s</div>
+                <div class="plan-ex-cell editable" contenteditable="false">60 kg</div>
               </div>
-              <div class="plan-ex">
-                <div class="plan-ex-name">Prostowanie nóg (leg extension)</div>
-                <div class="plan-ex-cell">3</div>
-                <div class="plan-ex-cell">12–15</div>
+              <div class="plan-ex" style="grid-template-columns:2fr 50px 80px 90px 70px 80px">
+                <div class="plan-ex-name">Prostowanie nóg</div>
+                <div class="plan-ex-cell">3</div><div class="plan-ex-cell">12–15</div>
+                <div class="plan-ex-cell"><span class="tempo">2-1-2-0</span></div>
                 <div class="plan-ex-cell">60 s</div>
+                <div class="plan-ex-cell editable" contenteditable="false">—</div>
               </div>
-              <div class="plan-ex">
+              <div class="plan-ex" style="grid-template-columns:2fr 50px 80px 90px 70px 80px">
                 <div class="plan-ex-name">Wspięcia na łydki</div>
-                <div class="plan-ex-cell">4</div>
-                <div class="plan-ex-cell">15–20</div>
+                <div class="plan-ex-cell">4</div><div class="plan-ex-cell">15–20</div>
+                <div class="plan-ex-cell"><span class="tempo">2-1-2-1</span></div>
                 <div class="plan-ex-cell">60 s</div>
+                <div class="plan-ex-cell editable" contenteditable="false">—</div>
               </div>
             </div>
-            <div class="plan-note">⚠️ Lędźwie: przy dyskomforcie zastąp Trap bar goblet squat z -30% obciążenia. Nie rób RDL.</div>
+            <div class="plan-note">⚠️ Lędźwie: przy dyskomforcie zastąp Trap bar goblet squat z -30% ciężaru. Nie rób RDL.</div>
           </div>
         </div>
 
@@ -635,401 +529,184 @@
     </div>
   </div>
 
-  <!-- ═══════════════════════════════════════════════════ CIĘŻARY -->
+  <!-- ══════════════════════════════════════════════════ CIĘŻARY -->
   <div id="tab-ciezary" class="content">
     <div class="code-view">
       <div class="line-nums" id="ln-ciezary"></div>
       <div class="code-body">
-
         <div class="section">
-          <div class="section-header">
-            <span class="section-icon">⚖️</span><span class="section-title">Główne ćwiczenia</span>
-          </div>
+          <div class="section-header"><span class="section-icon">⚖️</span><span class="section-title">Główne ćwiczenia</span></div>
           <table>
             <tr><th>Ćwiczenie</th><th>Aktualnie</th><th>Ostatni wynik</th><th>Następny cel</th></tr>
-            <tr>
-              <td>Ławka sztanga</td>
-              <td><code>67,5 kg</code></td>
-              <td class="muted">5-5-5-5-6</td>
-              <td><span class="badge badge-orange">AMRAP ≥8 → 70 kg</span></td>
-            </tr>
-            <tr>
-              <td>Podciąganie</td>
-              <td><code>-20 kg asysty</code></td>
-              <td class="muted">8-7-6-6-6</td>
-              <td><span class="badge badge-orange">5×6-8 → -17,5 kg</span></td>
-            </tr>
-            <tr>
-              <td>Trap bar</td>
-              <td><code>95 kg</code></td>
-              <td class="muted">8-6-6-6</td>
-              <td><span class="badge badge-orange">4×6-8 → 100 kg</span></td>
-            </tr>
-            <tr>
-              <td>Front squat</td>
-              <td><code>70 kg</code></td>
-              <td class="muted">8-8-6-6</td>
-              <td><span class="badge badge-orange">4×6-8 → 72,5 kg</span></td>
-            </tr>
+            <tr><td>Ławka sztanga</td><td><code class="editable" contenteditable="false">67,5 kg</code></td><td class="editable muted-text" contenteditable="false">5-5-5-5-6</td><td><span class="badge badge-orange">AMRAP ≥8 → 70 kg</span></td></tr>
+            <tr><td>Podciąganie</td><td><code class="editable" contenteditable="false">-20 kg asysty</code></td><td class="editable muted-text" contenteditable="false">8-7-6-6-6</td><td><span class="badge badge-orange">5×6-8 → -17,5 kg</span></td></tr>
+            <tr><td>Trap bar</td><td><code class="editable" contenteditable="false">95 kg</code></td><td class="editable muted-text" contenteditable="false">8-6-6-6</td><td><span class="badge badge-orange">4×6-8 → 100 kg</span></td></tr>
+            <tr><td>Front squat</td><td><code class="editable" contenteditable="false">70 kg</code></td><td class="editable muted-text" contenteditable="false">8-8-6-6</td><td><span class="badge badge-orange">4×6-8 → 72,5 kg</span></td></tr>
           </table>
         </div>
-
         <div class="section">
-          <div class="section-header">
-            <span class="section-icon">📈</span><span class="section-title">Planowane progresje</span>
-            <span class="section-comment"># do zrobienia na kolejnych treningach</span>
-          </div>
+          <div class="section-header"><span class="section-icon">📈</span><span class="section-title">Planowane progresje</span></div>
           <table>
             <tr><th>Trening</th><th>Ćwiczenie</th><th>Progresja</th><th>Status</th></tr>
-            <tr>
-              <td><span class="badge badge-green">Upper A</span></td>
-              <td>Wiosłowanie hantlą</td>
-              <td><code>27,5 kg</code> → <span class="highlight">30 kg</span></td>
-              <td><span class="badge badge-orange">pending</span></td>
-            </tr>
-            <tr>
-              <td><span class="badge badge-green">Upper A</span></td>
-              <td>Ściąganie podchwytem</td>
-              <td><code>55 kg</code> → <span class="highlight">60 kg</span></td>
-              <td><span class="badge badge-orange">pending</span></td>
-            </tr>
-            <tr>
-              <td><span class="badge badge-blue">Upper B</span></td>
-              <td>Arnoldki</td>
-              <td><code>15 kg</code> → <span class="highlight">17,5 kg</span></td>
-              <td><span class="badge badge-orange">pending</span></td>
-            </tr>
-            <tr>
-              <td><span class="badge badge-orange">Lower</span></td>
-              <td>Front squat</td>
-              <td><code>70 kg</code> → <span class="highlight">72,5 kg</span></td>
-              <td><span class="badge badge-purple">gdy 4×6-8</span></td>
-            </tr>
-            <tr>
-              <td><span class="badge badge-orange">Lower</span></td>
-              <td>Hack squat</td>
-              <td><code>55 kg</code> → <span class="highlight">60 kg</span></td>
-              <td><span class="badge badge-orange">pending</span></td>
-            </tr>
-            <tr>
-              <td><span class="badge badge-orange">Lower</span></td>
-              <td>Zginanie leżąc</td>
-              <td><code>60 kg</code> → <span class="highlight">65 kg</span></td>
-              <td><span class="badge badge-orange">pending</span></td>
-            </tr>
+            <tr><td><span class="badge badge-green">Upper A</span></td><td>Wiosłowanie hantlą</td><td><code>27,5 kg</code> → <span class="highlight">30 kg</span></td><td><span class="badge badge-orange">pending</span></td></tr>
+            <tr><td><span class="badge badge-green">Upper A</span></td><td>Ściąganie podchwytem</td><td><code>55 kg</code> → <span class="highlight">60 kg</span></td><td><span class="badge badge-orange">pending</span></td></tr>
+            <tr><td><span class="badge badge-blue">Upper B</span></td><td>Arnoldki</td><td><code>15 kg</code> → <span class="highlight">17,5 kg</span></td><td><span class="badge badge-orange">pending</span></td></tr>
+            <tr><td><span class="badge badge-orange">Lower</span></td><td>Front squat</td><td><code>70 kg</code> → <span class="highlight">72,5 kg</span></td><td><span class="badge badge-purple">gdy 4×6-8</span></td></tr>
+            <tr><td><span class="badge badge-orange">Lower</span></td><td>Hack squat</td><td><code>55 kg</code> → <span class="highlight">60 kg</span></td><td><span class="badge badge-orange">pending</span></td></tr>
+            <tr><td><span class="badge badge-orange">Lower</span></td><td>Zginanie leżąc</td><td><code>60 kg</code> → <span class="highlight">65 kg</span></td><td><span class="badge badge-orange">pending</span></td></tr>
           </table>
         </div>
-
       </div>
     </div>
   </div>
 
-  <!-- ═══════════════════════════════════════════════ NASTĘPNY TRENING -->
+  <!-- ══════════════════════════════════════════════ NASTĘPNY -->
   <div id="tab-nastepny" class="content">
     <div class="code-view">
       <div class="line-nums" id="ln-nastepny"></div>
       <div class="code-body">
-
         <div class="section">
-          <div class="section-header">
-            <span class="section-icon">▶</span><span class="section-title">Upper B</span>
-            <span class="section-comment"># Czw 19.02.2026</span>
+          <div class="section-header"><span class="section-icon">▶</span><span class="section-title">Upper B — Czw 19.02.2026</span></div>
+          <div class="alert alert-warn"><span class="alert-icon">💡</span><div>Arnoldki 17,5 kg — progresja! Przy słabszym dniu: <strong>3×8 z dobrą techniką</strong> &gt; 3×10 z kompensacją barku.</div></div>
+          <div class="alert alert-info" style="margin-bottom:20px"><span class="alert-icon">💡</span><div>Podciągania: cel minimum <strong>6-6-6-6-6</strong>. Chest Press maszyna — dobierz ciężar startowy.</div></div>
+          <div style="display:grid;grid-template-columns:2fr 1fr 1fr 2fr;gap:2px;margin-bottom:2px">
+            <div class="sg-head">Ćwiczenie</div><div class="sg-head">Ciężar</div><div class="sg-head">Tempo</div><div class="sg-head">Cel</div>
           </div>
-
-          <div class="alert alert-warn" style="margin-bottom:12px;">
-            <span class="alert-icon">💡</span>
-            <div>Arnoldki 17,5 kg — progresja! Przy słabszym dniu: lepiej <strong>3×8 z dobrą techniką</strong> niż 3×10 z kompensacją barku.</div>
+          <div style="display:grid;grid-template-columns:2fr 1fr 1fr 2fr;gap:2px;margin-bottom:2px"><div class="wr-cell">1. Podciąganie</div><div class="wr-cell" style="text-align:center"><code>-20 kg</code></div><div class="wr-cell" style="text-align:center"><span class="tempo">3-1-1-0</span></div><div class="wr-cell">5 × 6-8 | 120s</div></div>
+          <div style="display:grid;grid-template-columns:2fr 1fr 1fr 2fr;gap:2px;margin-bottom:2px"><div class="wr-cell">2. Hantle płaska</div><div class="wr-cell" style="text-align:center"><code>25 kg</code></div><div class="wr-cell" style="text-align:center"><span class="tempo">3-1-1-0</span></div><div class="wr-cell">4 × 8-10 | 90s</div></div>
+          <div style="display:grid;grid-template-columns:2fr 1fr 1fr 2fr;gap:2px;margin-bottom:2px"><div class="wr-cell">3. Rozpiętki Butterfly</div><div class="wr-cell" style="text-align:center"><code>50 kg</code></div><div class="wr-cell" style="text-align:center"><span class="tempo">2-1-2-0</span></div><div class="wr-cell">3 × 10-12 | 60s</div></div>
+          <div style="display:grid;grid-template-columns:2fr 1fr 1fr 2fr;gap:2px;margin-bottom:2px">
+            <div class="wr-cell" style="color:var(--accent);font-weight:600">4. Chest Press maszyna ✓ NOWE</div>
+            <div class="wr-cell prog" style="text-align:center">? kg</div>
+            <div class="wr-cell" style="text-align:center"><span class="tempo">2-1-2-0</span></div>
+            <div class="wr-cell prog">3 × 10-12 | 75s — dobierz ciężar</div>
           </div>
-          <div class="alert alert-info" style="margin-bottom:20px;">
-            <span class="alert-icon">💡</span>
-            <div>Podciągania: cel minimum <strong>6-6-6-6-6</strong>. Nie pal się na 8 w 1. serii po wtorkowej sesji.</div>
+          <div style="display:grid;grid-template-columns:2fr 1fr 1fr 2fr;gap:2px;margin-bottom:2px">
+            <div class="wr-cell" style="color:var(--green);font-weight:600">5. Arnoldki ↑ PROGRESJA</div>
+            <div class="wr-cell prog" style="text-align:center">17,5 kg</div>
+            <div class="wr-cell" style="text-align:center"><span class="tempo">2-1-1-0</span></div>
+            <div class="wr-cell prog">3 × 8-10 | 90s</div>
           </div>
-
-          <div style="display:grid;grid-template-columns:2fr 1fr 2fr;gap:2px;margin-bottom:2px;">
-            <div class="sg-head">Ćwiczenie</div><div class="sg-head">Ciężar</div><div class="sg-head">Cel</div>
-          </div>
-          <div class="workout-row"><div class="wr-cell">Podciąganie</div><div class="wr-cell" style="text-align:center;"><code>-20 kg</code></div><div class="wr-cell">5 × 6-8</div></div>
-          <div class="workout-row"><div class="wr-cell">Hantle płaska</div><div class="wr-cell" style="text-align:center;"><code>25 kg</code></div><div class="wr-cell">4 × 10</div></div>
-          <div class="workout-row">
-            <div class="wr-cell" style="color:var(--green);font-weight:600;">Arnoldki ↑ PROGRESJA</div>
-            <div class="wr-cell prog" style="text-align:center;">17,5 kg</div>
-            <div class="wr-cell prog">3 × 8-10</div>
-          </div>
-          <div class="workout-row"><div class="wr-cell">Rozpiętki Butterfly</div><div class="wr-cell" style="text-align:center;"><code>50 kg</code></div><div class="wr-cell">3 × 10-12</div></div>
-          <div class="workout-row"><div class="wr-cell">Odwrotne rozpiętki</div><div class="wr-cell" style="text-align:center;"><code>40 kg</code></div><div class="wr-cell">3 × 10-12</div></div>
-          <div class="workout-row"><div class="wr-cell">Wyciąg dolny</div><div class="wr-cell" style="text-align:center;"><code>60 kg</code></div><div class="wr-cell">3 × 12</div></div>
-          <div class="workout-row"><div class="wr-cell">Unoszenie linka</div><div class="wr-cell" style="text-align:center;"><code>7,5 kg</code></div><div class="wr-cell">4 × 10-12</div></div>
-          <div class="workout-row"><div class="wr-cell">Prostowanie triceps</div><div class="wr-cell" style="text-align:center;"><code>40 kg</code></div><div class="wr-cell">3 × 12-15</div></div>
-          <div class="workout-row"><div class="wr-cell">Uginanie linka</div><div class="wr-cell" style="text-align:center;"><code>50 kg</code></div><div class="wr-cell">2 × 10-12</div></div>
-          <div class="workout-row"><div class="wr-cell">Dipy</div><div class="wr-cell" style="text-align:center;"><code>BW</code></div><div class="wr-cell">2 × 8-12</div></div>
+          <div style="display:grid;grid-template-columns:2fr 1fr 1fr 2fr;gap:2px;margin-bottom:2px"><div class="wr-cell">6. Odwrotne rozpiętki</div><div class="wr-cell" style="text-align:center"><code>40 kg</code></div><div class="wr-cell" style="text-align:center"><span class="tempo">2-1-2-0</span></div><div class="wr-cell">3 × 10-12 | 45s</div></div>
+          <div style="display:grid;grid-template-columns:2fr 1fr 1fr 2fr;gap:2px;margin-bottom:2px"><div class="wr-cell">7. Wyciąg dolny</div><div class="wr-cell" style="text-align:center"><code>60 kg</code></div><div class="wr-cell" style="text-align:center"><span class="tempo">2-1-2-0</span></div><div class="wr-cell">3 × 10-12 | 90s</div></div>
+          <div style="display:grid;grid-template-columns:2fr 1fr 1fr 2fr;gap:2px;margin-bottom:2px"><div class="wr-cell">8. Unoszenie linka</div><div class="wr-cell" style="text-align:center"><code>7,5 kg</code></div><div class="wr-cell" style="text-align:center"><span class="tempo">2-0-2-0</span></div><div class="wr-cell">4 × 10-12 | 90s</div></div>
+          <div style="display:grid;grid-template-columns:2fr 1fr 1fr 2fr;gap:2px;margin-bottom:2px"><div class="wr-cell">9. Prostowanie triceps</div><div class="wr-cell" style="text-align:center"><code>40 kg</code></div><div class="wr-cell" style="text-align:center"><span class="tempo">2-0-2-0</span></div><div class="wr-cell">3 × 12-15 | 60s</div></div>
+          <div style="display:grid;grid-template-columns:2fr 1fr 1fr 2fr;gap:2px;margin-bottom:2px"><div class="wr-cell">10. Uginanie linka</div><div class="wr-cell" style="text-align:center"><code>50 kg</code></div><div class="wr-cell" style="text-align:center"><span class="tempo">2-1-2-0</span></div><div class="wr-cell">2 × 10-12 | 60s</div></div>
+          <div style="display:grid;grid-template-columns:2fr 1fr 1fr 2fr;gap:2px;margin-bottom:2px"><div class="wr-cell muted-text" style="font-style:italic">O. Dipy (opcjonalne)</div><div class="wr-cell" style="text-align:center"><code>BW</code></div><div class="wr-cell" style="text-align:center"><span class="tempo">2-1-2-0</span></div><div class="wr-cell muted-text">2 × 8-12 | 90s — jeśli zostaje energia</div></div>
         </div>
-
       </div>
     </div>
   </div>
 
-  <!-- ═══════════════════════════════════════════════════ RAPORT -->
+  <!-- ══════════════════════════════════════════════════ RAPORT -->
   <div id="tab-raport" class="content">
     <div class="code-view">
       <div class="line-nums" id="ln-raport"></div>
       <div class="code-body">
-
         <div class="section">
-          <div class="section-header">
-            <span class="section-icon">📝</span><span class="section-title">Szablon – Upper A</span>
-            <span class="section-comment"># skopiuj i wklej w chat</span>
-          </div>
+          <div class="section-header"><span class="section-icon">📝</span><span class="section-title">Szablon – Upper A</span><span class="section-comment"># wklej w chat po treningu</span></div>
           <div class="report-block">
-            <div style="color:var(--green);margin-bottom:12px;font-weight:600;">Upper A [DATA] | Czas: ___ | Kcal: ___ | Obciążenie: ___ | Tętno: ___</div>
-            <div class="rb-line"><span class="rb-num muted">1.</span><span class="rb-ex">Ławka sztanga:</span><span class="rb-input">__ kg</span><span class="muted" style="font-size:11px;">×</span><span class="rb-input">__-__-__-__</span></div>
-            <div class="rb-line"><span class="rb-num muted">2.</span><span class="rb-ex">Hantle skos:</span><span class="rb-input">__ kg</span><span class="muted" style="font-size:11px;">×</span><span class="rb-input">__-__-__</span></div>
-            <div class="rb-line"><span class="rb-num muted">3.</span><span class="rb-ex">Wiosłowanie hantlą:</span><span class="rb-input">__ kg</span><span class="muted" style="font-size:11px;">×</span><span class="rb-input">__-__-__</span></div>
-            <div class="rb-line"><span class="rb-num muted">4.</span><span class="rb-ex">Ściąganie podchwytem:</span><span class="rb-input">__ kg</span><span class="muted" style="font-size:11px;">×</span><span class="rb-input">__-__-__</span></div>
-            <div class="rb-line"><span class="rb-num muted">5.</span><span class="rb-ex">Wyciskanie barki:</span><span class="rb-input">__ kg</span><span class="muted" style="font-size:11px;">×</span><span class="rb-input">__-__-__</span></div>
-            <div class="rb-line"><span class="rb-num muted">6.</span><span class="rb-ex">Unoszenie bokiem:</span><span class="rb-input">__ kg</span><span class="muted" style="font-size:11px;">×</span><span class="rb-input">__-__-__</span></div>
-            <div class="rb-line"><span class="rb-num muted">7.</span><span class="rb-ex">Face pulls:</span><span class="rb-input">__ kg</span><span class="muted" style="font-size:11px;">×</span><span class="rb-input">__-__-__</span></div>
-            <div class="rb-line"><span class="rb-num muted">8.</span><span class="rb-ex">Wiosłowanie maszyna:</span><span class="rb-input">__ kg</span><span class="muted" style="font-size:11px;">×</span><span class="rb-input">__-__-__</span></div>
-            <div class="rb-line"><span class="rb-num muted">9.</span><span class="rb-ex">Francuskie:</span><span class="rb-input">__ kg</span><span class="muted" style="font-size:11px;">×</span><span class="rb-input">__-__-__</span></div>
-            <div class="rb-line"><span class="rb-num muted">10.</span><span class="rb-ex">Prostowanie nad głową:</span><span class="rb-input">__ kg</span><span class="muted" style="font-size:11px;">×</span><span class="rb-input">__-__-__</span></div>
-            <div class="rb-line"><span class="rb-num muted">11.</span><span class="rb-ex">Uginanie z rotacją:</span><span class="rb-input">__ kg</span><span class="muted" style="font-size:11px;">×</span><span class="rb-input">__-__-__</span></div>
-            <div style="margin-top:10px;color:var(--text2);">Uwagi: _______________________________________________</div>
+            <div style="color:var(--green);margin-bottom:12px;font-weight:600">Upper A [DATA] | Czas: ___ | Kcal: ___ | Obciążenie: ___ | Tętno: ___</div>
+            <div class="rb-line"><span class="rb-num muted-text">1.</span><span class="rb-ex">Ławka sztanga:</span><span class="rb-input">__ kg</span><span class="muted-text" style="font-size:11px">×</span><span class="rb-input">__-__-__-__</span></div>
+            <div class="rb-line"><span class="rb-num muted-text">2.</span><span class="rb-ex">Hantle skos:</span><span class="rb-input">__ kg</span><span class="muted-text" style="font-size:11px">×</span><span class="rb-input">__-__-__</span></div>
+            <div class="rb-line"><span class="rb-num muted-text">3.</span><span class="rb-ex">Wiosłowanie hantlą:</span><span class="rb-input">__ kg</span><span class="muted-text" style="font-size:11px">×</span><span class="rb-input">__-__-__</span></div>
+            <div class="rb-line"><span class="rb-num muted-text">4.</span><span class="rb-ex">Ściąganie podchwytem:</span><span class="rb-input">__ kg</span><span class="muted-text" style="font-size:11px">×</span><span class="rb-input">__-__-__</span></div>
+            <div class="rb-line"><span class="rb-num muted-text">5.</span><span class="rb-ex">Wyciskanie barki:</span><span class="rb-input">__ kg</span><span class="muted-text" style="font-size:11px">×</span><span class="rb-input">__-__-__</span></div>
+            <div class="rb-line"><span class="rb-num muted-text">6.</span><span class="rb-ex">Unoszenie bokiem:</span><span class="rb-input">__ kg</span><span class="muted-text" style="font-size:11px">×</span><span class="rb-input">__-__-__</span></div>
+            <div class="rb-line"><span class="rb-num muted-text">7.</span><span class="rb-ex">Face pulls:</span><span class="rb-input">__ kg</span><span class="muted-text" style="font-size:11px">×</span><span class="rb-input">__-__-__</span></div>
+            <div class="rb-line"><span class="rb-num muted-text">8.</span><span class="rb-ex">Wiosłowanie maszyna:</span><span class="rb-input">__ kg</span><span class="muted-text" style="font-size:11px">×</span><span class="rb-input">__-__-__</span></div>
+            <div class="rb-line"><span class="rb-num muted-text">9.</span><span class="rb-ex">Francuskie:</span><span class="rb-input">__ kg</span><span class="muted-text" style="font-size:11px">×</span><span class="rb-input">__-__-__</span></div>
+            <div class="rb-line"><span class="rb-num muted-text">10.</span><span class="rb-ex">Prostowanie nad głową:</span><span class="rb-input">__ kg</span><span class="muted-text" style="font-size:11px">×</span><span class="rb-input">__-__-__</span></div>
+            <div class="rb-line"><span class="rb-num muted-text">11.</span><span class="rb-ex">Uginanie z rotacją:</span><span class="rb-input">__ kg</span><span class="muted-text" style="font-size:11px">×</span><span class="rb-input">__-__-__</span></div>
+            <div style="margin-top:10px;color:var(--text2)">Uwagi: _______________________________________________</div>
           </div>
         </div>
-
         <div class="section">
-          <div class="section-header">
-            <span class="section-icon">📝</span><span class="section-title">Szablon – Upper B</span>
-          </div>
+          <div class="section-header"><span class="section-icon">📝</span><span class="section-title">Szablon – Upper B</span></div>
           <div class="report-block">
-            <div style="color:var(--accent);margin-bottom:12px;font-weight:600;">Upper B [DATA] | Czas: ___ | Kcal: ___ | Obciążenie: ___ | Tętno: ___</div>
-            <div class="rb-line"><span class="rb-num muted">1.</span><span class="rb-ex">Podciąganie:</span><span class="rb-input">-__ kg</span><span class="muted" style="font-size:11px;">×</span><span class="rb-input">__-__-__-__-__</span></div>
-            <div class="rb-line"><span class="rb-num muted">2.</span><span class="rb-ex">Hantle płaska:</span><span class="rb-input">__ kg</span><span class="muted" style="font-size:11px;">×</span><span class="rb-input">__-__-__-__</span></div>
-            <div class="rb-line"><span class="rb-num muted">3.</span><span class="rb-ex">Arnoldki:</span><span class="rb-input">__ kg</span><span class="muted" style="font-size:11px;">×</span><span class="rb-input">__-__-__</span></div>
-            <div class="rb-line"><span class="rb-num muted">4.</span><span class="rb-ex">Rozpiętki Butterfly:</span><span class="rb-input">__ kg</span><span class="muted" style="font-size:11px;">×</span><span class="rb-input">__-__-__</span></div>
-            <div class="rb-line"><span class="rb-num muted">5.</span><span class="rb-ex">Odwrotne rozpiętki:</span><span class="rb-input">__ kg</span><span class="muted" style="font-size:11px;">×</span><span class="rb-input">__-__-__</span></div>
-            <div class="rb-line"><span class="rb-num muted">6.</span><span class="rb-ex">Wyciąg dolny:</span><span class="rb-input">__ kg</span><span class="muted" style="font-size:11px;">×</span><span class="rb-input">__-__-__</span></div>
-            <div class="rb-line"><span class="rb-num muted">7.</span><span class="rb-ex">Unoszenie linka:</span><span class="rb-input">__ kg</span><span class="muted" style="font-size:11px;">×</span><span class="rb-input">__-__-__-__</span></div>
-            <div class="rb-line"><span class="rb-num muted">8.</span><span class="rb-ex">Prostowanie triceps:</span><span class="rb-input">__ kg</span><span class="muted" style="font-size:11px;">×</span><span class="rb-input">__-__-__</span></div>
-            <div class="rb-line"><span class="rb-num muted">9.</span><span class="rb-ex">Uginanie linka:</span><span class="rb-input">__ kg</span><span class="muted" style="font-size:11px;">×</span><span class="rb-input">__-__</span></div>
-            <div class="rb-line"><span class="rb-num muted">10.</span><span class="rb-ex">Dipy:</span><span class="rb-input">BW</span><span class="muted" style="font-size:11px;">×</span><span class="rb-input">__-__</span></div>
-            <div style="margin-top:10px;color:var(--text2);">Uwagi: _______________________________________________</div>
+            <div style="color:var(--accent);margin-bottom:12px;font-weight:600">Upper B [DATA] | Czas: ___ | Kcal: ___ | Obciążenie: ___ | Tętno: ___</div>
+            <div class="rb-line"><span class="rb-num muted-text">1.</span><span class="rb-ex">Podciąganie:</span><span class="rb-input">-__ kg</span><span class="muted-text" style="font-size:11px">×</span><span class="rb-input">__-__-__-__-__</span></div>
+            <div class="rb-line"><span class="rb-num muted-text">2.</span><span class="rb-ex">Hantle płaska:</span><span class="rb-input">__ kg</span><span class="muted-text" style="font-size:11px">×</span><span class="rb-input">__-__-__-__</span></div>
+            <div class="rb-line"><span class="rb-num muted-text">3.</span><span class="rb-ex">Rozpiętki Butterfly:</span><span class="rb-input">__ kg</span><span class="muted-text" style="font-size:11px">×</span><span class="rb-input">__-__-__</span></div>
+            <div class="rb-line"><span class="rb-num muted-text">4.</span><span class="rb-ex">Chest Press maszyna:</span><span class="rb-input">__ kg</span><span class="muted-text" style="font-size:11px">×</span><span class="rb-input">__-__-__</span></div>
+            <div class="rb-line"><span class="rb-num muted-text">5.</span><span class="rb-ex">Arnoldki:</span><span class="rb-input">__ kg</span><span class="muted-text" style="font-size:11px">×</span><span class="rb-input">__-__-__</span></div>
+            <div class="rb-line"><span class="rb-num muted-text">6.</span><span class="rb-ex">Odwrotne rozpiętki:</span><span class="rb-input">__ kg</span><span class="muted-text" style="font-size:11px">×</span><span class="rb-input">__-__-__</span></div>
+            <div class="rb-line"><span class="rb-num muted-text">7.</span><span class="rb-ex">Wyciąg dolny:</span><span class="rb-input">__ kg</span><span class="muted-text" style="font-size:11px">×</span><span class="rb-input">__-__-__</span></div>
+            <div class="rb-line"><span class="rb-num muted-text">8.</span><span class="rb-ex">Unoszenie linka:</span><span class="rb-input">__ kg</span><span class="muted-text" style="font-size:11px">×</span><span class="rb-input">__-__-__-__</span></div>
+            <div class="rb-line"><span class="rb-num muted-text">9.</span><span class="rb-ex">Prostowanie triceps:</span><span class="rb-input">__ kg</span><span class="muted-text" style="font-size:11px">×</span><span class="rb-input">__-__-__</span></div>
+            <div class="rb-line"><span class="rb-num muted-text">10.</span><span class="rb-ex">Uginanie linka:</span><span class="rb-input">__ kg</span><span class="muted-text" style="font-size:11px">×</span><span class="rb-input">__-__</span></div>
+            <div class="rb-line"><span class="rb-num muted-text">O.</span><span class="rb-ex">Dipy:</span><span class="rb-input">BW</span><span class="muted-text" style="font-size:11px">×</span><span class="rb-input">__-__</span></div>
+            <div style="margin-top:10px;color:var(--text2)">Uwagi: _______________________________________________</div>
           </div>
         </div>
-
         <div class="section">
-          <div class="section-header">
-            <span class="section-icon">📝</span><span class="section-title">Szablon – Lower</span>
-          </div>
+          <div class="section-header"><span class="section-icon">📝</span><span class="section-title">Szablon – Lower</span></div>
           <div class="report-block">
-            <div style="color:var(--orange);margin-bottom:12px;font-weight:600;">Lower [DATA] | Czas: ___ | Kcal: ___ | Obciążenie: ___ | Tętno: ___</div>
-            <div class="rb-line"><span class="rb-num muted">1.</span><span class="rb-ex">Front squat:</span><span class="rb-input">__ kg</span><span class="muted" style="font-size:11px;">×</span><span class="rb-input">__-__-__-__</span></div>
-            <div class="rb-line"><span class="rb-num muted">2.</span><span class="rb-ex">Trap bar deadlift:</span><span class="rb-input">__ kg</span><span class="muted" style="font-size:11px;">×</span><span class="rb-input">__-__-__-__</span></div>
-            <div class="rb-line"><span class="rb-num muted">3.</span><span class="rb-ex">Hack squat:</span><span class="rb-input">__ kg</span><span class="muted" style="font-size:11px;">×</span><span class="rb-input">__-__-__</span></div>
-            <div class="rb-line"><span class="rb-num muted">4.</span><span class="rb-ex">Zginanie leżąc:</span><span class="rb-input">__ kg</span><span class="muted" style="font-size:11px;">×</span><span class="rb-input">__-__-__</span></div>
-            <div class="rb-line"><span class="rb-num muted">5.</span><span class="rb-ex">Prostowanie nóg:</span><span class="rb-input">__ kg</span><span class="muted" style="font-size:11px;">×</span><span class="rb-input">__-__-__</span></div>
-            <div class="rb-line"><span class="rb-num muted">6.</span><span class="rb-ex">Wspięcia na łydki:</span><span class="rb-input">__ kg</span><span class="muted" style="font-size:11px;">×</span><span class="rb-input">__-__-__-__</span></div>
-            <div style="margin-top:10px;color:var(--text2);">Lędźwie: ____/10 &nbsp;|&nbsp; Uwagi: _________________________________</div>
+            <div style="color:var(--orange);margin-bottom:12px;font-weight:600">Lower [DATA] | Czas: ___ | Kcal: ___ | Obciążenie: ___ | Tętno: ___</div>
+            <div class="rb-line"><span class="rb-num muted-text">1.</span><span class="rb-ex">Front squat:</span><span class="rb-input">__ kg</span><span class="muted-text" style="font-size:11px">×</span><span class="rb-input">__-__-__-__</span></div>
+            <div class="rb-line"><span class="rb-num muted-text">2.</span><span class="rb-ex">Trap bar deadlift:</span><span class="rb-input">__ kg</span><span class="muted-text" style="font-size:11px">×</span><span class="rb-input">__-__-__-__</span></div>
+            <div class="rb-line"><span class="rb-num muted-text">3.</span><span class="rb-ex">Hack squat:</span><span class="rb-input">__ kg</span><span class="muted-text" style="font-size:11px">×</span><span class="rb-input">__-__-__</span></div>
+            <div class="rb-line"><span class="rb-num muted-text">4.</span><span class="rb-ex">Zginanie leżąc:</span><span class="rb-input">__ kg</span><span class="muted-text" style="font-size:11px">×</span><span class="rb-input">__-__-__</span></div>
+            <div class="rb-line"><span class="rb-num muted-text">5.</span><span class="rb-ex">Prostowanie nóg:</span><span class="rb-input">__ kg</span><span class="muted-text" style="font-size:11px">×</span><span class="rb-input">__-__-__</span></div>
+            <div class="rb-line"><span class="rb-num muted-text">6.</span><span class="rb-ex">Wspięcia na łydki:</span><span class="rb-input">__ kg</span><span class="muted-text" style="font-size:11px">×</span><span class="rb-input">__-__-__-__</span></div>
+            <div style="margin-top:10px;color:var(--text2)">Lędźwie: ____/10 &nbsp;|&nbsp; Uwagi: _________________________________</div>
           </div>
         </div>
-
         <div class="section">
-          <div class="section-header">
-            <span class="section-icon">📜</span><span class="section-title">Historia ostatnich treningów</span>
-          </div>
+          <div class="section-header"><span class="section-icon">📜</span><span class="section-title">Historia ostatnich treningów</span></div>
           <table>
             <tr><th>Data</th><th>Trening</th><th>Pompka</th><th>Uwagi</th></tr>
-            <tr>
-              <td class="muted">17.02 Wt</td>
-              <td><span class="badge badge-green">Upper A</span></td>
-              <td><span class="badge badge-red">4/10</span></td>
-              <td class="muted">Słabszy dzień, ale progresje zrobione</td>
-            </tr>
-            <tr>
-              <td class="muted">16.02 Nd</td>
-              <td><span class="badge badge-muted">Cardio</span></td>
-              <td class="muted">—</td>
-              <td class="muted">Stretching, regeneracja lędźwi</td>
-            </tr>
-            <tr>
-              <td class="muted">12.02 Śr</td>
-              <td><span class="badge badge-orange">Lower</span></td>
-              <td class="muted">—</td>
-              <td><span class="warn">Dyskomfort lędźwiowy po treningu</span></td>
-            </tr>
+            <tr><td class="muted-text">17.02 Wt</td><td><span class="badge badge-green">Upper A</span></td><td><span class="badge badge-red">4/10</span></td><td class="muted-text">Słabszy dzień, ale progresje zrobione</td></tr>
+            <tr><td class="muted-text">16.02 Nd</td><td><span class="badge badge-muted">Cardio</span></td><td class="muted-text">—</td><td class="muted-text">Stretching, regeneracja lędźwi</td></tr>
+            <tr><td class="muted-text">12.02 Śr</td><td><span class="badge badge-orange">Lower</span></td><td class="muted-text">—</td><td><span class="warn">Dyskomfort lędźwiowy po treningu</span></td></tr>
           </table>
         </div>
-
       </div>
     </div>
   </div>
 
-  <!-- ═══════════════════════════════════════════════ PODSUMOWANIE -->
+  <!-- ══════════════════════════════════════════════ PODSUMOWANIE -->
   <div id="tab-summary" class="content">
     <div class="code-view">
       <div class="line-nums" id="ln-summary"></div>
       <div class="code-body">
-
         <div class="section">
-          <div class="section-header">
-            <span class="section-icon">📊</span><span class="section-title">Wolumen tygodniowy — serie na partię</span>
-            <span class="section-comment"># UA + UB + L = pełny tydzień</span>
-          </div>
-          <div class="alert alert-info" style="margin-bottom:16px;">
-            <span class="alert-icon">ℹ</span>
-            <div>Wolumen obliczony dla <strong>pełnego tygodnia z 3 treningami</strong> (UA + UB + L). W tygodniach z brakiem treningu wolumen proporcjonalnie niższy.</div>
-          </div>
-
-          <table style="margin-bottom:20px;">
-            <tr><th>Partia mięśniowa</th><th>Serie/tydzień</th><th>Trening</th><th>Ocena</th></tr>
-            <tr>
-              <td><strong>Klatka piersiowa</strong></td>
-              <td>17</td>
-              <td class="muted">Ławka 4s + Skos 3s + Hantle płaska 4s + Butterfly 3s + Rozpiętki odwr. 3s</td>
-              <td><span class="badge badge-green">wysoki</span></td>
-            </tr>
-            <tr>
-              <td><strong>Plecy (szerokość)</strong></td>
-              <td>16</td>
-              <td class="muted">Podciąganie 5s + Ściąganie 3s + Wyciąg dolny 3s + Wiosł. masz. 3s + Wiosł. hantle 2×3s</td>
-              <td><span class="badge badge-green">wysoki</span></td>
-            </tr>
-            <tr>
-              <td><strong>Barki (środkowe)</strong></td>
-              <td>13</td>
-              <td class="muted">Wyciskanie barki 3s + Unoszenie bokiem 3s + Arnoldki 3s + Unoszenie linka 4s</td>
-              <td><span class="badge badge-green">optymalny</span></td>
-            </tr>
-            <tr>
-              <td><strong>Barki (tylne)</strong></td>
-              <td>9</td>
-              <td class="muted">Face pulls 3s + Odwrotne rozpiętki 3s + Wiosłowania (pośrednio) 3s</td>
-              <td><span class="badge badge-blue">wystarczający</span></td>
-            </tr>
-            <tr>
-              <td><strong>Triceps</strong></td>
-              <td>13</td>
-              <td class="muted">Francuskie 3s + Prostowanie nad głową 3s + Prostowanie linka 3s + Dipy 2s + Ławka/Wyciskanie (pośrednio)</td>
-              <td><span class="badge badge-green">optymalny</span></td>
-            </tr>
-            <tr>
-              <td><strong>Biceps</strong></td>
-              <td>8</td>
-              <td class="muted">Uginanie z rot. 3s + Uginanie linka 2s + Podciągania (pośrednio) 3s</td>
-              <td><span class="badge badge-blue">wystarczający</span></td>
-            </tr>
-            <tr>
-              <td><strong>Czwórogłowe</strong></td>
-              <td>14</td>
-              <td class="muted">Front squat 4s + Hack squat 3s + Prostowanie nóg 3s + Trap bar (pośrednio) 4s</td>
-              <td><span class="badge badge-green">optymalny</span></td>
-            </tr>
-            <tr>
-              <td><strong>Dwugłowe uda / pośladki</strong></td>
-              <td>11</td>
-              <td class="muted">Trap bar 4s + Zginanie leżąc 3s + Front squat (pośrednio) 4s</td>
-              <td><span class="badge badge-green">optymalny</span></td>
-            </tr>
-            <tr>
-              <td><strong>Łydki</strong></td>
-              <td>4</td>
-              <td class="muted">Wspięcia na łydki 4s</td>
-              <td><span class="badge badge-orange">niski</span></td>
-            </tr>
-            <tr>
-              <td><strong>Core (pośrednio)</strong></td>
-              <td>8+</td>
-              <td class="muted">Front squat, Trap bar, Podciąganie, Face pulls — brak izolacji core w planie</td>
-              <td><span class="badge badge-orange">brak izolacji</span></td>
-            </tr>
+          <div class="section-header"><span class="section-icon">📊</span><span class="section-title">Wolumen tygodniowy — serie na partię</span><span class="section-comment"># UA + UB + L</span></div>
+          <div class="alert alert-info" style="margin-bottom:16px"><span class="alert-icon">ℹ</span><div>Wolumen dla <strong>pełnego tygodnia z 3 treningami</strong>. W tygodniach z brakiem — proporcjonalnie niższy.</div></div>
+          <table style="margin-bottom:20px">
+            <tr><th>Partia</th><th>Serie/tydzień</th><th>Źródło</th><th>Ocena</th></tr>
+            <tr><td><strong>Klatka piersiowa</strong></td><td>20</td><td class="muted-text">Ławka 4s + Skos 3s + Hantle 4s + Butterfly 3s + Chest Press 3s + Dipy 2s + Rozpiętki odw. (pośr.) 3s</td><td><span class="badge badge-green">wysoki</span></td></tr>
+            <tr><td><strong>Plecy (szerokość)</strong></td><td>16</td><td class="muted-text">Podciąganie 5s + Ściąganie 3s + Wyciąg dolny 3s + Wiosł. masz. 3s + Wiosł. hantle 3s</td><td><span class="badge badge-green">wysoki</span></td></tr>
+            <tr><td><strong>Barki (środkowe)</strong></td><td>13</td><td class="muted-text">Wycisk. barki 3s + Unosz. bok 3s + Arnoldki 3s + Unosz. linka 4s</td><td><span class="badge badge-green">optymalny</span></td></tr>
+            <tr><td><strong>Barki (tylne)</strong></td><td>9</td><td class="muted-text">Face pulls 3s + Odwr. rozpiętki 3s + Wiosłowania (pośr.) 3s</td><td><span class="badge badge-blue">wystarczający</span></td></tr>
+            <tr><td><strong>Triceps</strong></td><td>14</td><td class="muted-text">Francuskie 3s + Prost. nad głową 3s + Prost. linka 3s + Dipy 2s + push (pośr.) 3s</td><td><span class="badge badge-green">optymalny</span></td></tr>
+            <tr><td><strong>Biceps</strong></td><td>8</td><td class="muted-text">Uginanie rot. 3s + Uginanie linka 2s + Podciąganie (pośr.) 3s</td><td><span class="badge badge-blue">wystarczający</span></td></tr>
+            <tr><td><strong>Czwórogłowe</strong></td><td>14</td><td class="muted-text">Front squat 4s + Hack squat 3s + Prost. nóg 3s + Trap bar (pośr.) 4s</td><td><span class="badge badge-green">optymalny</span></td></tr>
+            <tr><td><strong>Dwugłowe / pośladki</strong></td><td>11</td><td class="muted-text">Trap bar 4s + Zginanie 3s + Front squat (pośr.) 4s</td><td><span class="badge badge-green">optymalny</span></td></tr>
+            <tr><td><strong>Łydki</strong></td><td>4</td><td class="muted-text">Wspięcia 4s</td><td><span class="badge badge-orange">niski</span></td></tr>
+            <tr><td><strong>Core</strong></td><td>8+</td><td class="muted-text">Pośrednio: Front squat, Trap bar, Podciąganie — brak izolacji</td><td><span class="badge badge-orange">brak izolacji</span></td></tr>
           </table>
         </div>
-
         <div class="section">
-          <div class="section-header">
-            <span class="section-icon">🔢</span><span class="section-title">Statystyki planu</span>
-          </div>
-          <div class="two-col">
-            <div>
-              <table>
-                <tr><th colspan="2">Liczba ćwiczeń na trening</th></tr>
-                <tr><td><span class="badge badge-green">Upper A</span></td><td>11 ćwiczeń</td></tr>
-                <tr><td><span class="badge badge-blue">Upper B</span></td><td>10 ćwiczeń</td></tr>
-                <tr><td><span class="badge badge-orange">Lower</span></td><td>6 ćwiczeń</td></tr>
-              </table>
-            </div>
-            <div>
-              <table>
-                <tr><th colspan="2">Serie na trening</th></tr>
-                <tr><td><span class="badge badge-green">Upper A</span></td><td>~33 serie</td></tr>
-                <tr><td><span class="badge badge-blue">Upper B</span></td><td>~29 serie</td></tr>
-                <tr><td><span class="badge badge-orange">Lower</span></td><td>~21 serie</td></tr>
-              </table>
-            </div>
-          </div>
-        </div>
-
-        <div class="section">
-          <div class="section-header">
-            <span class="section-icon">⚖️</span><span class="section-title">Balans push / pull</span>
-          </div>
+          <div class="section-header"><span class="section-icon">⚖️</span><span class="section-title">Balans push / pull / legs</span></div>
           <table>
-            <tr><th>Typ ruchu</th><th>Serie/tydzień</th><th>Ocena</th></tr>
-            <tr>
-              <td>Push (pchanie)</td>
-              <td>~27</td>
-              <td class="muted">Ławka, Skos, Hantle płaska, Butterfly, Wyciskanie barki, Arnoldki, Dipy, Triceps</td>
-            </tr>
-            <tr>
-              <td>Pull (ciągnienie)</td>
-              <td>~27</td>
-              <td class="muted">Podciąganie, Ściąganie, Wyciąg, Wiosłowania (3×), Biceps</td>
-            </tr>
-            <tr>
-              <td>Legs (nogi)</td>
-              <td>~21</td>
-              <td class="muted">Front squat, Trap bar, Hack squat, Zginanie, Prostowanie, Wspięcia</td>
-            </tr>
+            <tr><th>Typ</th><th>Serie/tydz.</th><th>Ćwiczenia</th></tr>
+            <tr><td>Push</td><td>~30</td><td class="muted-text">Ławka, Skos, Hantle płaska, Butterfly, Chest Press, Wycisk. barki, Arnoldki, Dipy, Triceps 2×</td></tr>
+            <tr><td>Pull</td><td>~27</td><td class="muted-text">Podciąganie, Ściąganie, Wyciąg, Wiosłowania 3×, Biceps 2×</td></tr>
+            <tr><td>Legs</td><td>~21</td><td class="muted-text">Front squat, Trap bar, Hack squat, Zginanie, Prostowanie, Wspięcia</td></tr>
           </table>
-          <div class="alert alert-info" style="margin-top:12px;">
-            <span class="alert-icon">✓</span>
-            <div>Push/Pull w równowadze (1:1) — dobry balans dla zdrowia stawów barkowych.</div>
-          </div>
+          <div class="alert alert-warn" style="margin-top:12px"><span class="alert-icon">⚠</span><div>Po dodaniu Chest Press — Push lekko przeważa nad Pull (30 vs 27). Monitoruj zdrowie barków. Jeśli pojawi się dyskomfort barków — dodaj 1 serię wyciągu lub wiosłowania.</div></div>
         </div>
-
         <div class="section">
-          <div class="section-header">
-            <span class="section-icon">💡</span><span class="section-title">Wnioski i rekomendacje</span>
-          </div>
+          <div class="section-header"><span class="section-icon">💡</span><span class="section-title">Rekomendacje</span></div>
           <table>
             <tr><th>Obszar</th><th>Obserwacja</th><th>Priorytet</th></tr>
-            <tr>
-              <td>Łydki</td>
-              <td>Tylko 4 serie/tydzień — minimum dla rozbudowy to 8–12. Rozważ 2. serię wspięć lub dodatkowe ćwiczenie siedzące.</td>
-              <td><span class="badge badge-orange">średni</span></td>
-            </tr>
-            <tr>
-              <td>Core izolacja</td>
-              <td>Brak dedykowanego core w planie. Plank / hollow body / rollout 2-3× tydzień poprawiłby stabilizację lędźwiową.</td>
-              <td><span class="badge badge-red">wysoki</span></td>
-            </tr>
-            <tr>
-              <td>Barki tylne</td>
-              <td>9 serii to minimum — face pulls i odwrotne rozpiętki wystarczają dla zdrowia barku, ale to nie jest partia priorytetowa.</td>
-              <td><span class="badge badge-blue">niski</span></td>
-            </tr>
-            <tr>
-              <td>Upper A długość</td>
-              <td>11 ćwiczeń to dużo — jeśli sesja przekracza 90 min lub jakość spada na końcu, rozważ ucięcie ostatnich 2 izolacji.</td>
-              <td><span class="badge badge-orange">średni</span></td>
-            </tr>
-            <tr>
-              <td>Lędźwie</td>
-              <td>Przy regularnym dyskomforcie po Lower — rozważ dodanie martwego przytrzymania hantli lub ćwiczeń stabilizacji miednicy.</td>
-              <td><span class="badge badge-red">wysoki</span></td>
-            </tr>
+            <tr><td>Core izolacja</td><td>Brak dedykowanego core — plank / hollow body 2-3× tydzień poprawi stabilizację lędźwiową.</td><td><span class="badge badge-red">wysoki</span></td></tr>
+            <tr><td>Lędźwie</td><td>Przy regularnym dyskomforcie po Lower rozważ ćwiczenia stabilizacji miednicy (bird-dog, dead bug).</td><td><span class="badge badge-red">wysoki</span></td></tr>
+            <tr><td>Łydki</td><td>4 serie to minimum — rozważ 2. ćwiczenie siedząc (inne włókna) lub dodatkową serię.</td><td><span class="badge badge-orange">średni</span></td></tr>
+            <tr><td>Push/Pull balans</td><td>Chest Press dodał ~3 serie push — obserwuj barki przez 2-3 tygodnie.</td><td><span class="badge badge-blue">niski</span></td></tr>
           </table>
         </div>
-
       </div>
     </div>
   </div>
@@ -1037,6 +714,10 @@
 </div>
 
 <script>
+// ── State ──────────────────────────────────────────────────────────────────
+let editMode = false;
+
+// ── Tabs ───────────────────────────────────────────────────────────────────
 function showTab(name, el) {
   document.querySelectorAll('.content').forEach(c => c.classList.remove('active'));
   document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
@@ -1045,6 +726,68 @@ function showTab(name, el) {
   setTimeout(() => generateLineNums('ln-' + name), 50);
 }
 
+// ── Edit mode ──────────────────────────────────────────────────────────────
+function toggleEdit() {
+  editMode = !editMode;
+  applyEditMode();
+}
+
+function applyEditMode() {
+  const fields = document.querySelectorAll('.editable');
+  fields.forEach(f => {
+    f.contentEditable = editMode ? 'true' : 'false';
+    if (editMode) f.style.cursor = 'text';
+    else f.style.cursor = '';
+  });
+  document.querySelectorAll('.content').forEach(c => {
+    if (editMode) c.classList.add('edit-mode');
+    else c.classList.remove('edit-mode');
+  });
+  document.getElementById('btn-save').style.display = editMode ? 'inline-block' : 'none';
+  document.getElementById('btn-cancel').style.display = editMode ? 'inline-block' : 'none';
+  document.getElementById('edit-indicator').classList.toggle('visible', editMode);
+  document.querySelector('.btn-edit').textContent = editMode ? '✏️ Edycja aktywna' : '✏️ Tryb edycji';
+}
+
+function saveChanges() {
+  editMode = false;
+  applyEditMode();
+  showToast('✓ Zmiany zapisane — pamiętaj o eksporcie HTML!');
+}
+
+function cancelEdit() {
+  location.reload();
+}
+
+// ── Export ─────────────────────────────────────────────────────────────────
+function exportHTML() {
+  // Turn off edit mode first
+  const wasEditing = editMode;
+  if (wasEditing) { editMode = false; applyEditMode(); }
+
+  const html = '<!DOCTYPE html>\n' + document.documentElement.outerHTML;
+  const blob = new Blob([html], { type: 'text/html;charset=utf-8' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'index.html';
+  a.click();
+  URL.revokeObjectURL(url);
+
+  if (wasEditing) { editMode = true; applyEditMode(); }
+  showToast('⬇️ Pobrano index.html — wgraj na GitHub!');
+}
+
+// ── Toast ──────────────────────────────────────────────────────────────────
+function showToast(msg) {
+  const t = document.createElement('div');
+  t.textContent = msg;
+  t.style.cssText = 'position:fixed;bottom:24px;right:24px;background:#1a1f2e;border:1px solid #252d3d;color:#e2e8f0;padding:12px 20px;border-radius:8px;font-family:JetBrains Mono,monospace;font-size:12px;z-index:9999;box-shadow:0 8px 32px rgba(0,0,0,0.5);animation:fadeIn .3s ease;';
+  document.body.appendChild(t);
+  setTimeout(() => t.remove(), 3500);
+}
+
+// ── Line numbers ───────────────────────────────────────────────────────────
 function generateLineNums(id) {
   const el = document.getElementById(id);
   if (!el) return;
@@ -1053,13 +796,13 @@ function generateLineNums(id) {
   el.innerHTML = Array.from({length: lines}, (_, i) => `<span>${i + 1}</span>`).join('');
 }
 
+// ── Init ───────────────────────────────────────────────────────────────────
 window.addEventListener('load', () => {
   ['profil','harmonogram','plan','ciezary','nastepny','raport','summary'].forEach(name => {
     const tab = document.getElementById('tab-' + name);
-    const wasHidden = tab.style.display === 'none' || !tab.classList.contains('active');
     tab.style.display = 'block';
     generateLineNums('ln-' + name);
-    if (wasHidden) tab.style.display = '';
+    tab.style.display = '';
     tab.classList.remove('active');
   });
   document.getElementById('tab-profil').classList.add('active');
