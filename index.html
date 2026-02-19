@@ -255,6 +255,7 @@
   <button class="nav-btn" onclick="show('plan')">🏋️ Plan</button>
   <button class="nav-btn" onclick="show('ciezary')">⚖️ Ciężary</button>
   <button class="nav-btn" onclick="show('nastepny')">▶ Następny</button>
+  <button class="nav-btn" onclick="show('poprzedni')">⏮ Poprzedni</button>
   <button class="nav-btn" onclick="show('raport')">📝 Raport</button>
   <button class="nav-btn" onclick="show('podsumowanie')">📊 Podsumowanie</button>
   <button class="nav-btn" onclick="show('dieta')">🥗 Dieta</button>
@@ -265,6 +266,10 @@
 <!-- PROFIL -->
 <section id="profil" class="active">
   <h2>👤 Profil</h2>
+
+  <div style="text-align:right;font-size:11px;color:var(--text3);margin-bottom:12px;font-family:inherit">
+    🕐 Ostatnia aktualizacja: <span style="color:var(--accent2)">19.02.2026, 21:00</span>
+  </div>
 
   <div class="card">
     <div class="card-title">Dane</div>
@@ -366,7 +371,7 @@
     <div class="week-row"><div>Budowa</div><div style="color:var(--text3)">3 · 26.01–01.02</div><div class="training-cell t-none">— brak</div><div class="training-cell t-none">— brak</div><div class="training-cell t-done">✓ UB</div></div>
     <div class="week-row"><div>Budowa</div><div style="color:var(--text3)">4 · 02–08.02</div><div class="training-cell t-done">✓ L</div><div class="training-cell t-done">✓ UA</div><div class="training-cell t-done">✓ L</div></div>
     <div class="week-row"><div>Budowa</div><div style="color:var(--text3)">5 · 09–15.02</div><div class="training-cell t-done">✓ UB</div><div class="training-cell t-done">✓ L</div><div class="training-cell t-none">— brak</div></div>
-    <div class="week-row current"><div style="color:var(--accent)">← teraz</div><div style="color:var(--accent)">6 · 16–22.02</div><div class="training-cell t-done">✓ UA (17 Wt)</div><div class="training-cell t-next">▶ UB (19 Czw)</div><div class="training-cell t-plan">L (22 Nd)</div></div>
+    <div class="week-row current"><div style="color:var(--accent)">← teraz</div><div style="color:var(--accent)">6 · 16–22.02</div><div class="training-cell t-done">✓ UA (17 Wt)</div><div class="training-cell t-done">✓ UB (19 Czw)</div><div class="training-cell t-next">▶ L (22 Nd)</div></div>
     <div class="week-row"><div>Budowa</div><div style="color:var(--text3)">7 · 23.02–01.03</div><div class="training-cell t-plan">L (24 Wt)</div><div class="training-cell t-plan">UB (26 Czw)</div><div class="training-cell t-plan">UA (01 Nd)</div></div>
     <div class="week-row"><div>Budowa</div><div style="color:var(--text3)">8 · 02–08.03</div><div class="training-cell t-plan">UA (03 Wt)</div><div class="training-cell t-plan">L (05 Czw)</div><div class="training-cell t-plan">UB (08 Nd)</div></div>
     <div class="week-row"><div style="color:var(--yellow)">Deload</div><div style="color:var(--yellow)">— 09–15.03</div><div class="training-cell" style="color:var(--yellow)">L (10 Wt)</div><div class="training-cell" style="color:var(--yellow)">UA (12 Czw)</div><div class="training-cell" style="color:var(--yellow)">UB (15 Nd)</div></div>
@@ -414,15 +419,15 @@
     <table>
       <tr><th>#</th><th>Ćwiczenie</th><th>Serie</th><th>Powt.</th><th>Tempo</th><th>Przerwa</th><th>Ciężar</th></tr>
       <tr class="exercise-main"><td>1</td><td>⭐ Podciąganie (asysta)</td><td>5</td><td>6–8</td><td>3-1-1-0</td><td>120 s</td><td><span class="kg-badge">-20 kg</span></td></tr>
-      <tr><td>2</td><td>Hantle płaska</td><td>4</td><td>8–10</td><td>3-1-1-0</td><td>90 s</td><td><span class="kg-badge">25 kg</span></td></tr>
-      <tr><td>3</td><td>Rozpiętki Butterfly</td><td>3</td><td>10–12</td><td>2-1-2-0</td><td>60 s</td><td><span class="kg-badge">50 kg</span></td></tr>
-      <tr><td>4</td><td>Chest Press maszyna <span class="badge badge-green">NOWE</span></td><td>3</td><td>10–12</td><td>2-1-2-0</td><td>75 s</td><td>?</td></tr>
+      <tr><td>2</td><td>Hantle płaska</td><td>4</td><td>8–10</td><td>3-1-1-0</td><td>90 s</td><td><span class="kg-badge">27,5 kg</span></td></tr>
+      <tr><td>3</td><td>Rozpiętki Butterfly</td><td>3</td><td>10–12</td><td>2-1-2-0</td><td>60 s</td><td><span class="kg-badge">55 kg</span></td></tr>
+      <tr><td>4</td><td>Chest Press maszyna</td><td>3</td><td>10–12</td><td>2-1-2-0</td><td>75 s</td><td><span class="kg-badge">55 kg</span></td></tr>
       <tr><td>5</td><td>Arnoldki <span class="badge badge-yellow">PROGRESJA</span></td><td>3</td><td>8–10</td><td>2-1-1-0</td><td>90 s</td><td><span class="kg-badge">17,5 kg</span></td></tr>
-      <tr><td>6</td><td>Odwrotne rozpiętki</td><td>3</td><td>10–12</td><td>2-1-2-0</td><td>45 s</td><td><span class="kg-badge">40 kg</span></td></tr>
+      <tr><td>6</td><td>Odwrotne rozpiętki</td><td>3</td><td>10–12</td><td>2-1-2-0</td><td>45 s</td><td><span class="kg-badge">45 kg</span></td></tr>
       <tr><td>7</td><td>Wyciąg dolny</td><td>3</td><td>10–12</td><td>2-1-2-0</td><td>90 s</td><td><span class="kg-badge">60 kg</span></td></tr>
-      <tr><td>8</td><td>Unoszenie linka (barki)</td><td>4</td><td>10–12</td><td>2-0-2-0</td><td>90 s</td><td><span class="kg-badge">7,5 kg</span></td></tr>
-      <tr><td>9</td><td>Prostowanie triceps (linka)</td><td>3</td><td>12–15</td><td>2-0-2-0</td><td>60 s</td><td><span class="kg-badge">40 kg</span></td></tr>
-      <tr><td>10</td><td>Uginanie linka (biceps)</td><td>2</td><td>10–12</td><td>2-1-2-0</td><td>60 s</td><td><span class="kg-badge">50 kg</span></td></tr>
+      <tr><td>8</td><td>Unoszenie linka (barki)</td><td>4</td><td>10–12</td><td>2-0-2-0</td><td>90 s</td><td><span class="kg-badge">10 kg</span></td></tr>
+      <tr><td>9</td><td>Prostowanie triceps (linka)</td><td><strong>4</strong></td><td><strong>12</strong></td><td>2-0-2-0</td><td>60 s</td><td><span class="kg-badge">45 kg</span></td></tr>
+      <tr><td>10</td><td>Uginanie linka (biceps)</td><td>2</td><td>10–12</td><td>2-1-2-0</td><td>60 s</td><td><span class="kg-badge">55 kg</span></td></tr>
       <tr class="exercise-opt"><td>O</td><td>Dipy (opcjonalne)</td><td>2</td><td>8–12</td><td>2-1-2-0</td><td>90 s</td><td>BW</td></tr>
     </table>
     <div style="margin-top:12px;font-size:12px;color:var(--text3)">⚡ Chest Press maszyna — dobierz ciężar na pierwszej sesji (cel: ostatnia seria z RIR=2).</div>
@@ -493,9 +498,39 @@
         <td><span class="badge badge-yellow">pending</span></td>
       </tr>
       <tr>
+        <td>Upper B</td><td>Hantle płaska</td>
+        <td><span class="kg-badge">25 kg</span> → <strong>27,5 kg</strong></td>
+        <td><span class="badge badge-green">✓ 4×10 zrobione</span></td>
+      </tr>
+      <tr>
+        <td>Upper B</td><td>Rozpiętki Butterfly</td>
+        <td><span class="kg-badge">50 kg</span> → <strong>55 kg</strong></td>
+        <td><span class="badge badge-green">✓ 3×12 zrobione</span></td>
+      </tr>
+      <tr>
+        <td>Upper B</td><td>Odwrotne rozpiętki</td>
+        <td><span class="kg-badge">40 kg</span> → <strong>45 kg</strong></td>
+        <td><span class="badge badge-green">✓ 3×12 zrobione</span></td>
+      </tr>
+      <tr>
+        <td>Upper B</td><td>Unoszenie linka</td>
+        <td><span class="kg-badge">7,5 kg</span> → <strong>10 kg</strong></td>
+        <td><span class="badge badge-green">✓ 4×12 zrobione</span></td>
+      </tr>
+      <tr>
+        <td>Upper B</td><td>Prostowanie triceps</td>
+        <td><span class="kg-badge">40 kg</span> → <strong>45 kg</strong></td>
+        <td><span class="badge badge-green">✓ 3×12 zrobione</span></td>
+      </tr>
+      <tr>
+        <td>Upper B</td><td>Uginanie linka</td>
+        <td><span class="kg-badge">50 kg</span> → <strong>55 kg</strong></td>
+        <td><span class="badge badge-green">✓ 2×12 zrobione</span></td>
+      </tr>
+      <tr>
         <td>Upper B</td><td>Arnoldki</td>
-        <td><span class="kg-badge">15 kg</span> → 17,5 kg</td>
-        <td><span class="badge badge-green">✓ jutro UB</span></td>
+        <td><span class="kg-badge">17,5 kg</span> → 20 kg</td>
+        <td><span class="badge badge-blue">w toku — 10-10-7</span></td>
       </tr>
       <tr>
         <td>Lower</td><td>Front squat</td>
@@ -521,34 +556,70 @@
   <h2>▶ Następny trening</h2>
 
   <div class="next-card">
-    <div class="next-title">Upper B</div>
-    <div class="next-date">Czwartek, 19.02.2026</div>
+    <div class="next-title">Lower</div>
+    <div class="next-date">Niedziela, 22.02.2026</div>
 
-    <div class="alert alert-info" style="margin-bottom:12px">
-      <span class="alert-icon">💡</span>
-      <span>Arnoldki 17,5 kg — progresja! Przy słabszym dniu: <strong>3×8 z dobrą techniką</strong> &gt; 3×10 z kompensacją barku.</span>
+    <div class="alert alert-warn" style="margin-bottom:12px">
+      <span class="alert-icon">⚠️</span>
+      <span>Lędźwie: monitoruj dyskomfort. Przy bólu zastąp Trap bar goblet squat -30% ciężaru.</span>
     </div>
     <div class="alert alert-info" style="margin-bottom:16px">
       <span class="alert-icon">💡</span>
-      <span>Podciągania: cel minimum <strong>6-6-6-6-6</strong>. Chest Press maszyna — dobierz ciężar startowy.</span>
+      <span>Front squat 70 kg — trzymaj technikę. Hack squat i Zginanie leżąc — sprawdź czy gotowe na progresję.</span>
     </div>
 
     <div class="next-table">
       <table>
         <tr><th>#</th><th>Ćwiczenie</th><th>Ciężar</th><th>Cel</th></tr>
-        <tr><td>1</td><td>Podciąganie</td><td><span class="next-kg-highlight" style="color:var(--accent2);font-weight:700">-20 kg</span></td><td style="color:var(--text3)">5 × 6-8 | 120s</td></tr>
-        <tr><td>2</td><td>Hantle płaska</td><td><span style="color:var(--accent2);font-weight:700">25 kg</span></td><td style="color:var(--text3)">4 × 8-10 | 90s</td></tr>
-        <tr><td>3</td><td>Rozpiętki Butterfly</td><td><span style="color:var(--accent2);font-weight:700">50 kg</span></td><td style="color:var(--text3)">3 × 10-12 | 60s</td></tr>
-        <tr><td>4</td><td>Chest Press maszyna ✓</td><td style="color:var(--text3)">? kg</td><td style="color:var(--text3)">3 × 10-12 | 75s — dobierz ciężar</td></tr>
-        <tr><td>5</td><td>Arnoldki <span class="progression-star">★ PROGRESJA</span></td><td><span style="color:var(--yellow);font-weight:700">17,5 kg</span></td><td style="color:var(--text3)">3 × 8-10 | 90s</td></tr>
-        <tr><td>6</td><td>Odwrotne rozpiętki</td><td><span style="color:var(--accent2);font-weight:700">40 kg</span></td><td style="color:var(--text3)">3 × 10-12 | 45s</td></tr>
-        <tr><td>7</td><td>Wyciąg dolny</td><td><span style="color:var(--accent2);font-weight:700">60 kg</span></td><td style="color:var(--text3)">3 × 10-12 | 90s</td></tr>
-        <tr><td>8</td><td>Unoszenie linka</td><td><span style="color:var(--accent2);font-weight:700">7,5 kg</span></td><td style="color:var(--text3)">4 × 10-12 | 90s</td></tr>
-        <tr><td>9</td><td>Prostowanie triceps</td><td><span style="color:var(--accent2);font-weight:700">40 kg</span></td><td style="color:var(--text3)">3 × 12-15 | 60s</td></tr>
-        <tr><td>10</td><td>Uginanie linka</td><td><span style="color:var(--accent2);font-weight:700">50 kg</span></td><td style="color:var(--text3)">2 × 10-12 | 60s</td></tr>
-        <tr class="exercise-opt"><td>O</td><td>Dipy (opcjonalne)</td><td>BW</td><td style="color:var(--text3)">2 × 8-12 | 90s</td></tr>
+        <tr><td>1</td><td>Front squat ⭐</td><td><span style="color:var(--accent2);font-weight:700">70 kg</span></td><td style="color:var(--text3)">4 × 6-8 | 3 min</td></tr>
+        <tr><td>2</td><td>Trap bar deadlift ⭐</td><td><span style="color:var(--accent2);font-weight:700">95 kg</span></td><td style="color:var(--text3)">4 × 6-8 | 3 min</td></tr>
+        <tr><td>3</td><td>Hack squat</td><td><span style="color:var(--yellow);font-weight:700">55 kg</span></td><td style="color:var(--text3)">3 × 10-12 | 2 min — pending 60 kg</td></tr>
+        <tr><td>4</td><td>Zginanie leżąc</td><td><span style="color:var(--yellow);font-weight:700">60 kg</span></td><td style="color:var(--text3)">3 × 10-12 | 90s — pending 65 kg</td></tr>
+        <tr><td>5</td><td>Prostowanie nóg</td><td style="color:var(--text3)">—</td><td style="color:var(--text3)">3 × 12-15 | 60s</td></tr>
+        <tr><td>6</td><td>Wspięcia na łydki</td><td style="color:var(--text3)">—</td><td style="color:var(--text3)">4 × 15-20 | 60s</td></tr>
       </table>
     </div>
+  </div>
+</section>
+
+<!-- POPRZEDNI -->
+<section id="poprzedni">
+  <h2>⏮ Poprzedni trening</h2>
+
+  <div class="next-card">
+    <div class="next-title">Upper B</div>
+    <div class="next-date">Czwartek, 19.02.2026 &nbsp;|&nbsp; Czas: 1:31:13 &nbsp;|&nbsp; Kcal: 849 &nbsp;|&nbsp; Tętno: 120</div>
+
+    <div class="alert alert-success" style="margin-bottom:16px">
+      <span class="alert-icon">💪</span>
+      <span>Pompka <strong>8/10</strong> — świetny dzień po słabszym Upper A (4/10). Trening pozytywny, progresja Arnoldek wykonana.</span>
+    </div>
+
+    <div class="next-table">
+      <table>
+        <tr><th>#</th><th>Ćwiczenie</th><th>Wynik</th><th>Ocena</th></tr>
+        <tr><td>1</td><td>Podciąganie -20 kg</td><td>8-8-6-6-6</td><td><span class="badge badge-yellow">blisko progresji</span></td></tr>
+        <tr><td>2</td><td>Hantle płaska 25 kg</td><td>10-10-10-10</td><td><span class="badge badge-green">✓ pełny zakres → 27,5 kg</span></td></tr>
+        <tr><td>3</td><td>Rozpiętki Butterfly 50 kg</td><td>12-12-12</td><td><span class="badge badge-green">✓ progresja → 55 kg</span></td></tr>
+        <tr><td>4</td><td>Chest Press maszyna 55 kg</td><td>10-10-10</td><td><span class="badge badge-blue">dobry start, bez progresji</span></td></tr>
+        <tr><td>5</td><td>Arnoldki 17,5 kg ★</td><td>10-10-7</td><td><span class="badge badge-yellow">progresja OK, 3. seria uciekła</span></td></tr>
+        <tr><td>6</td><td>Odwrotne rozpiętki 40 kg</td><td>12-12-12</td><td><span class="badge badge-green">✓ progresja → 45 kg</span></td></tr>
+        <tr><td>7</td><td>Wyciąg dolny 60 kg</td><td>12-10-10</td><td><span class="badge badge-blue">w normie, bez progresji</span></td></tr>
+        <tr><td>8</td><td>Unoszenie linka 7,5 kg</td><td>12-12-12-12</td><td><span class="badge badge-green">✓ progresja → 10 kg</span></td></tr>
+        <tr><td>9</td><td>Prostowanie triceps 40 kg</td><td>12-12-12</td><td><span class="badge badge-green">✓ progresja → 45 kg + zmiana 4×12</span></td></tr>
+        <tr><td>10</td><td>Uginanie linka 50 kg</td><td>12-12</td><td><span class="badge badge-green">✓ progresja → 55 kg</span></td></tr>
+        <tr><td>O</td><td>Dipy BW</td><td>12-12</td><td><span class="badge badge-green">✓ energia wystarczyła</span></td></tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">📋 Wnioski i zmiany po treningu</div>
+    <div class="alert alert-green" style="background:rgba(34,197,94,0.1);border:1px solid rgba(34,197,94,0.3);border-radius:8px;padding:12px 14px;margin-bottom:8px;font-size:13px;display:flex;gap:10px"><span>✅</span><span><strong>6 progresji w jednym treningu:</strong> Butterfly 55 kg, Odwrotne rozpiętki 45 kg, Unoszenie linka 10 kg, Prostowanie triceps 45 kg, Uginanie linka 55 kg, Hantle płaska 27,5 kg.</span></div>
+    <div class="alert alert-info"><span class="alert-icon">🔧</span><span><strong>Prostowanie triceps:</strong> zmiana z 3×12-15 na <strong>4×12</strong> + wzrost do 45 kg.</span></div>
+    <div class="alert alert-info"><span class="alert-icon">⏳</span><span><strong>Podciągania 8-8-6-6-6:</strong> dobre pierwsze serie, kolejne słabną. Potrzeba 1-2 treningów stabilności przed zejściem do -17,5 kg.</span></div>
+    <div class="alert alert-info"><span class="alert-icon">⏳</span><span><strong>Arnoldki 17,5 kg:</strong> 10-10-7 — trzecia seria uciekła. Zostajemy do pełnych 3×10.</span></div>
+    <div class="alert alert-info"><span class="alert-icon">⏳</span><span><strong>Chest Press 55 kg:</strong> pierwszy trening — bez progresji, dobieramy feeling przez 2-3 sesje.</span></div>
   </div>
 </section>
 
@@ -616,7 +687,13 @@ Lędźwie: __/10  |  Uwagi: _____________________________________________</div>
       <div>Data</div><div>Trening</div><div>Pompka</div><div>Uwagi</div>
     </div>
     <div class="history-row">
-      <div style="color:var(--accent2)">17.02 Wt</div>
+      <div style="color:var(--accent2)">19.02 Czw</div>
+      <div><span class="badge badge-blue">Upper B</span></div>
+      <div>8/10</div>
+      <div style="color:var(--text3)">Świetny trening — progresja Arnoldek, hantle 4×10 → 27,5 kg</div>
+    </div>
+    <div class="history-row">
+      <div>17.02 Wt</div>
       <div><span class="badge badge-blue">Upper A</span></div>
       <div>4/10</div>
       <div style="color:var(--text3)">Słabszy dzień, ale progresje zrobione</div>
@@ -850,11 +927,7 @@ Lędźwie: __/10  |  Uwagi: _____________________________________________</div>
 </main>
 
 <div class="edit-bar">
-  <button class="edit-btn" id="editToggle" onclick="toggleEdit()">✏️ Tryb edycji</button>
-  <button class="edit-btn primary" id="saveBtn" onclick="saveEdit()" style="display:none">💾 Zapisz zmiany</button>
-  <button class="edit-btn danger" id="cancelBtn" onclick="cancelEdit()" style="display:none">✕ Anuluj</button>
-  <button class="edit-btn" onclick="exportHTML()">⬇️ Eksportuj HTML</button>
-  <span class="edit-mode-indicator">● TRYB EDYCJI — kliknij na tekst aby go zmienić</span>
+  <span style="font-size:12px;color:var(--text3)">🕐 Ostatnia aktualizacja: <span style="color:var(--accent2)">19.02.2026, 21:00</span></span>
 </div>
 
 <script>
@@ -872,50 +945,6 @@ Lędźwie: __/10  |  Uwagi: _____________________________________________</div>
       btn.textContent = '✓ Skopiowano!';
       setTimeout(() => btn.textContent = '📋 Kopiuj szablon', 2000);
     });
-  }
-
-  let editMode = false;
-  let savedContent = '';
-
-  function toggleEdit() {
-    editMode = true;
-    savedContent = document.querySelector('main').innerHTML;
-    document.body.classList.add('editing');
-    document.querySelectorAll('td, .template-box, [contenteditable]').forEach(el => {
-      el.contentEditable = 'true';
-    });
-    document.getElementById('editToggle').style.display = 'none';
-    document.getElementById('saveBtn').style.display = 'inline-block';
-    document.getElementById('cancelBtn').style.display = 'inline-block';
-  }
-
-  function saveEdit() {
-    exitEditMode();
-  }
-
-  function cancelEdit() {
-    document.querySelector('main').innerHTML = savedContent;
-    exitEditMode();
-  }
-
-  function exitEditMode() {
-    editMode = false;
-    document.body.classList.remove('editing');
-    document.querySelectorAll('[contenteditable]').forEach(el => {
-      el.contentEditable = 'false';
-    });
-    document.getElementById('editToggle').style.display = 'inline-block';
-    document.getElementById('saveBtn').style.display = 'none';
-    document.getElementById('cancelBtn').style.display = 'none';
-  }
-
-  function exportHTML() {
-    const html = document.documentElement.outerHTML;
-    const blob = new Blob([html], {type: 'text/html'});
-    const a = document.createElement('a');
-    a.href = URL.createObjectURL(blob);
-    a.download = 'index.html';
-    a.click();
   }
 </script>
 </body>
