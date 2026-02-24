@@ -230,6 +230,7 @@
   <button class="nav-btn active" onclick="show('profil')">👤 Profil</button>
   <button class="nav-btn" onclick="show('harmonogram')">📅 Harmonogram</button>
   <button class="nav-btn" onclick="show('plan')">🏋️ Plan</button>
+  <button class="nav-btn" onclick="show('rozgrzewka')">🔥 Rozgrzewka</button>
   <button class="nav-btn" onclick="show('ciezary')">⚖️ Ciężary</button>
   <button class="nav-btn" onclick="show('nastepny')">▶ Następny</button>
   <button class="nav-btn" onclick="show('poprzedni')">⏮ Poprzedni</button>
@@ -241,12 +242,68 @@
 
 <main>
 
+<!-- ROZGRZEWKA -->
+<section id="rozgrzewka">
+  <h2>🔥 Rozgrzewka</h2>
+
+  <div class="alert alert-info" style="margin-bottom:16px">
+    <span class="alert-icon">ℹ</span>
+    <span>Całkowity czas: <strong>~10 min</strong> · Zaczyna się od 3–5 min marszu/truchtu na bieżni. Wersja uniwersalna przed Upper A i Upper B — przed Lower używasz wariantu bez gumy lub z rozszerzeniem aktywacyjnym.</span>
+  </div>
+
+  <h3>🔄 Wersja uniwersalna — Upper A / Upper B &nbsp;<span class="badge badge-gray">~10 min</span></h3>
+  <div class="workout-table card">
+    <table>
+      <tr><th>#</th><th>Ćwiczenie</th><th>Powt.</th><th>Uwagi</th></tr>
+
+      <tr style="background:rgba(34,197,94,0.05)"><td colspan="4" style="color:var(--green);font-size:11px;font-weight:600;padding:6px 10px;text-transform:uppercase;letter-spacing:0.08em">── Bieżnia ──</td></tr>
+      <tr><td>0</td><td><strong>Marsz / truchot na bieżni</strong></td><td>3–5 min</td><td style="font-size:11px;color:var(--text3)">Spokojne tempo, rozgrzanie całego ciała</td></tr>
+
+      <tr style="background:rgba(59,130,246,0.05)"><td colspan="4" style="color:var(--accent);font-size:11px;font-weight:600;padding:6px 10px;text-transform:uppercase;letter-spacing:0.08em">── Mobilizacja barków i kręgosłupa ──</td></tr>
+      <tr><td>1</td><td><strong>Krążenia ramion w przód</strong></td><td>8</td><td></td></tr>
+      <tr><td>2</td><td><strong>Krążenia ramion w tył</strong></td><td>8</td><td></td></tr>
+      <tr><td>3</td><td><strong>Naprzemienne krążenia ramion</strong></td><td>8</td><td></td></tr>
+      <tr><td>4</td><td><strong>Wykrok w klęku z przenoszeniem ciężaru</strong></td><td>8/stronę</td><td style="font-size:11px;color:var(--text3)">Mobilizacja biodra — kolano na podłodze, przenosisz ciężar do przodu</td></tr>
+      <tr><td>5</td><td><strong>Rotacja tułowia w klęku z łokciem do ziemi</strong></td><td>8/stronę</td><td style="font-size:11px;color:var(--text3)">Łokieć do ziemi, otwierasz w górę — mobilizacja piersiowego i bioder jednocześnie</td></tr>
+      <tr><td>6</td><td><strong>Bird-dog</strong></td><td>8/stronę</td><td style="font-size:11px;color:var(--text3)">Na czworakach, 2 sek zatrzymania na górze — aktywacja core i stabilizatorów</td></tr>
+      <tr><td>7</td><td><strong>Cobra stretch / Upward dog</strong></td><td>8</td><td style="font-size:11px;color:var(--text3)">Rozciągnięcie zginaczy bioder i mobilizacja odcinka lędźwiowego</td></tr>
+      <tr><td>8</td><td><strong>Downward dog</strong></td><td>8</td><td style="font-size:11px;color:var(--text3)">Rozciągnięcie łydek, dwugłowych i kręgosłupa</td></tr>
+      <tr><td>9</td><td><strong>Cat-Cow</strong></td><td>8</td><td style="font-size:11px;color:var(--text3)">Powolne — kręgosłup "budzi się" segmentowo</td></tr>
+      <tr><td>10</td><td><strong>Spiderman plank</strong></td><td>20/stronę</td><td style="font-size:11px;color:var(--text3)">W planku przyciąganie kolana do łokcia — aktywacja core + mobilizacja bioder</td></tr>
+
+      <tr style="background:rgba(245,158,11,0.05)"><td colspan="4" style="color:var(--yellow);font-size:11px;font-weight:600;padding:6px 10px;text-transform:uppercase;letter-spacing:0.08em">── Aktywacja barków z gumą (kluczowe przed Upper) ──</td></tr>
+      <tr><td>11</td><td><strong>Band Pull-Apart</strong></td><td>8</td><td style="font-size:11px;color:var(--text3)">Guma przed klatką, rozciągasz poziomo — aktywacja tylnych wiązek naramiennych i rotatorów</td></tr>
+      <tr><td>12</td><td><strong>Band Shoulder Dislocates</strong></td><td>8</td><td style="font-size:11px;color:var(--text3)">Przenoszenie gumy nad głową — mobilizacja całego obręcza barkowego</td></tr>
+      <tr><td>13</td><td><strong>Krążenia gumą wokół głowy</strong></td><td>8</td><td style="font-size:11px;color:var(--text3)">Kontrolowane — nie spieszysz się</td></tr>
+      <tr><td>14</td><td><strong>Band External Rotation</strong></td><td>8</td><td style="font-size:11px;color:var(--text3)">Łokieć przy ciele, rotacja zewnętrzna — chroni staw barkowy przed przeciążeniem przy wyciskaniu</td></tr>
+    </table>
+  </div>
+
+  <h3>🦵 Wariant Lower — zamiennik sekcji z gumą &nbsp;<span class="badge badge-gray">~10–12 min</span></h3>
+  <div class="workout-table card">
+    <div class="alert alert-warn" style="margin-bottom:12px">
+      <span class="alert-icon">💡</span>
+      <span>Ćwiczenia 1–10 takie same jak wyżej. Sekcję z gumą (ćw. 11–14) zastępujesz poniższym blokiem aktywacyjnym — biodra i pośladki wchodzą na trening już aktywowane, nie zimne.</span>
+    </div>
+    <table>
+      <tr><th>#</th><th>Ćwiczenie</th><th>Serie × Powt.</th><th>Uwagi</th></tr>
+
+      <tr style="background:rgba(59,130,246,0.05)"><td colspan="4" style="color:var(--accent);font-size:11px;font-weight:600;padding:6px 10px;text-transform:uppercase;letter-spacing:0.08em">── Aktywacja pośladków i miednicy (zamiast gumy na barki) ──</td></tr>
+      <tr><td>A</td><td><strong>Glute bridge BW</strong></td><td>2 × 10</td><td style="font-size:11px;color:var(--text3)">2 sek napięcia na górze — pośladki i lędźwie aktywowane przed squat</td></tr>
+      <tr><td>B</td><td><strong>Clamshell z gumą 15 kg</strong></td><td>2 × 10/stronę</td><td style="font-size:11px;color:var(--text3)">Aktywacja gluteus medius — kolana stabilniejsze przy zejściu w squat</td></tr>
+      <tr><td>C</td><td><strong>Przysiady BW</strong></td><td>2 × 8</td><td style="font-size:11px;color:var(--text3)">Tempo 3-1-2, skupiasz się na pozycji kręgosłupa zanim dołożysz ciężar na sztangę</td></tr>
+      <tr class="exercise-opt"><td>D</td><td><strong>Goblet squat z gumą 25 kg</strong> <span class="badge badge-gray">za 3–4 tyg</span></td><td>2 × 8</td><td style="font-size:11px;color:var(--text3)">Gdy guma 25 kg dostępna — zastępuje przysiady BW. Identyczna pozycja co front squat.</td></tr>
+    </table>
+    <div style="margin-top:10px;font-size:12px;color:var(--text3)">💡 Możesz też zachować 1–2 ćwiczenia z gumy na barki jeśli masz czas — pull-apart i external rotation nigdy nie zaszkodzą nawet przed Lower.</div>
+  </div>
+</section>
+
 <!-- PROFIL -->
 <section id="profil" class="active">
   <h2>👤 Profil</h2>
 
   <div style="text-align:right;font-size:11px;color:var(--text3);margin-bottom:12px;font-family:inherit">
-    🕐 Ostatnia aktualizacja: <span style="color:var(--accent2)">22.02.2026, po treningu</span>
+    🕐 Ostatnia aktualizacja: <span style="color:var(--accent2)">24.02.2026, po treningu Upper A</span>
   </div>
 
   <div class="card">
@@ -352,8 +409,8 @@
     <div class="week-row" style="grid-template-columns:60px 80px 1fr 1fr 1fr 1fr 1fr"><div>Budowa</div><div style="color:var(--text3)">6 · 16–22.02</div><div class="training-cell t-done">✓ UA</div><div class="training-cell t-none">—</div><div class="training-cell t-done">✓ UB</div><div class="training-cell t-none">—</div><div class="training-cell t-done">✓ L</div></div>
     <div class="week-row current" style="grid-template-columns:60px 80px 1fr 1fr 1fr 1fr 1fr">
       <div style="color:var(--accent)">← teraz</div>
-      <div style="color:var(--accent)">7 · 23.02–01.03</div>
-      <div class="training-cell t-next">▶ UA (24)</div>
+      <div style="color:var(--accent)">7 · 23.02–01.03 (1/3)</div>
+      <div class="training-cell t-done">✓ UA (24)</div>
       <div class="training-cell" style="color:var(--green);font-size:12px">🏠 Core</div>
       <div class="training-cell t-plan">UB (26)</div>
       <div class="training-cell" style="color:var(--green);font-size:12px">🏠 Core</div>
@@ -378,7 +435,7 @@
     </div>
     <div class="alert alert-info">
       <span class="alert-icon">📌</span>
-      <span>Cykl przedłużony z 8 do <strong>10 tygodni</strong> — dodatkowe 2 tygodnie na wzmocnienie stabilizacji lędźwiowej przed deloadem. Core w domu: środy i piątki od tyg 7.</span>
+      <span>Cykl przedłużony z 8 do <strong>10 tygodni</strong> — dodatkowe 2 tygodnie na wzmocnienie stabilizacji lędźwiowej przed deloadem. Core w domu: środy i piątki od tyg 7. Tyg 7: 1/3 ✓</span>
     </div>
   </div>
 </section>
@@ -458,7 +515,7 @@
   <div class="workout-table card">
     <div class="alert alert-success" style="margin-bottom:12px">
       <span class="alert-icon">🏠</span>
-      <span>Sprzęt teraz: <strong>mata + guma oporowa 15 kg</strong>. Kettl 16 kg wchodzi gdy regularność potwierdzona (~2–3 tygodnie). Ab wheel za 3–4 tygodnie.</span>
+      <span>Sprzęt teraz: <strong>mata + guma 15 kg</strong>. Za 2–3 tyg: <strong>guma 25 kg</strong> (gdy 15 kg za łatwa). Za 6–8 tyg: <strong>guma 35 kg</strong>. Kettl niepotrzebny — gumy dają ten sam efekt.</span>
     </div>
 
     <table>
@@ -485,27 +542,27 @@
       <tr style="background:rgba(59,130,246,0.05)"><td colspan="6" style="color:var(--accent);font-size:11px;font-weight:600;padding:6px 10px;text-transform:uppercase;letter-spacing:0.08em">── Blok B: Siła pośladków i stabilizacja miednicy (~8 min) ──</td></tr>
       <tr>
         <td>B1</td>
-        <td><strong>Glute bridge</strong></td>
+        <td><strong>Glute bridge z gumą</strong></td>
         <td>3</td>
         <td>12</td>
         <td>45 s</td>
-        <td style="font-size:11px;color:var(--text3)">Leżysz na plecach, stopy na podłodze. Unosisz biodra — <strong>2 sekundy napięcia pośladków na górze</strong>. <span style="color:var(--green)">🟢 Guma: pętla powyżej kolan — kolana rozpychają gumę przez cały ruch, mocniejsza aktywacja pośladków. Używaj od razu.</span></td>
+        <td style="font-size:11px;color:var(--text3)">Guma pod plecami, końce trzymasz przy biodrach — opór pionowy jak kettl. Albo guma powyżej kolan — opór boczny. Unosisz biodra, <strong>2 sek napięcia pośladków na górze</strong>. <span style="color:var(--green)">Progresja: 15 kg → 25 kg → 35 kg gdy 3×12 za łatwe.</span></td>
       </tr>
       <tr>
         <td>B2</td>
-        <td><strong>Single-leg glute bridge</strong></td>
+        <td><strong>Single-leg glute bridge z gumą</strong></td>
         <td>3</td>
         <td>8/stronę</td>
         <td>45 s</td>
-        <td style="font-size:11px;color:var(--text3)">Jak glute bridge, ale jedna noga uniesiona. Biodra nie mogą opadać na bok — stabilizacja miednicy jednostronnie. <span style="color:var(--green)">🟢 Guma: pętla powyżej kolan zwiększa trudność.</span></td>
+        <td style="font-size:11px;color:var(--text3)">Jak glute bridge, jedna noga uniesiona. Biodra nie mogą opadać na bok. <span style="color:var(--green)">Guma powyżej kolan — od razu.</span></td>
       </tr>
       <tr>
         <td>B3</td>
-        <td><strong>Clamshell (małż)</strong></td>
+        <td><strong>Clamshell z gumą</strong></td>
         <td>3</td>
         <td>12/stronę</td>
         <td>45 s</td>
-        <td style="font-size:11px;color:var(--text3)">Leżysz na boku, kolana zgięte 90°. <span style="color:var(--green)">🟢 Guma powyżej kolan — obowiązkowo.</span> Unosisz górne kolano jak otwierające się wieczko — biodra nieruchomo. Aktywuje gluteus medius — kluczowy stabilizator miednicy przy squacie.</td>
+        <td style="font-size:11px;color:var(--text3)">Leżysz na boku, kolana zgięte 90°, guma powyżej kolan. Unosisz górne kolano — biodra nieruchomo. Aktywuje gluteus medius — stabilizator miednicy przy squacie. <span style="color:var(--green)">Progresja: 15 kg → 25 kg.</span></td>
       </tr>
 
       <tr style="background:rgba(245,158,11,0.05)"><td colspan="6" style="color:var(--yellow);font-size:11px;font-weight:600;padding:6px 10px;text-transform:uppercase;letter-spacing:0.08em">── Blok C: Wytrzymałość i anty-rotacja (~4 min) ──</td></tr>
@@ -515,7 +572,7 @@
         <td>2</td>
         <td>30 sek</td>
         <td>45 s</td>
-        <td style="font-size:11px;color:var(--text3)">Pozycja planku na przedramionach. Co 5 sekund unosisz jedną nogę 5 cm nad podłogę — biodra poziomo, nie rotuj. <span style="color:var(--green)">🟢 Guma powyżej kolan gdy BW za łatwe.</span></td>
+        <td style="font-size:11px;color:var(--text3)">Pozycja planku na przedramionach. Co 5 sekund unosisz jedną nogę 5 cm — biodra poziomo, nie rotuj. <span style="color:var(--green)">Guma powyżej kolan gdy BW za łatwe.</span></td>
       </tr>
       <tr>
         <td>C2</td>
@@ -523,63 +580,81 @@
         <td>2</td>
         <td>20 sek</td>
         <td>45 s</td>
-        <td style="font-size:11px;color:var(--text3)">Leżysz na plecach, <strong>lędźwie przyciśnięte do maty</strong>, nogi uniesione ~20 cm, ręce przy uszach uniesione. Skracaj czas jeśli lędźwie odrywają się od podłogi.</td>
+        <td style="font-size:11px;color:var(--text3)">Leżysz na plecach, <strong>lędźwie przyciśnięte do maty</strong>, nogi uniesione ~20 cm, ręce przy uszach. Skracaj czas jeśli lędźwie odrywają się od podłogi.</td>
       </tr>
     </table>
 
     <div style="margin-top:14px;background:rgba(34,197,94,0.08);border:1px solid rgba(34,197,94,0.3);border-radius:8px;padding:12px;font-size:12px">
-      <div style="font-weight:600;color:var(--green);margin-bottom:6px">🟢 Guma 15 kg — gdzie i kiedy używasz:</div>
+      <div style="font-weight:600;color:var(--green);margin-bottom:6px">🟢 Gumy oporowe — plan zakupów:</div>
       <div style="color:var(--text2);line-height:2">
-        <strong>Od razu:</strong> B1 Glute bridge, B2 Single-leg glute bridge, B3 Clamshell — pętla powyżej kolan<br>
-        <strong>Gdy BW za łatwe:</strong> C1 Plank z uniesieniem nogi — pętla powyżej kolan
+        <strong>Teraz — 15 kg:</strong> już masz · B1 glute bridge, B2 single-leg, B3 clamshell, C1 plank<br>
+        <strong>Za 2–3 tyg — 25 kg:</strong> gdy 15 kg za łatwa w glute bridge i clamshell<br>
+        <strong>Za 6–8 tyg — 35 kg:</strong> gdy 25 kg za łatwa + wchodzi do goblet squat i swingu
       </div>
     </div>
 
     <div style="margin-top:12px;background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:14px">
-      <div style="font-size:12px;font-weight:600;color:var(--accent2);margin-bottom:10px;text-transform:uppercase;letter-spacing:0.08em">📅 Za 2–3 tygodnie (gdy regularność ✓) — Kettl 16 kg + Ab wheel</div>
+      <div style="font-size:12px;font-weight:600;color:var(--accent2);margin-bottom:4px;text-transform:uppercase;letter-spacing:0.08em">📅 Za 2–3 tygodnie (gdy regularność ✓) — Ab wheel + siła core</div>
+      <div style="font-size:11px;color:var(--text3);margin-bottom:10px">Pierwszy etap wzmocnienia mięśni brzucha z oporem — nie tylko stabilizacja.</div>
       <table>
         <tr><th>#</th><th>Ćwiczenie</th><th>Serie</th><th>Powt.</th><th>Jak wykonać</th></tr>
         <tr>
           <td>D1</td>
-          <td><strong>Glute bridge z kettlem</strong></td>
-          <td>3</td>
-          <td>12</td>
-          <td style="font-size:11px;color:var(--text3)">Kettl 16 kg na biodrach — zastępuje BW glute bridge. 2 sekundy napięcia na górze. Guma powyżej kolan opcjonalnie.</td>
-        </tr>
-        <tr>
-          <td>D2</td>
           <td><strong>Ab wheel rollout (na kolanach)</strong></td>
           <td>3</td>
           <td>6–8</td>
-          <td style="font-size:11px;color:var(--text3)">Na kolanach, kółko przed sobą. Toczysz do przodu tylko tyle, żeby lędźwie nie weszły w przeprost — <strong>bardzo krótki zakres na start</strong>. Z czasem wydłużasz zakres.</td>
+          <td style="font-size:11px;color:var(--text3)">Na kolanach, kółko przed sobą. Bardzo krótki zakres na start — lędźwie neutralne przez cały czas. Co tydzień wydłużasz zakres o kilka cm.</td>
+        </tr>
+        <tr>
+          <td>D2</td>
+          <td><strong>Pallof press z gumą</strong></td>
+          <td>3</td>
+          <td>10/stronę</td>
+          <td style="font-size:11px;color:var(--text3)">Guma 15 kg zakotwiczona w drzwiach lub wokół nogi stołu, stoisz bokiem. Trzymasz przy klatce, wypychasz ręce przed siebie i wracasz — <strong>tułów nieruchomy, nie rotuj</strong>. Ćwiczenie anty-rotacyjne z oporem. <span style="color:var(--green)">Progresja: 15 kg → 25 kg.</span></td>
         </tr>
       </table>
     </div>
 
     <div style="margin-top:12px;background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:14px">
-      <div style="font-size:12px;font-weight:600;color:var(--yellow);margin-bottom:10px;text-transform:uppercase;letter-spacing:0.08em">📅 Za 3–4 tygodnie — Goblet squat (kettl, aktywacja przed Lower)</div>
+      <div style="font-size:12px;font-weight:600;color:var(--yellow);margin-bottom:4px;text-transform:uppercase;letter-spacing:0.08em">📅 Za 3–4 tygodnie — Goblet squat z gumą + crunch z gumą</div>
+      <div style="font-size:11px;color:var(--text3);margin-bottom:10px">Goblet squat wchodzi do aktywacji przed Lower. Crunch z gumą — pierwsze stricte siłowe ćwiczenie na brzuch.</div>
       <table>
         <tr><th>#</th><th>Ćwiczenie</th><th>Serie</th><th>Powt.</th><th>Jak wykonać</th></tr>
         <tr>
           <td>E1</td>
-          <td><strong>Goblet squat</strong></td>
+          <td><strong>Goblet squat z gumą</strong></td>
           <td>3</td>
           <td>10–12</td>
-          <td style="font-size:11px;color:var(--text3)">Kettl 16 kg trzymany przy klatce. Siad głęboki z neutralnym kręgosłupem — uczy tej samej pozycji co front squat, ale bez obciążenia barków. Wchodzi do Bloku 1 aktywacji przed Lower.</td>
+          <td style="font-size:11px;color:var(--text3)">Stoisz na środku gumy 25 kg, końce trzymasz obiema rękami przy klatce. Siad głęboki z neutralnym kręgosłupem — identyczna pozycja co front squat, bez obciążenia barków. Wchodzi do Bloku 1 aktywacji przed Lower. <span style="color:var(--green)">Progresja: 25 kg → 35 kg.</span></td>
+        </tr>
+        <tr>
+          <td>E2</td>
+          <td><strong>Crunch z gumą</strong></td>
+          <td>3</td>
+          <td>12–15</td>
+          <td style="font-size:11px;color:var(--text3)">Guma zakotwiczona za głową (w drzwiach), leżysz na plecach, końce trzymasz przy uszach. Unosisz górną część tułowia — lędźwie przy macie, nie szarpiesz szyją. <span style="color:var(--green)">Progresja: 15 kg → 25 kg.</span></td>
         </tr>
       </table>
     </div>
 
     <div style="margin-top:12px;background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:14px">
-      <div style="font-size:12px;font-weight:600;color:var(--accent);margin-bottom:10px;text-transform:uppercase;letter-spacing:0.08em">📅 Za 6–8 tygodni (po deloadzie) — Kettlebell swing</div>
+      <div style="font-size:12px;font-weight:600;color:var(--accent);margin-bottom:4px;text-transform:uppercase;letter-spacing:0.08em">📅 Za 6–8 tygodni (po deloadzie) — Resistance band swing + Ab wheel stojąc</div>
+      <div style="font-size:11px;color:var(--text3);margin-bottom:10px">Dynamika i eksplozywność — pełne połączenie stabilizacji, siły i ruchu balistycznego.</div>
       <table>
         <tr><th>#</th><th>Ćwiczenie</th><th>Serie</th><th>Powt.</th><th>Jak wykonać</th></tr>
         <tr>
           <td>F1</td>
-          <td><strong>KB Swing (dwuręczny)</strong></td>
+          <td><strong>Resistance band swing</strong></td>
           <td>4</td>
-          <td>10–15</td>
-          <td style="font-size:11px;color:var(--text3)">Kettl 16 kg. Ruch napędza biodro (hip hinge) — <strong>nie przysiad, nie plecy</strong>. Pośladki, dwugłowe ud i core eksplozywnie. Przyjazny dla lędźwi przy dobrej technice — uczy hip hinge bez kompresji kręgosłupa.</td>
+          <td>12–15</td>
+          <td style="font-size:11px;color:var(--text3)">Stoisz na środku gumy 35 kg, końce trzymasz obiema rękami. Ruch hip hinge — <strong>nie przysiad, nie plecy</strong>. Biodra eksplozywnie do przodu, guma imituje opór kettla. Przyjazny dla lędźwi przy dobrej technice.</td>
+        </tr>
+        <tr>
+          <td>F2</td>
+          <td><strong>Ab wheel rollout (stojąc)</strong></td>
+          <td>3</td>
+          <td>5–6</td>
+          <td style="font-size:11px;color:var(--text3)">Wersja stojąca ab wheel — znacznie trudniejsza niż na kolanach. Wchodzi gdy wersja na kolanach jest w pełnym zakresie i stabilna przez minimum 3–4 tygodnie.</td>
         </tr>
       </table>
     </div>
@@ -593,7 +668,7 @@
           <td><strong>Turkish Get-Up</strong></td>
           <td>3</td>
           <td>3–5/stronę</td>
-          <td style="font-size:11px;color:var(--text3)">Angażuje core, barki, biodra i koordynację jednocześnie. Wymaga dobrej bazy stabilizacyjnej. Wrócimy gdy swing i ab wheel będą pewne.</td>
+          <td style="font-size:11px;color:var(--text3)">Angażuje core, barki, biodra i koordynację jednocześnie. Wymaga dobrej bazy stabilizacyjnej. Wrócimy gdy swing i ab wheel stojąc będą pewne.</td>
         </tr>
       </table>
     </div>
@@ -615,8 +690,8 @@
       <tr>
         <td>Ławka sztanga</td>
         <td><span class="kg-badge">67,5 kg</span></td>
-        <td style="color:var(--text3)">5-5-5-5-6</td>
-        <td style="color:var(--green)">AMRAP ≥8 → 70 kg</td>
+        <td style="color:var(--text3)">5-5-5-5-<strong>7</strong></td>
+        <td style="color:var(--yellow)">AMRAP ≥8 → 70 kg (jeszcze 1 rep!)</td>
       </tr>
       <tr>
         <td>Podciąganie</td>
@@ -729,28 +804,27 @@
   <h2>▶ Następny trening</h2>
 
   <div class="next-card">
-    <div class="next-title">Upper A</div>
-    <div class="next-date">Wtorek, 24.02.2026 — Tydzień 7</div>
+    <div class="next-title">Upper B</div>
+    <div class="next-date">Czwartek, 26.02.2026 — Tydzień 7</div>
 
     <div class="alert alert-info" style="margin-bottom:16px">
       <span class="alert-icon">💡</span>
-      <span>Ławka 67,5 kg — sprawdź AMRAP w ostatniej serii. Wiosłowanie hantlą i ściąganie podchwytem — pending progresje, oceniasz na bieżąco.</span>
+      <span>Pilnuj pełnych serii — przy UA skróciłeś uginanie i wiosłowanie maszyną. Arnoldki 17,5 kg w toku (10-10-7) — cel 3×10 zanim przejdziesz na 20 kg. Podciąganie -20 kg asysty, cel: 5×6-8 stabilnie.</span>
     </div>
 
     <div class="next-table">
       <table>
         <tr><th>#</th><th>Ćwiczenie</th><th>Ciężar</th><th>Cel</th></tr>
-        <tr><td>1</td><td>Ławka sztanga ⭐</td><td><span style="color:var(--accent2);font-weight:700">67,5 kg</span></td><td style="color:var(--text3)">4 × 5-8 | 3 min — AMRAP ostatnia</td></tr>
-        <tr><td>2</td><td>Hantle skos</td><td><span style="color:var(--text);font-weight:700">25 kg</span></td><td style="color:var(--text3)">3 × 10-12 | 2 min</td></tr>
-        <tr><td>3</td><td>Wiosłowanie hantlą</td><td><span style="color:var(--green);font-weight:700">30 kg ✓</span></td><td style="color:var(--text3)">3 × 8-12 | 90s</td></tr>
-        <tr><td>4</td><td>Ściąganie podchwytem</td><td><span style="color:var(--green);font-weight:700">60 kg ✓</span></td><td style="color:var(--text3)">3 × 8-12 | 2 min</td></tr>
-        <tr><td>5</td><td>Wyciskanie barki</td><td><span style="color:var(--text);font-weight:700">20 kg</span></td><td style="color:var(--text3)">3 × 10-12 | 2 min</td></tr>
-        <tr><td>6</td><td>Unoszenie bokiem</td><td><span style="color:var(--text);font-weight:700">9 kg</span></td><td style="color:var(--text3)">3 × 12-15 | 60s</td></tr>
-        <tr><td>7</td><td>Face pulls</td><td><span style="color:var(--text);font-weight:700">35 kg</span></td><td style="color:var(--text3)">3 × 15 | 60s</td></tr>
-        <tr><td>8</td><td>Wiosłowanie maszyna</td><td><span style="color:var(--text);font-weight:700">60 kg</span></td><td style="color:var(--text3)">3 × 12 | 90s</td></tr>
-        <tr><td>9</td><td>Francuskie (triceps)</td><td><span style="color:var(--text);font-weight:700">12,5 kg</span></td><td style="color:var(--text3)">3 × 10-12 | 90s</td></tr>
-        <tr><td>10</td><td>Prostowanie nad głową</td><td><span style="color:var(--text);font-weight:700">35 kg</span></td><td style="color:var(--text3)">3 × 12 | 60s</td></tr>
-        <tr><td>11</td><td>Uginanie z rotacją</td><td><span style="color:var(--text);font-weight:700">20 kg</span></td><td style="color:var(--text3)">3 × 10-12 | 60s</td></tr>
+        <tr><td>1</td><td>Podciąganie ⭐</td><td><span style="color:var(--accent2);font-weight:700">-20 kg asysty</span></td><td style="color:var(--text3)">5 × 6-8 | 2 min</td></tr>
+        <tr><td>2</td><td>Hantle płaska</td><td><span style="color:var(--text);font-weight:700">27,5 kg</span></td><td style="color:var(--text3)">4 × 8-10 | 90s</td></tr>
+        <tr><td>3</td><td>Rozpiętki Butterfly</td><td><span style="color:var(--text);font-weight:700">55 kg</span></td><td style="color:var(--text3)">3 × 10-12 | 60s</td></tr>
+        <tr><td>4</td><td>Chest Press maszyna</td><td><span style="color:var(--text);font-weight:700">55 kg</span></td><td style="color:var(--text3)">3 × 10-12 | 75s</td></tr>
+        <tr><td>5</td><td>Arnoldki</td><td><span style="color:var(--yellow);font-weight:700">17,5 kg — w toku</span></td><td style="color:var(--text3)">3 × 8-10 | 90s — cel: 3×10</td></tr>
+        <tr><td>6</td><td>Odwrotne rozpiętki</td><td><span style="color:var(--text);font-weight:700">45 kg</span></td><td style="color:var(--text3)">3 × 10-12 | 45s</td></tr>
+        <tr><td>7</td><td>Wyciąg dolny</td><td><span style="color:var(--text);font-weight:700">60 kg</span></td><td style="color:var(--text3)">3 × 10-12 | 90s</td></tr>
+        <tr><td>8</td><td>Unoszenie linka</td><td><span style="color:var(--text);font-weight:700">10 kg</span></td><td style="color:var(--text3)">4 × 10-12 | 90s</td></tr>
+        <tr><td>9</td><td>Prostowanie triceps (linka)</td><td><span style="color:var(--text);font-weight:700">45 kg</span></td><td style="color:var(--text3)">4 × 12 | 60s</td></tr>
+        <tr><td>10</td><td>Uginanie linka (biceps)</td><td><span style="color:var(--text);font-weight:700">55 kg</span></td><td style="color:var(--text3)">2 × 10-12 | 60s</td></tr>
       </table>
     </div>
   </div>
@@ -759,23 +833,11 @@
   <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:16px">
 
     <div class="card" style="margin-bottom:0">
-      <div style="font-size:11px;color:var(--text3);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:8px">+2 · Czw 26.02</div>
-      <div style="font-size:14px;font-weight:700;color:var(--accent2);margin-bottom:8px">Upper B</div>
-      <div style="font-size:12px;color:var(--text2);line-height:1.8">
-        Podciąganie <span style="color:var(--text);font-weight:600">-20 kg</span><br>
-        Hantle płaska <span style="color:var(--yellow);font-weight:600">27,5 kg ↑</span><br>
-        Butterfly <span style="color:var(--yellow);font-weight:600">55 kg ↑</span><br>
-        Arnoldki <span style="color:var(--text);font-weight:600">17,5 kg</span>
-      </div>
-      <div style="margin-top:8px;font-size:11px;color:var(--text3)">Tyg 7 · nowe ciężary</div>
-    </div>
-
-    <div class="card" style="margin-bottom:0">
-      <div style="font-size:11px;color:var(--text3);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:8px">+3 · Nd 01.03</div>
+      <div style="font-size:11px;color:var(--text3);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:8px">+2 · Nd 01.03</div>
       <div style="font-size:14px;font-weight:700;color:var(--accent2);margin-bottom:8px">Lower</div>
       <div style="font-size:12px;color:var(--text2);line-height:1.8">
-        Front squat <span style="color:var(--yellow);font-weight:600">55 kg ↓ faza stab.</span><br>
-        Trap bar <span style="color:var(--yellow);font-weight:600">75 kg ↓ faza stab.</span><br>
+        Front squat <span style="color:var(--yellow);font-weight:600">55 kg ↓</span><br>
+        Trap bar <span style="color:var(--yellow);font-weight:600">75 kg ↓</span><br>
         Hack squat <span style="color:var(--text);font-weight:600">60 kg</span><br>
         Zginanie leżące <span style="color:var(--text);font-weight:600">65 kg</span>
       </div>
@@ -783,12 +845,23 @@
     </div>
 
     <div class="card" style="margin-bottom:0">
-      <div style="font-size:11px;color:var(--text3);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:8px">+4 · Wt 03.03</div>
+      <div style="font-size:11px;color:var(--text3);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:8px">+3 · Wt 03.03</div>
       <div style="font-size:14px;font-weight:700;color:var(--accent2);margin-bottom:8px">Upper A</div>
       <div style="font-size:12px;color:var(--text2);line-height:1.8">
         Ławka <span style="color:var(--text);font-weight:600">67,5 kg</span><br>
-        Wiosłowanie <span style="color:var(--text);font-weight:600">TBD</span><br>
-        Ściąganie <span style="color:var(--text);font-weight:600">TBD</span>
+        Wiosłowanie <span style="color:var(--text);font-weight:600">30 kg</span><br>
+        Ściąganie <span style="color:var(--text);font-weight:600">60 kg</span>
+      </div>
+      <div style="margin-top:8px;font-size:11px;color:var(--text3)">Tyg 8</div>
+    </div>
+
+    <div class="card" style="margin-bottom:0">
+      <div style="font-size:11px;color:var(--text3);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:8px">+4 · Czw 05.03</div>
+      <div style="font-size:14px;font-weight:700;color:var(--accent2);margin-bottom:8px">Lower</div>
+      <div style="font-size:12px;color:var(--text2);line-height:1.8">
+        Front squat <span style="color:var(--yellow);font-weight:600">55 kg ↓</span><br>
+        Trap bar <span style="color:var(--yellow);font-weight:600">75 kg ↓</span><br>
+        Hack squat <span style="color:var(--text);font-weight:600">60 kg</span>
       </div>
       <div style="margin-top:8px;font-size:11px;color:var(--text3)">Tyg 8</div>
     </div>
@@ -803,50 +876,58 @@
   <div class="next-card">
     <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:8px;margin-bottom:4px">
       <div>
-        <div class="next-title">Lower</div>
-        <div class="next-date">Niedziela, 22.02.2026 &nbsp;|&nbsp; Czas: 1:28:48 &nbsp;|&nbsp; Kcal: 805 &nbsp;|&nbsp; Tętno: 117</div>
+        <div class="next-title">Upper A</div>
+        <div class="next-date">Wtorek, 24.02.2026 &nbsp;|&nbsp; Czas: 1:33:10 &nbsp;|&nbsp; Kcal: 650 &nbsp;|&nbsp; Tętno: 101 &nbsp;|&nbsp; Obciążenie: 1.2</div>
       </div>
       <div style="text-align:right">
-        <div style="font-size:22px;letter-spacing:2px;color:var(--yellow)">★★★★★★★★★☆</div>
-        <div style="font-size:12px;color:var(--text3);margin-top:2px">9 / 10 — lędźwie 10/10, powrót do formy</div>
+        <div style="font-size:22px;letter-spacing:2px;color:var(--yellow)">★★★★★★☆☆☆☆</div>
+        <div style="font-size:12px;color:var(--text3);margin-top:2px">6 / 10 — brak energii, trudno się zebrać między ćwiczeniami</div>
       </div>
     </div>
 
-    <div class="alert alert-success" style="margin-bottom:16px">
-      <span class="alert-icon">🎉</span>
-      <span>Lędźwie <strong>10/10</strong> po teście z obniżonymi ciężarami. Rozbudowany Lower z core (kolana + skręty). Od 24.02 — pełne ciężary.</span>
+    <div class="alert alert-warn" style="margin-bottom:16px">
+      <span class="alert-icon">⚠️</span>
+      <span>Niski entuzjazm — typowe zmęczenie w tyg 7/10. Ławka 5-5-5-5-<strong>7</strong> — jeszcze jedno powtórzenie do progresu. Cierpliwość.</span>
     </div>
 
     <div class="next-table">
       <table>
         <tr><th>#</th><th>Ćwiczenie</th><th>Ciężar</th><th>Wynik</th><th>Ocena</th><th style="color:var(--accent2)">Progresja → plan</th></tr>
-        <tr><td>1</td><td>Front squat ⭐</td><td>60 kg (test)</td><td>8-8-8-8</td><td><span class="badge badge-green">✓ czysto</span></td><td style="color:var(--green);font-weight:600">→ 70 kg od 24.02</td></tr>
-        <tr><td>2</td><td>Trap bar deadlift ⭐</td><td>80 kg (test)</td><td>8-8-8-8</td><td><span class="badge badge-green">✓ czysto</span></td><td style="color:var(--green);font-weight:600">→ 95 kg od 24.02</td></tr>
-        <tr><td>3</td><td>Leg press (poziomy)</td><td>130 kg</td><td>12-12-12</td><td><span class="badge badge-blue">start</span></td><td style="color:var(--text3)">bez zmian</td></tr>
-        <tr><td>4</td><td>Zginanie nóg siedzące</td><td>80 kg</td><td>15-15-12-12</td><td><span class="badge badge-blue">start</span></td><td style="color:var(--text3)">bez zmian</td></tr>
-        <tr><td>5</td><td>Zginanie nóg leżące</td><td>65 kg</td><td>10-10</td><td><span class="badge badge-yellow">2 serie</span></td><td style="color:var(--yellow);font-weight:600">→ 65 kg 3×10-12 (ustabilizować)</td></tr>
-        <tr><td>6</td><td>Hack squat (Smith)</td><td>60 kg</td><td>10-10-10-10</td><td><span class="badge badge-green">✓</span></td><td style="color:var(--green);font-weight:600">→ 60 kg w planie ✓ (+5 kg)</td></tr>
-        <tr><td>7</td><td>Wspięcia na palcach siedząc</td><td>55 kg</td><td>12-12-12-12</td><td><span class="badge badge-green">✓</span></td><td style="color:var(--text3)">bez zmian</td></tr>
-        <tr><td>8</td><td>Podciąganie kolan</td><td>BW</td><td>15-15-12</td><td><span class="badge badge-green">✓ core</span></td><td style="color:var(--text3)">w planie na stałe</td></tr>
-        <tr><td>9</td><td>Skręty z linką</td><td>25 kg</td><td>12-12-12</td><td><span class="badge badge-green">✓ core</span></td><td style="color:var(--text3)">w planie na stałe</td></tr>
+        <tr><td>1</td><td>Ławka sztanga ⭐</td><td>67,5 kg</td><td>5-5-5-5-7</td><td><span class="badge badge-yellow">AMRAP 7</span></td><td style="color:var(--yellow);font-weight:600">→ 67,5 kg (cel: AMRAP ≥8)</td></tr>
+        <tr><td>2</td><td>Hantle skos</td><td>25 kg</td><td>10-8-8</td><td><span class="badge badge-blue">ok</span></td><td style="color:var(--text3)">bez zmian</td></tr>
+        <tr><td>3</td><td>Wiosłowanie hantlą</td><td>30 kg</td><td>10-8-8-7</td><td><span class="badge badge-yellow">4 serie, nierówne</span></td><td style="color:var(--text3)">bez zmian — ustabilizować</td></tr>
+        <tr><td>4</td><td>Francuskie (triceps)</td><td>12,5 kg</td><td>12-10-8</td><td><span class="badge badge-yellow">spadek</span></td><td style="color:var(--text3)">bez zmian</td></tr>
+        <tr><td>5</td><td>Wyciskanie barki</td><td>20 kg</td><td>10-8-8</td><td><span class="badge badge-blue">ok</span></td><td style="color:var(--text3)">bez zmian</td></tr>
+        <tr><td>6</td><td>Unoszenie bokiem</td><td>9 kg</td><td>10-10-10-8</td><td><span class="badge badge-blue">ok</span></td><td style="color:var(--text3)">bez zmian</td></tr>
+        <tr><td>7</td><td>Uginanie z rotacją</td><td>20 kg</td><td>8-8</td><td><span class="badge badge-yellow">2 serie</span></td><td style="color:var(--text3)">bez zmian</td></tr>
+        <tr><td>8</td><td>Ściąganie podchwytem</td><td>60 kg</td><td>10-10-8</td><td><span class="badge badge-blue">ok</span></td><td style="color:var(--text3)">bez zmian</td></tr>
+        <tr><td>9</td><td>Face pulls</td><td>35 kg</td><td>15-10-10</td><td><span class="badge badge-yellow">1. seria odskakuje</span></td><td style="color:var(--text3)">bez zmian</td></tr>
+        <tr><td>10</td><td>Wiosłowanie maszyna</td><td>60 kg</td><td>12-10</td><td><span class="badge badge-yellow">2 serie</span></td><td style="color:var(--text3)">bez zmian</td></tr>
+        <tr><td>11</td><td>Prostowanie nad głową</td><td>35 kg</td><td>12-12</td><td><span class="badge badge-green">✓</span></td><td style="color:var(--text3)">bez zmian</td></tr>
       </table>
     </div>
   </div>
 
   <div class="card">
     <div class="card-title">📋 Wnioski i zmiany po treningu</div>
-    <div class="alert alert-success"><span class="alert-icon">✅</span><span><strong>Lędźwie 10/10</strong> — test z obniżonymi ciężarami (60/80 kg) zakończony sukcesem. Pełne ciężary wracają od 24.02.</span></div>
-    <div class="alert alert-success"><span class="alert-icon">💪</span><span><strong>Core dodane do planu Lower na stałe:</strong> podciąganie kolan na poręczach 3×12-15 + skręty z linką 25 kg 3×12. Adresuje rekomendację z Podsumowania.</span></div>
-    <div class="alert alert-info"><span class="alert-icon">🔧</span><span><strong>Hack squat (Smith) 60 kg:</strong> progresja z 55 kg — 4×10 czysto. Następny cel: 65 kg gdy 4×12.</span></tr></span></div>
-    <div class="alert alert-info"><span class="alert-icon">🔧</span><span><strong>Zmiana nazewnictwa:</strong> "Hack squat" → "Hack squat (Smith)" w całym planie dla jasności.</span></div>
-    <div class="alert alert-info"><span class="alert-icon">🔧</span><span><strong>Leg press poziomy 130 kg, zginanie siedzące 80 kg:</strong> pierwsze treningi — bez progresji, ustalamy bazę.</span></div>
-    <div class="alert alert-warn"><span class="alert-icon">⏳</span><span><strong>Zginanie leżące 65 kg:</strong> tylko 2 serie. Następny trening — 3 serie pełne zanim myślimy o kolejnej progresji.</span></div>
+    <div class="alert alert-info"><span class="alert-icon">📊</span><span><strong>Ławka 67,5 kg — AMRAP 7.</strong> Jeden rep do progresu. Przy 2 latach stażu i tym ciężarze +1 rep/trening to normalny rytm — nie stagnacja. Następny cel: AMRAP ≥8 → 70 kg.</span></div>
+    <div class="alert alert-warn"><span class="alert-icon">⚠️</span><span><strong>Entuzjazm 6/10, brak pompy.</strong> Tydzień 7/10 z akumulowanym zmęczeniem — organizm jest w fazie maksymalnego nakładania bodźca przed deloadem (23.03). To oczekiwany stan, nie sygnał ostrzegawczy.</span></div>
+    <div class="alert alert-info"><span class="alert-icon">🔧</span><span><strong>Wiosłowanie hantlą 30 kg:</strong> 4 serie 10-8-8-7 — nierówne, ale 30 kg trzyma. Przy następnym UA zostaje bez zmian, cel: 4×10 równe.</span></div>
+    <div class="alert alert-info"><span class="alert-icon">🔧</span><span><strong>Skrócone serie:</strong> uginanie ramion 2 serie, wiosłowanie maszyną 2 serie — efekt zmęczenia. Przy UB i kolejnym UA pilnuj żeby nie skracać.</span></div>
+    <div class="alert alert-success"><span class="alert-icon">✅</span><span><strong>Ściąganie podchwytem 60 kg</strong> trzyma po progresji — 10-10-8. Bez zmian.</span></div>
   </div>
 
   <h3>Historia wszystkich treningów</h3>
   <div class="card">
     <table>
       <tr><th>Data</th><th>Trening</th><th>Ocena</th><th>Kcal</th><th>Czas</th><th>Uwagi</th></tr>
+      <tr>
+        <td style="color:var(--accent2)">24.02 Wt</td>
+        <td><span class="badge badge-blue">Upper A</span></td>
+        <td style="color:var(--yellow);letter-spacing:1px">★★★★★★☆☆☆☆ <span style="color:var(--text3)">6/10</span></td>
+        <td>650</td><td>1:33</td>
+        <td style="color:var(--text3);font-size:12px">Brak energii, tyg 7/10, ławka AMRAP 7 (cel: ≥8)</td>
+      </tr>
       <tr>
         <td style="color:var(--accent2)">22.02 Nd</td>
         <td><span class="badge badge-gray">Lower</span></td>
@@ -1379,7 +1460,7 @@ Lędźwie: __/10  |  Uwagi: _____________________________________________</div>
 </main>
 
 <div class="edit-bar">
-  <span style="font-size:12px;color:var(--text3)">🕐 Ostatnia aktualizacja: <span style="color:var(--accent2)">22.02.2026, po treningu</span></span>
+  <span style="font-size:12px;color:var(--text3)">🕐 Ostatnia aktualizacja: <span style="color:var(--accent2)">24.02.2026, po treningu Upper A</span></span>
 </div>
 
 <script>
