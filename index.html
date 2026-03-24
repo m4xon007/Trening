@@ -30,6 +30,9 @@
   td{padding:8px 10px;border-bottom:1px solid rgba(42,50,69,0.5);}
   tr:last-child td{border-bottom:none;} tr:hover td{background:rgba(59,130,246,0.05);}
   .badge{display:inline-block;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:600;}
+
+  .filter-btn{padding:3px 10px;border-radius:5px;border:1px solid var(--border);background:var(--bg2);color:var(--text3);cursor:pointer;font-size:11px;}
+  .filter-btn.active{background:var(--accent);color:#fff;border-color:var(--accent);}
   .badge-blue{background:rgba(59,130,246,0.2);color:var(--accent);}
   .badge-green{background:rgba(34,197,94,0.2);color:var(--green);}
   .badge-yellow{background:rgba(245,158,11,0.2);color:var(--yellow);}
@@ -53,12 +56,9 @@
   .next-title{font-size:20px;font-weight:700;color:var(--accent2);margin-bottom:4px;}
   .next-date{font-size:13px;color:var(--text3);margin-bottom:16px;}
   .next-table table{font-size:12.5px;}
-  .history-row{display:grid;grid-template-columns:100px 80px 60px 1fr;gap:8px;align-items:center;padding:8px 0;border-bottom:1px solid rgba(42,50,69,0.4);font-size:13px;}
   .history-row:last-child{border-bottom:none;}
-  .week-row{display:grid;gap:8px;align-items:center;padding:8px 0;border-bottom:1px solid rgba(42,50,69,0.4);font-size:13px;}
   .week-row:last-child{border-bottom:none;}
   .week-row.current{background:rgba(59,130,246,0.08);border-radius:6px;padding:8px;}
-  .training-cell{text-align:center;}
   .t-done{color:var(--green);} .t-plan{color:var(--text3);} .t-none{color:var(--border);}
   .progress-wrap{margin-bottom:16px;}
   .progress-label{display:flex;justify-content:space-between;font-size:13px;margin-bottom:6px;}
@@ -80,13 +80,27 @@
   .tab-btn.active{background:var(--accent2);border-color:var(--accent2);color:#0f1117;font-weight:700;}
   .tab-panel{display:none;} .tab-panel.active{display:block;}
   @media(max-width:600px){.stat-grid{grid-template-columns:repeat(3,1fr);}h2{font-size:15px;}.next-title{font-size:17px;}.history-row{grid-template-columns:80px 70px 50px 1fr;font-size:12px;}}
+
+  /* Utility classes for progresja table */
+  .pg-s{font-size:11px;color:var(--text3)}
+  .pg-g{font-size:11px;color:var(--green)}
+  .pg-r{font-size:11px;color:var(--red)}
+  .pg-a{font-size:11px;color:var(--accent2)}
+  .pg-y{font-size:11px;color:var(--yellow)}
+  .pg-n{font-size:11px}
+  .pg-hd{font-size:12px;font-weight:600;white-space:nowrap}
+  .pg-sub{font-size:11px;color:var(--text3);white-space:nowrap}
+  .pg-cel{font-size:11px;color:var(--accent2);white-space:nowrap}
+  /* Calendar day cells */
+  .cal-e{padding:5px;opacity:0.1;text-align:center}
+  .cal-d{padding:5px;opacity:0.3;text-align:center;font-size:11px}
+  .cal-wk{font-size:9px;text-align:center;display:flex;align-items:center;justify-content:center;padding:2px}
 </style>
 </head>
 <body>
 
 <nav>
-  <button class="nav-btn active" onclick="show('dzis')">🏠 Dziś</button>
-  <button class="nav-btn" onclick="show('treningi')">💪 Treningi</button>
+  <button class="nav-btn active" onclick="show('treningi')">💪 Treningi</button>
   <button class="nav-btn" onclick="show('plan')">🏋️ Plan</button>
   <button class="nav-btn" onclick="show('harmonogram')">📅 Harmonogram</button>
   <button class="nav-btn" onclick="show('waga')">⚖️ Waga</button>
@@ -97,108 +111,9 @@
 <main>
 
 <!-- ═══ DZIŚ ═══════════════════════════════════════════════════════ -->
-<section id="dzis" class="active">
-  <h2>🏠 Dziś — 22.03.2026</h2>
-
-  <!--KONTEKST_CLAUDE
-  Marcin, 38 lat, 190 cm, ~87 kg, BF ~19,4%, LBM ~70 kg, staż 2 lata
-  System: Upper A / Upper B / Lower × 3/tydz | Siłownia: Hammer Strength
-  LĘDŹWIE: zakaz RDL, wiosłowania w opadzie, OHP stojąc | status: 10/10 (17.03)
-  SUPLEMENTY: D3+K2 2000IU, Omega-3 2250mg, Magnez 400mg, Kreatyna 5g/dzień
-  CYKL: Tyg 9/10 | Deload: 23-29.03 | Faza po deloadzie: Mini cut #1 (kwi-maj)
-  BIG 4: Ławka 70kg | Podciąganie -12kg(ustabilizowane 5x8) | Front squat 60kg | Trap bar 85kg
-  HS KALIBRACJA (zakończona 12.03):
-    UA: High Row=90kg, Face pulls=21kg, Wiosłowanie=57kg
-    UB: Pectoral Fly klatka=68kg, ISO Incline Press=45kg, Pectoral Fly barki=59kg,
-        Wyciąg dolny=40kg, Unoszenie linka=5kg, Prostowanie triceps=28kg, Uginanie linka=40kg
-    L: Leg press=115kg, Zginanie siedząc=75kg, Zginanie leżąc=67kg, V Squat=100kg, Wspięcia stojąc=50kg
-  KONTEKST_CLAUDE-->
-
-  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:20px">
-    <div class="stat-box">
-      <div class="stat-num" style="color:var(--accent2);font-size:22px">9/10</div>
-      <div style="font-size:11px;color:var(--text3);margin-top:2px">tydzień cyklu</div>
-      <div class="stat-label">Cykl</div>
-    </div>
-    <div class="stat-box">
-      <div class="stat-num" style="color:var(--yellow);font-size:22px">87,0 kg</div>
-      <div style="font-size:11px;color:var(--text3);margin-top:2px">08.03 · BF ~19,4%</div>
-      <div class="stat-label">Waga</div>
-    </div>
-    <div class="stat-box">
-      <div class="stat-num" style="color:var(--green);font-size:22px">-4,5 kg</div>
-      <div style="font-size:11px;color:var(--text3);margin-top:2px">od szczytu 91,5 kg</div>
-      <div class="stat-label">Postęp</div>
-    </div>
-    <div class="stat-box">
-      <div class="stat-num" style="color:var(--red);font-size:22px">23.03</div>
-      <div style="font-size:11px;color:var(--text3);margin-top:2px">deload → mini cut</div>
-      <div class="stat-label">Następna faza</div>
-    </div>
-  </div>
-
-  <div class="next-card" style="margin-bottom:20px">
-    <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px">
-      <div>
-        <div class="next-title">▶ Deload — Lower</div>
-        <div class="next-date">Wtorek, 24.03.2026 — Deload &nbsp;·&nbsp; szczegóły: <span style="color:var(--accent2)">Treningi → Następny</span></div>
-      </div>
-      <span class="badge badge-yellow">NASTĘPNY</span>
-    </div>
-    <div class="alert alert-info" style="margin-top:12px;margin-bottom:0">
-      <span class="alert-icon">🎯</span>
-      <span><strong>Główny cel:</strong> Regeneracja CNS. Ciężary <span style="font-weight:700;color:var(--yellow)">60%</span> · 2 serie · luźne tempo. Nie ścigamy się z ciężarem.</span>
-    </div>
-  </div>
-
-  <div class="card" style="margin-bottom:20px">
-    <div class="card-title">💪 Big 4 — aktualne ciężary &nbsp;<span style="font-weight:400;color:var(--text3);text-transform:none;letter-spacing:0">historia i tracker → Plan 2026</span></div>
-    <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:10px">
-      <div style="background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:12px;display:flex;justify-content:space-between;align-items:center">
-        <div><div style="font-size:12px;color:var(--text3)">⭐ Ławka sztanga</div><div style="font-size:11px;color:var(--text3);margin-top:2px">progresja aktywna · 5-5-5-5-6 ✓</div></div>
-        <span class="badge badge-green" style="font-size:14px;padding:4px 10px">70 kg</span>
-      </div>
-      <div style="background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:12px;display:flex;justify-content:space-between;align-items:center">
-        <div><div style="font-size:12px;color:var(--text3)">⭐ Podciąganie (asysta)</div><div style="font-size:11px;color:var(--text3);margin-top:2px">progresja aktywna · -17,5→-12 kg ✅</div></div>
-        <span class="badge badge-green" style="font-size:14px;padding:4px 10px">-12 kg</span>
-      </div>
-      <div style="background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:12px;display:flex;justify-content:space-between;align-items:center">
-        <div><div style="font-size:12px;color:var(--text3)">⭐ Front squat</div><div style="font-size:11px;color:var(--text3);margin-top:2px">stabilizacja tyg 7–10</div></div>
-        <span class="badge badge-blue" style="font-size:14px;padding:4px 10px">60 kg</span>
-      </div>
-      <div style="background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:12px;display:flex;justify-content:space-between;align-items:center">
-        <div><div style="font-size:12px;color:var(--text3)">⭐ Trap bar deadlift</div><div style="font-size:11px;color:var(--text3);margin-top:2px">progresja aktywna · 75→85 kg ✅</div></div>
-        <span class="badge badge-green" style="font-size:14px;padding:4px 10px">85 kg</span>
-      </div>
-    </div>
-  </div>
-
-  <div class="card">
-    <div class="card-title">👤 Profil &amp; ograniczenia</div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
-      <table>
-        <tr><td style="color:var(--text3);width:100px">Wiek / wzrost</td><td>38 lat / 190 cm</td></tr>
-        <tr><td style="color:var(--text3)">Waga / BF%</td><td>~87 kg / ~19,4%</td></tr>
-        <tr><td style="color:var(--text3)">LBM</td><td>~70 kg</td></tr>
-        <tr><td style="color:var(--text3)">Staż</td><td>2 lata</td></tr>
-      </table>
-      <table>
-        <tr><td style="color:var(--text3);width:100px">System</td><td>UA / UB / L × 3/tydz</td></tr>
-        <tr><td style="color:var(--text3)">Deload</td><td><span style="color:var(--yellow)">23–29.03.2026</span></td></tr>
-        <tr><td style="color:var(--text3)">Faza</td><td>Rekompozycja → <span style="color:var(--red)">Mini cut</span></td></tr>
-        <tr><td style="color:var(--text3)">Checkpoint</td><td><span style="color:var(--yellow)">~30.03.2026</span></td></tr>
-      </table>
-    </div>
-    <div class="alert alert-warn" style="margin-top:12px">
-      <span class="alert-icon">⛔</span>
-      <span><strong>Lędźwie:</strong> zakaz RDL, wiosłowania w opadzie, OHP stojąc. Przy bólu &gt;3/10 na Trap bar → zamień na leg press natychmiast.</span>
-    </div>
-    <div style="margin-top:12px;font-size:12px;color:var(--text2)">💊 <strong>Suplementy:</strong> D3+K2 2000IU · Omega-3 2250mg EPA+DHA · Magnez biglicynian 400mg (wieczorem) · Kreatyna TREC 5g/dzień (bez przerw)</div>
-  </div>
-</section>
 
 <!-- ═══ TRENINGI ════════════════════════════════════════════════════ -->
-<section id="treningi">
+<section id="treningi" class="active">
   <h2>💪 Treningi</h2>
 
   <div class="tab-row">
@@ -307,109 +222,410 @@
 
   <!-- TAB: ARCHIWUM -->
   <div id="t-archiwum" class="tab-panel">
+    <details style="margin-bottom:12px">
+      <summary style="cursor:pointer;padding:12px 16px;background:var(--bg2);border:1px solid var(--border);border-radius:8px;font-size:13px;color:var(--text2);list-style:none;display:flex;justify-content:space-between;align-items:center;user-select:none">
+        <span>📋 Historia treningów — Cykl 1 &nbsp;<span style="color:var(--text3);font-size:11px;font-weight:400">27 sesji · sty–mar 2026</span></span><span style="font-size:10px;color:var(--text3)">▼</span>
+      </summary>
+      <div style="padding-top:8px">
     <div class="card">
       <div class="card-title">Historia wszystkich treningów</div>
       <table>
         <tr><th>Data</th><th>Trening</th><th>Ocena</th><th>Kcal</th><th>Czas</th><th>Kluczowe wyniki</th></tr>
         <tr><td style="color:var(--accent2);font-weight:600">22.03 Nd</td><td><span class="badge badge-blue">Upper B</span></td><td style="color:var(--yellow)">★×8 <span style="color:var(--text3)">8/10</span></td><td>979</td><td>1:44</td><td style="font-size:12px;color:var(--text3)">Hantle płaska 4×10 ✅→30kg, odwrotne rozpiętki 3×12 ✅→59kg, wyciąg dolny 3×10 ✅, koniec bez siły — deload w punkt</td></tr>
         <tr><td style="color:var(--accent2);font-weight:600">19.03 Czw</td><td><span class="badge badge-blue">Upper A</span></td><td style="color:var(--yellow)">★×9 <span style="color:var(--text3)">9/10</span></td><td>953</td><td>1:42</td><td style="font-size:12px;color:var(--text3)">Ławka 5-5-5-5-9 🔥, hantle skos 3×10→+2,5kg, Francuskie 3×10→+1kg, unoszenie 4×12→+2,5kg, wiosłowanie kalibracja 35kg</td></tr>
-        <tr><td style="color:var(--accent2);font-weight:600">17.03 Wt</td><td><span class="badge badge-gray">Lower</span></td><td style="color:var(--yellow)">★×9 <span style="color:var(--text3)">9/10</span></td><td>—</td><td>—</td><td style="font-size:12px;color:var(--text3)">Trap bar +10kg→85kg ✅ Big 4, leg press 3×12 ✅, hack squat +15kg→100kg, zginanie oba +7kg, front squat brak sztangi</td></tr>
+        <tr><td style="color:var(--accent2);font-weight:600">17.03 Wt</td><td><span class="badge badge-gray">Lower</span></td><td style="color:var(--yellow)">★×9 <span style="color:var(--text3)">9/10</span></td><td>1:38</td><td>849</td><td style="font-size:12px;color:var(--text3)">Trap bar +10kg→85kg ✅ Big 4, leg press 3×12 ✅, hack squat +15kg→100kg, zginanie oba +7kg, front squat brak sztangi</td></tr>
         <tr><td style="color:var(--accent2);font-weight:600">15.03 Nd</td><td><span class="badge badge-blue">Upper B</span></td><td style="color:var(--yellow)">★×9 <span style="color:var(--text3)">9/10</span></td><td>1037</td><td>1:50</td><td style="font-size:12px;color:var(--text3)">Podciąganie -12 kg 5×8 ✅ Big 4, arnoldki 10-10-8 (↑ nowa kolejność), unoszenie 4×12→progresja, 4 kalibracje</td></tr>
         <tr><td style="color:var(--accent2);font-weight:600">12.03 Czw</td><td><span class="badge badge-gray">Lower</span></td><td style="color:var(--yellow)">★×8 <span style="color:var(--text3)">8/10</span></td><td>950</td><td>1:36</td><td style="font-size:12px;color:var(--text3)">Leg press +5kg→115kg ✅, kalibracja zginania 68kg, wspięcia→Smith 50kg, podciąganie kolan 4 serie SS, lędźwie 8/10</td></tr>
         <tr><td style="color:var(--accent2);font-weight:600">10.03 Wt</td><td><span class="badge badge-blue">Upper A</span></td><td style="color:var(--yellow)">★×10 <span style="color:var(--text3)">10/10</span></td><td>775</td><td>1:34</td><td style="font-size:12px;color:var(--text3)">Ławka 70 kg: 5-5-5-5-6 ✅, HS High Row kalibracja 90 kg, ściąganie drążka 60 kg</td></tr>
         <tr><td style="color:var(--accent2);font-weight:600">08.03 Nd</td><td><span class="badge badge-blue">Upper B</span></td><td style="color:var(--yellow)">★×9 <span style="color:var(--text3)">9/10</span></td><td>882</td><td>1:34</td><td style="font-size:12px;color:var(--text3)">Podciąganie 5×8 →-17,5 kg, 5 progresji, kalibracja HS zakończona</td></tr>
         <tr><td style="color:var(--accent2)">06.03 Pt</td><td><span class="badge badge-gray">Lower</span></td><td style="color:var(--yellow)">★×8 <span style="color:var(--text3)">8/10</span></td><td>866</td><td>1:21</td><td style="font-size:12px;color:var(--text3)">Lędźwie 10/10 ⭐, Front squat 60 kg ✓, HS V Squat + Leg press kalibracja</td></tr>
         <tr><td style="color:var(--accent2)">04.03 Śr</td><td><span class="badge badge-blue">Upper A</span></td><td style="color:var(--yellow)">★×7 <span style="color:var(--text3)">7/10</span></td><td>799</td><td>1:29</td><td style="font-size:12px;color:var(--text3)">Ławka AMRAP 10 → 70 kg ✓, pierwsza sesja Hammer Strength</td></tr>
-        <tr><td style="color:var(--accent2)">01.03 Nd</td><td><span class="badge badge-gray">Lower</span></td><td style="color:var(--yellow)">★×8 <span style="color:var(--text3)">8/10</span></td><td>—</td><td>—</td><td style="font-size:12px;color:var(--text3)">4 progresje (leg press, zginanie, hack squat, wspięcia), lędźwie 7/10</td></tr>
+        <tr><td style="color:var(--accent2)">01.03 Nd</td><td><span class="badge badge-gray">Lower</span></td><td style="color:var(--yellow)">★×8 <span style="color:var(--text3)">8/10</span></td><td>1:19</td><td>825</td><td style="font-size:12px;color:var(--text3)">4 progresje (leg press, zginanie, hack squat, wspięcia), lędźwie 7/10</td></tr>
         <tr><td style="color:var(--accent2)">26.02 Czw</td><td><span class="badge badge-blue">Upper B</span></td><td style="color:var(--yellow)">★×7 <span style="color:var(--text3)">7/10</span></td><td>872</td><td>1:36</td><td style="font-size:12px;color:var(--text3)">Dipy superseria, Arnoldki 10-8-8, podciąganie 8-8-8-6-6</td></tr>
         <tr><td style="color:var(--accent2)">24.02 Wt</td><td><span class="badge badge-blue">Upper A</span></td><td style="color:var(--yellow)">★×6 <span style="color:var(--text3)">6/10</span></td><td>650</td><td>1:33</td><td style="font-size:12px;color:var(--text3)">Brak energii, ławka AMRAP 7, progresje zrobione</td></tr>
         <tr><td style="color:var(--accent2)">22.02 Nd</td><td><span class="badge badge-gray">Lower</span></td><td style="color:var(--yellow)">★×9 <span style="color:var(--text3)">9/10</span></td><td>805</td><td>1:29</td><td style="font-size:12px;color:var(--text3)">Lędźwie 10/10 ⭐, test ciężarów OK, core dodane na stałe</td></tr>
         <tr><td>19.02 Czw</td><td><span class="badge badge-blue">Upper B</span></td><td style="color:var(--yellow)">★×8 <span style="color:var(--text3)">8/10</span></td><td>849</td><td>1:31</td><td style="font-size:12px;color:var(--text3)">6 progresji — najlepszy wynik do tej pory</td></tr>
-        <tr><td>17.02 Wt</td><td><span class="badge badge-blue">Upper A</span></td><td style="color:var(--yellow)">★×4 <span style="color:var(--text3)">4/10</span></td><td>—</td><td>—</td><td style="font-size:12px;color:var(--text3)">Słabszy dzień, progresje jednak zrobione</td></tr>
+        <tr><td>17.02 Wt</td><td><span class="badge badge-blue">Upper A</span></td><td style="color:var(--yellow)">★×4 <span style="color:var(--text3)">4/10</span></td><td>1:44</td><td>859</td><td style="font-size:12px;color:var(--text3)">Słabszy dzień, progresje jednak zrobione</td></tr>
         <tr><td>16.02 Nd</td><td><span class="badge badge-gray">Cardio</span></td><td style="color:var(--text3)">—</td><td>—</td><td>—</td><td style="font-size:12px;color:var(--text3)">Stretching, regeneracja lędźwi</td></tr>
-        <tr><td>12.02 Śr</td><td><span class="badge badge-gray">Lower</span></td><td style="color:var(--text3)">—</td><td>—</td><td>—</td><td style="font-size:12px;color:var(--yellow)">⚠️ Dyskomfort lędźwiowy po treningu</td></tr>
+        <tr><td>12.02 Śr</td><td><span class="badge badge-gray">Lower</span></td><td style="color:var(--text3)">—</td><td>1:19</td><td>825</td><td style="font-size:12px;color:var(--yellow)">⚠️ Dyskomfort lędźwiowy po treningu</td></tr>
+        <tr><td>10.02 Wt</td><td><span class="badge badge-blue">Upper B</span></td><td style="color:var(--yellow)">★×— <span style="color:var(--text3)">—</span></td><td>1:39</td><td>901</td><td style="font-size:12px;color:var(--text3)">Podciąganie -20 kg 8-7-6-6-6, cable lateral raise 7,5 kg, prostowanie 40 kg 12-12-12</td></tr>
+        <tr><td>08.02 Nd</td><td><span class="badge badge-gray">Lower</span></td><td style="color:var(--yellow)">★×— <span style="color:var(--text3)">—</span></td><td>1:28</td><td>812</td><td style="font-size:12px;color:var(--text3)">Trap bar 95 kg 8-8-6-6, leg press 100 kg, hack squat 50 kg, wspięcia 55 kg</td></tr>
+        <tr><td>06.02 Czw</td><td><span class="badge badge-blue">Upper A</span></td><td style="color:var(--yellow)">★×— <span style="color:var(--text3)">—</span></td><td>1:41</td><td>1011</td><td style="font-size:12px;color:var(--text3)">Ławka 65 kg 5-5-5-5-8, unoszenie 8 kg 4×12, face pulls 30 kg, wiosłowanie 60 kg</td></tr>
+        <tr><td>03.02 Wt</td><td><span class="badge badge-gray">Lower</span></td><td style="color:var(--yellow)">★×— <span style="color:var(--text3)">—</span></td><td>1:34</td><td>863</td><td style="font-size:12px;color:var(--text3)">Trap bar 90 kg 8-8-8-8, leg press 100 kg, hack squat 50 kg, wspięcia 55 kg 15-15-15-15</td></tr>
+        <tr><td>01.02 Nd</td><td><span class="badge badge-blue">Upper B</span></td><td style="color:var(--yellow)">★×— <span style="color:var(--text3)">—</span></td><td>1:27</td><td>808</td><td style="font-size:12px;color:var(--text3)">Podciąganie -25 kg 8-8-8-8-8, hantle płaska 25 kg, rozpiętki 50 kg, cable lateral raise 5 kg</td></tr>
+        <tr><td>26.01 Nd</td><td><span class="badge badge-blue">Upper B</span></td><td style="color:var(--yellow)">★×— <span style="color:var(--text3)">—</span></td><td>1:31</td><td>766</td><td style="font-size:12px;color:var(--text3)">Podciąganie -25 kg 8-8-8-8-6, hantle płaska 25 kg, rozpiętki 50 kg, arnoldki 15 kg</td></tr>
+        <tr><td>21.01 Wt</td><td><span class="badge badge-blue">Upper A</span></td><td style="color:var(--yellow)">★×— <span style="color:var(--text3)">—</span></td><td>—</td><td>—</td><td style="font-size:12px;color:var(--text3)">Ławka 65 kg 5-5-5-5-7, unoszenie 8 kg, High Row 25 kg, face pulls 30 kg</td></tr>
+        <tr><td>19.01 Nd</td><td><span class="badge badge-gray">Lower</span></td><td style="color:var(--yellow)">★×— <span style="color:var(--text3)">—</span></td><td>—</td><td>—</td><td style="font-size:12px;color:var(--text3)">Trap bar 80 kg 8-8-8-8, leg press 90 kg, hack squat 50 kg, front squat 65 kg</td></tr>
+        <tr><td>18.01 Nd</td><td><span class="badge badge-blue">Upper B</span></td><td style="color:var(--yellow)">★×— <span style="color:var(--text3)">—</span></td><td>1:31</td><td>724</td><td style="font-size:12px;color:var(--text3)">Podciąganie -25 kg 8-8-8-8-6, hantle płaska 25 kg, rozpiętki 50 kg, arnoldki 17,5 kg</td></tr>
+        <tr><td>15.01 Czw</td><td><span class="badge badge-gray">Lower</span></td><td style="color:var(--yellow)">★×— <span style="color:var(--text3)">—</span></td><td>1:38</td><td>903</td><td style="font-size:12px;color:var(--text3)">Trap bar 75 kg 8-8-8-8, front squat 65 kg, leg press 90 kg, wspięcia 55 kg 18-16-15-15</td></tr>
+        <tr><td>13.01 Wt</td><td><span class="badge badge-blue">Upper A</span></td><td style="color:var(--yellow)">★×— <span style="color:var(--text3)">—</span></td><td>1:33</td><td>681</td><td style="font-size:12px;color:var(--text3)">Ławka 60 kg 5-5-5-5-8, High Row 25 kg 12-12-12-12, face pulls 30 kg, wiosłowanie 50 kg</td></tr>
       </table>
     </div>
-  </div>
+      </div>
+    </details>
 
-  <!-- TAB: SZABLONY -->
-  <div id="t-szablony" class="tab-panel">
+    <details style="margin-top:4px">
+      <summary style="cursor:pointer;padding:12px 16px;background:var(--bg2);border:1px solid var(--border);border-radius:8px;font-size:13px;color:var(--text2);list-style:none;display:flex;justify-content:space-between;align-items:center">
+        <span>📈 Progresja Cyklu 1 — historia sesji</span>
+        <span style="font-size:11px;color:var(--text3)">▼ rozwiń</span>
+      </summary>
+      <div style="padding-top:8px">
+
+    <div class="card" style="margin-bottom:12px">
+      <div style="display:flex;flex-wrap:wrap;gap:14px;font-size:12px;align-items:center">
+        <span style="color:var(--text3);font-weight:600">Ikony:</span>
+        <span style="color:var(--accent2)">★ nowy rekord</span>
+        <span style="color:var(--green)">↑ progresja</span>
+        <span style="color:var(--text3)">→ bez zmiany</span>
+        <span style="color:var(--red)">↓ regresja</span>
+        <span style="color:var(--text3)">— brak sesji</span>
+        <span style="font-size:11px;color:var(--text3)">· Reguła: 2/3 serii w górnym zakresie przez 2 sesje z rzędu → +ciężar</span>
+      </div>
+    </div>
+    </div>
+    <div class="card" style="margin-bottom:16px">
+      <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px"><div class="card-title" style="color:var(--accent);margin-bottom:0">🔵 Upper A</div><div style="display:flex;gap:4px"><button class="filter-btn active" data-n="5" onclick="filterCols('tbl-ua',5)">Last 5</button><button class="filter-btn" data-n="8" onclick="filterCols('tbl-ua',8)">Last 8</button><button class="filter-btn" data-n="all" onclick="filterCols('tbl-ua','all')">All</button></div></div>
+      <div style="overflow-x:auto">
+      <table id="tbl-ua" style="min-width:700px;font-size:12px">
+        <tr><th style="min-width:150px">Ćwiczenie</th><th>Zakres</th><th>Cel progresji</th><th style="font-size:10px;min-width:72px">19.03</th><th style="font-size:10px;min-width:72px">10.03</th><th style="font-size:10px;min-width:72px">04.03</th><th style="font-size:10px;min-width:72px">24.02</th><th style="font-size:10px;min-width:72px">17.02</th><th style="font-size:10px;min-width:72px">06.02</th><th style="font-size:10px;min-width:72px">21.01</th><th style="font-size:10px;min-width:72px">13.01</th></tr>
+      <tr><td class="pg-hd">⭐ Ławka sztanga</td><td class="pg-sub">4×5–8</td><td class="pg-cel">AMRAP≥8 → +2,5kg</td><td style="font-size:11px;color:var(--accent2);">70×5-5-5-9 <span style="font-size:10px">★</span></td><td style="font-size:11px;color:var(--green);">70×5-5-5-6 <span style="font-size:10px">↑</span></td><td style="font-size:11px;color:var(--green);">67,5×5-5-5-10 <span style="font-size:10px">↑</span></td><td style="font-size:11px;color:var(--text3);">67,5×5-5-5-7 <span style="font-size:10px">→</span></td><td style="font-size:11px;color:var(--text3);">67,5×5-5-5-6 <span style="font-size:10px">→</span></td><td style="font-size:11px;color:var(--green);">65×5-5-5-8 <span style="font-size:10px">↑</span></td><td style="font-size:11px;color:var(--text3);">65×5-5-5-7 <span style="font-size:10px">→</span></td><td style="font-size:11px;">60×5-5-5-8</td></tr>
+      <tr><td class="pg-hd">Hantle skos 30°</td><td class="pg-sub">3×8–10</td><td class="pg-cel">2/3×10 → +2,5kg</td><td style="font-size:11px;color:var(--green);">24×10-10-10 <span style="font-size:10px">↑</span></td><td style="font-size:11px;color:var(--text3);">24×10-8-8 <span style="font-size:10px">→</span></td><td style="font-size:11px;color:var(--text3);">24×10-8-9 <span style="font-size:10px">→</span></td><td style="font-size:11px;color:var(--text3);">25×10-8-8 <span style="font-size:10px">→</span></td><td style="font-size:11px;color:var(--text3);">25×10-9-7 <span style="font-size:10px">→</span></td><td style="font-size:11px;color:var(--text3);">25×10-10-8 <span style="font-size:10px">→</span></td><td style="font-size:11px;color:var(--text3);">25×10-8-8 <span style="font-size:10px">→</span></td><td style="font-size:11px;">25×8-8-6</td></tr>
+      <tr><td class="pg-hd">SS1a · Barki</td><td class="pg-sub">3×8–10</td><td class="pg-cel">2/3×10 → +2,5kg</td><td style="font-size:11px;color:var(--text3);">20×10-8-8 <span style="font-size:10px">→</span></td><td style="font-size:11px;color:var(--text3);">20×10-8-7 <span style="font-size:10px">→</span></td><td style="font-size:11px;color:var(--red);">20×10-5-5 <span style="font-size:10px">↓</span></td><td style="font-size:11px;color:var(--text3);">20×10-8-6 <span style="font-size:10px">→</span></td><td style="font-size:11px;color:var(--red);">20×10-6-5 <span style="font-size:10px">↓</span></td><td style="font-size:11px;color:var(--text3);">20×10-7-7 <span style="font-size:10px">→</span></td><td style="font-size:11px;color:var(--text3);">20×10-10-8 <span style="font-size:10px">→</span></td><td style="font-size:11px;">20×8-6-6</td></tr>
+      <tr><td class="pg-hd">SS1b · Unoszenie bokiem</td><td class="pg-sub">4×12–15</td><td class="pg-cel">3/4×12 → +2,5kg</td><td style="font-size:11px;color:var(--green);">10×12-12-12-12 <span style="font-size:10px">↑</span></td><td style="font-size:11px;color:var(--text3);">10×12-10-10-10 <span style="font-size:10px">→</span></td><td style="font-size:11px;color:var(--text3);">9×10-10-10-10 <span style="font-size:10px">→</span></td><td style="font-size:11px;color:var(--text3);">9×10-10-10-8 <span style="font-size:10px">→</span></td><td style="font-size:11px;color:var(--text3);">9×10-10-9-8 <span style="font-size:10px">→</span></td><td style="font-size:11px;color:var(--green);">8×12-12-12-12 <span style="font-size:10px">↑</span></td><td style="font-size:11px;">8×15-12-12-12</td><td style="font-size:11px;">8×10-10-10-8</td></tr>
+      <tr><td class="pg-hd">HS Lateral High Row</td><td class="pg-sub">4×8–12</td><td class="pg-cel">3/4×12 → +ciężar</td><td style="font-size:11px;color:var(--text3);">90×12-10-8-8 <span style="font-size:10px">→</span></td><td style="font-size:11px;color:var(--accent2);">90×10-10-10-8 <span style="font-size:10px">★</span></td><td style="font-size:11px;">30×10-10-8-8</td><td style="font-size:11px;">30×10-8-8-7</td><td style="font-size:11px;color:var(--text3);">27,5×10-10-10-10 <span style="font-size:10px">→</span></td><td style="font-size:11px;color:var(--text3);">27,5×10-10-10-9 <span style="font-size:10px">→</span></td><td style="font-size:11px;color:var(--text3);">25×10-10-10-10 <span style="font-size:10px">→</span></td><td style="font-size:11px;">25×12-12-12-12</td></tr>
+      <tr><td class="pg-hd">Francuskie</td><td class="pg-sub">3×8–10</td><td class="pg-cel">2/3×10 → +1kg</td><td style="font-size:11px;color:var(--green);">12,5×10-10-10 <span style="font-size:10px">↑</span></td><td style="font-size:11px;color:var(--text3);">12,5×12-10-8 <span style="font-size:10px">→</span></td><td style="font-size:11px;color:var(--text3);">12,5×12-8-8 <span style="font-size:10px">→</span></td><td style="font-size:11px;color:var(--text3);">12,5×12-10-8 <span style="font-size:10px">→</span></td><td style="font-size:11px;color:var(--text3);">12,5×12-8-7 <span style="font-size:10px">→</span></td><td style="font-size:11px;color:var(--text3);">12,5×12-10-6 <span style="font-size:10px">→</span></td><td style="font-size:11px;color:var(--text3);">12,5×12-12-10 <span style="font-size:10px">→</span></td><td style="font-size:11px;">12,5×12-8-6</td></tr>
+      <tr><td class="pg-hd">Uginanie z rotacją</td><td class="pg-sub">2×10–12</td><td class="pg-cel">2×12 → +2,5kg</td><td style="font-size:11px;color:var(--text3);">20×10-9 <span style="font-size:10px">→</span></td><td style="font-size:11px;color:var(--text3);">20×9-9 <span style="font-size:10px">→</span></td><td style="font-size:11px;color:var(--text3);">20×9-9 <span style="font-size:10px">→</span></td><td style="font-size:11px;color:var(--text3);">20×8-8 <span style="font-size:10px">→</span></td><td style="font-size:11px;color:var(--text3);">20×10-8 <span style="font-size:10px">→</span></td><td style="font-size:11px;color:var(--green);">17,5×12-12 <span style="font-size:10px">↑</span></td><td style="font-size:11px;color:var(--text3);">17,5×12-10 <span style="font-size:10px">→</span></td><td style="font-size:11px;">17,5×12-12</td></tr>
+      <tr><td class="pg-hd">Ściąganie drążka</td><td class="pg-sub">3×8–12</td><td class="pg-cel">2/3×12 → +ciężar</td><td style="font-size:11px;color:var(--text3);">57×10-10 <span style="font-size:10px">→</span></td><td style="font-size:11px;color:var(--text3);">57×10-10-10 <span style="font-size:10px">→</span></td><td style="font-size:11px;color:var(--text3);">60×10-10-10 <span style="font-size:10px">→</span></td><td style="font-size:11px;color:var(--text3);">60×10-10-8 <span style="font-size:10px">→</span></td><td style="font-size:11px;color:var(--green);">55×12-12-12 <span style="font-size:10px">↑</span></td><td style="font-size:11px;color:var(--text3);">55×10-10-8 <span style="font-size:10px">→</span></td><td style="font-size:11px;color:var(--text3);">55×12-12-10 <span style="font-size:10px">→</span></td><td style="font-size:11px;">55×10-8-6</td></tr>
+      <tr><td class="pg-hd">SS2a · Wiosłowanie</td><td class="pg-sub">2×10–12</td><td class="pg-cel">2×12 → +ciężar</td><td style="font-size:11px;color:var(--accent2);">35×10-10 <span style="font-size:10px">★</span></td><td style="font-size:11px;">57×12-12</td><td style="font-size:11px;color:var(--text3);">57×12-12 <span style="font-size:10px">→</span></td><td style="font-size:11px;color:var(--text3);">60×12-10 <span style="font-size:10px">→</span></td><td style="font-size:11px;color:var(--text3);">60×10-10 <span style="font-size:10px">→</span></td><td style="font-size:11px;color:var(--text3);">60×10-10 <span style="font-size:10px">→</span></td><td style="font-size:11px;color:var(--text3);">55×12-12 <span style="font-size:10px">→</span></td><td style="font-size:11px;">50×12-11</td></tr>
+      <tr><td class="pg-hd">SS2b · Face pulls</td><td class="pg-sub">3×15</td><td class="pg-cel">3×15 → +ciężar</td><td style="font-size:11px;color:var(--text3);">21×12-12 <span style="font-size:10px">→</span></td><td style="font-size:11px;color:var(--text3);">21×12-12-12 <span style="font-size:10px">→</span></td><td style="font-size:11px;color:var(--text3);">21×10-10-10 <span style="font-size:10px">→</span></td><td style="font-size:11px;">35×15-10-10</td><td style="font-size:11px;color:var(--text3);">35×13-10-10 <span style="font-size:10px">→</span></td><td style="font-size:11px;color:var(--green);">30×15-15-15 <span style="font-size:10px">↑</span></td><td style="font-size:11px;color:var(--text3);">30×15-15-12 <span style="font-size:10px">→</span></td><td style="font-size:11px;">30×15-15-12</td></tr>
+      <tr><td class="pg-hd">Prostowanie nad głową</td><td class="pg-sub">3×12–15</td><td class="pg-cel">2/3×15 → +stos</td><td style="font-size:11px;color:var(--text3);">24,5s×10-10 <span style="font-size:10px">→</span></td><td style="font-size:11px;color:var(--text3);">24,5s×8-8 <span style="font-size:10px">→</span></td><td style="font-size:11px;">40×10-10</td><td style="font-size:11px;color:var(--text3);">35×12-12 <span style="font-size:10px">→</span></td><td style="font-size:11px;color:var(--text3);">35×12-10 <span style="font-size:10px">→</span></td><td style="font-size:11px;color:var(--green);">35×15-15 <span style="font-size:10px">↑</span></td><td style="font-size:11px;">35×10-8</td><td style="color:var(--text3);font-size:10px">—</td></tr>
+      </table></div></div>
+    <div class="card" style="margin-bottom:16px">
+      <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px"><div class="card-title" style="color:var(--green);margin-bottom:0">🟢 Upper B</div><div style="display:flex;gap:4px"><button class="filter-btn active" data-n="5" onclick="filterCols('tbl-ub',5)">Last 5</button><button class="filter-btn" data-n="8" onclick="filterCols('tbl-ub',8)">Last 8</button><button class="filter-btn" data-n="all" onclick="filterCols('tbl-ub','all')">All</button></div></div>
+      <div style="overflow-x:auto">
+      <table id="tbl-ub" style="min-width:700px;font-size:12px">
+        <tr><th style="min-width:150px">Ćwiczenie</th><th>Zakres</th><th>Cel progresji</th><th style="font-size:10px;min-width:72px">22.03</th><th style="font-size:10px;min-width:72px">15.03</th><th style="font-size:10px;min-width:72px">08.03</th><th style="font-size:10px;min-width:72px">26.02</th><th style="font-size:10px;min-width:72px">19.02</th><th style="font-size:10px;min-width:72px">10.02</th><th style="font-size:10px;min-width:72px">01.02</th><th style="font-size:10px;min-width:72px">26.01</th></tr>
+      <tr><td class="pg-hd">⭐ Podciąganie (asysta)</td><td class="pg-sub">5×6–8</td><td class="pg-cel">5×8 → -2,5kg asysty</td><td style="font-size:11px;color:var(--accent2);">-12×8-8-8-8-8 <span style="font-size:10px">★</span></td><td style="font-size:11px;color:var(--green);">-12×8-8-8-8-8 <span style="font-size:10px">↑</span></td><td style="font-size:11px;color:var(--green);">-19×8-8-8-8-8 <span style="font-size:10px">↑</span></td><td style="font-size:11px;color:var(--text3);">-20×8-8-8-6-6 <span style="font-size:10px">→</span></td><td style="font-size:11px;color:var(--text3);">-20×8-8-6-6-6 <span style="font-size:10px">→</span></td><td style="font-size:11px;color:var(--text3);">-20×8-7-6-6-6 <span style="font-size:10px">→</span></td><td style="font-size:11px;color:var(--text3);">-25×8-8-8-8-8 <span style="font-size:10px">→</span></td><td style="font-size:11px;">-25×8-8-8-8-6</td></tr>
+      <tr><td class="pg-hd">Wyciskanie płaska</td><td class="pg-sub">4×8–10</td><td class="pg-cel">3/4×10 → +2,5kg</td><td style="font-size:11px;color:var(--green);">27,5×10-10-10-10 <span style="font-size:10px">↑</span></td><td style="font-size:11px;color:var(--text3);">27,5×10-10-10-8 <span style="font-size:10px">→</span></td><td style="font-size:11px;color:var(--text3);">27,5×10-10-8-8 <span style="font-size:10px">→</span></td><td style="font-size:11px;color:var(--text3);">27,5×10-8-8-6 <span style="font-size:10px">→</span></td><td style="font-size:11px;color:var(--green);">25×10-10-10-10 <span style="font-size:10px">↑</span></td><td style="font-size:11px;color:var(--text3);">25×10-10-10-7 <span style="font-size:10px">→</span></td><td style="font-size:11px;color:var(--text3);">25×10-10-9-8 <span style="font-size:10px">→</span></td><td style="font-size:11px;">25×10-10-10-8</td></tr>
+      <tr><td class="pg-hd">Arnoldki</td><td class="pg-sub">3×8–10</td><td class="pg-cel">2/3×10 → +2,5kg</td><td style="font-size:11px;color:var(--text3);">17,5×10-10-8 <span style="font-size:10px">→</span></td><td style="font-size:11px;color:var(--text3);">17,5×10-10-8 <span style="font-size:10px">→</span></td><td style="font-size:11px;color:var(--text3);">17,5×10-8-6 <span style="font-size:10px">→</span></td><td style="font-size:11px;color:var(--text3);">17,5×10-8-8 <span style="font-size:10px">→</span></td><td style="font-size:11px;color:var(--text3);">17,5×10-10-7 <span style="font-size:10px">→</span></td><td style="font-size:11px;color:var(--green);">15×10-10-10 <span style="font-size:10px">↑</span></td><td style="font-size:11px;color:var(--text3);">15×12-10-8 <span style="font-size:10px">→</span></td><td style="font-size:11px;">15×12-8-8</td></tr>
+      <tr><td class="pg-hd">SS · Rozpiętki klatka</td><td class="pg-sub">3×10–12</td><td class="pg-cel">2/3×12 → +ciężar</td><td style="font-size:11px;color:var(--text3);">68×12-12-10 <span style="font-size:10px">→</span></td><td style="font-size:11px;color:var(--text3);">68×12-12-10 <span style="font-size:10px">→</span></td><td style="font-size:11px;color:var(--text3);">68×12-10-10 <span style="font-size:10px">→</span></td><td style="font-size:11px;color:var(--text3);">55×10-10-10 <span style="font-size:10px">→</span></td><td style="font-size:11px;color:var(--green);">50×12-12-12 <span style="font-size:10px">↑</span></td><td style="font-size:11px;color:var(--text3);">50×10-10-10 <span style="font-size:10px">→</span></td><td style="font-size:11px;color:var(--text3);">50×12-8-11 <span style="font-size:10px">→</span></td><td style="font-size:11px;">50×15-12-10</td></tr>
+      <tr><td class="pg-hd">SS · Odwrotne rozpiętki</td><td class="pg-sub">3×12–15</td><td class="pg-cel">2/3×15 → +5kg</td><td style="font-size:11px;color:var(--green);">54×12-12-12 <span style="font-size:10px">↑</span></td><td style="font-size:11px;color:var(--green);">54×15-15-12 <span style="font-size:10px">↑</span></td><td style="font-size:11px;color:var(--text3);">54×12-12-12 <span style="font-size:10px">→</span></td><td style="font-size:11px;color:var(--red);">45×10-8-8 <span style="font-size:10px">↓</span></td><td style="font-size:11px;color:var(--green);">40×12-12-12 <span style="font-size:10px">↑</span></td><td style="font-size:11px;color:var(--text3);">40×10-10-10 <span style="font-size:10px">→</span></td><td style="font-size:11px;color:var(--text3);">40×12-12-12 <span style="font-size:10px">→</span></td><td style="font-size:11px;">35×20-12-12</td></tr>
+      <tr><td class="pg-hd">Chest Press ISO</td><td class="pg-sub">3×10–12</td><td class="pg-cel">2/3×12 → +ciężar</td><td style="font-size:11px;color:var(--text3);">45×10-7-7 <span style="font-size:10px">→</span></td><td style="font-size:11px;color:var(--text3);">45×8-8-8 <span style="font-size:10px">→</span></td><td style="font-size:11px;color:var(--green);">40×10-10-10 <span style="font-size:10px">↑</span></td><td style="font-size:11px;">55×12-10-10</td><td style="font-size:11px;color:var(--text3);">55×10-10-10 <span style="font-size:10px">→</span></td><td style="color:var(--text3);font-size:10px">—</td><td style="color:var(--text3);font-size:10px">—</td><td style="color:var(--text3);font-size:10px">—</td></tr>
+      <tr><td class="pg-hd">Wyciąg dolny</td><td class="pg-sub">3×10–12</td><td class="pg-cel">2/3×12 → +2,5kg</td><td style="font-size:11px;color:var(--green);">40×10-10-10 <span style="font-size:10px">↑</span></td><td style="font-size:11px;color:var(--text3);">40×8-8-8 <span style="font-size:10px">→</span></td><td style="font-size:11px;color:var(--green);">35×12-12-12 <span style="font-size:10px">↑</span></td><td style="font-size:11px;">60×12-12-10</td><td style="font-size:11px;color:var(--text3);">60×12-10-10 <span style="font-size:10px">→</span></td><td style="font-size:11px;color:var(--text3);">60×10-10-10 <span style="font-size:10px">→</span></td><td style="font-size:11px;color:var(--green);">55×12-12-12 <span style="font-size:10px">↑</span></td><td style="font-size:11px;">50×12-10-10</td></tr>
+      <tr><td class="pg-hd">Cable lateral raise</td><td class="pg-sub">4×10–12</td><td class="pg-cel">3/4×12 → +2,5kg</td><td style="font-size:11px;color:var(--text3);">7,5×8-7-7-7 <span style="font-size:10px">→</span></td><td style="font-size:11px;color:var(--green);">5×12-12-12-12 <span style="font-size:10px">↑</span></td><td style="font-size:11px;color:var(--text3);">5×12-10-10-10 <span style="font-size:10px">→</span></td><td style="font-size:11px;color:var(--text3);">10×12-10-8-8 <span style="font-size:10px">→</span></td><td style="font-size:11px;color:var(--green);">7,5×12-12-12-12 <span style="font-size:10px">↑</span></td><td style="font-size:11px;color:var(--text3);">7,5×10-10-10-10 <span style="font-size:10px">→</span></td><td style="font-size:11px;color:var(--text3);">5×12-10-12-12 <span style="font-size:10px">→</span></td><td style="font-size:11px;">5×10-10-10-10</td></tr>
+      <tr><td class="pg-hd">Prostowanie triceps</td><td class="pg-sub">3×10–12</td><td class="pg-cel">2/3×12 → +ciężar</td><td style="font-size:11px;color:var(--accent2);">28×8-8-8 <span style="font-size:10px">★</span></td><td style="font-size:11px;color:var(--text3);">31×8-8-8 <span style="font-size:10px">→</span></td><td style="font-size:11px;color:var(--text3);">28×10-8-8 <span style="font-size:10px">→</span></td><td style="font-size:11px;">45×10-8-8</td><td style="font-size:11px;color:var(--green);">40×12-12-12 <span style="font-size:10px">↑</span></td><td style="font-size:11px;color:var(--text3);">40×12-12-12 <span style="font-size:10px">→</span></td><td style="font-size:11px;color:var(--text3);">40×15-12-12 <span style="font-size:10px">→</span></td><td style="font-size:11px;">40×12-12-12</td></tr>
+      <tr><td class="pg-hd">Uginanie z linką</td><td class="pg-sub">2×10–12</td><td class="pg-cel">2×12 → +ciężar</td><td style="font-size:11px;color:var(--accent2);">31×8-8-8 <span style="font-size:10px">★</span></td><td style="font-size:11px;color:var(--text3);">35×12-12-10 <span style="font-size:10px">→</span></td><td style="font-size:11px;color:var(--green);">35×12-12-12 <span style="font-size:10px">↑</span></td><td style="font-size:11px;">55×10-10</td><td style="font-size:11px;color:var(--text3);">50×12-12 <span style="font-size:10px">→</span></td><td style="font-size:11px;color:var(--text3);">50×10-10 <span style="font-size:10px">→</span></td><td style="font-size:11px;color:var(--text3);">50×8-8 <span style="font-size:10px">→</span></td><td style="font-size:11px;">45×12-12</td></tr>
+      <tr><td class="pg-hd">Podciąganie australijskie</td><td class="pg-sub">2×8–12</td><td class="pg-cel">2×12 → +obciążenie</td><td style="font-size:11px;color:var(--text3);">BW×10-10 <span style="font-size:10px">→</span></td><td style="font-size:11px;color:var(--text3);">BW×10-10 <span style="font-size:10px">→</span></td><td style="font-size:11px;color:var(--text3);">BW×10-10 <span style="font-size:10px">→</span></td><td style="font-size:11px;color:var(--text3);">BW×10-8 <span style="font-size:10px">→</span></td><td style="color:var(--text3);font-size:10px">—</td><td style="color:var(--text3);font-size:10px">—</td><td style="color:var(--text3);font-size:10px">—</td><td style="color:var(--text3);font-size:10px">—</td></tr>
+      <tr><td class="pg-hd">Dipy</td><td class="pg-sub">2×8–12</td><td class="pg-cel">2×12 → +obciążenie</td><td style="font-size:11px;color:var(--text3);">BW×12-12 <span style="font-size:10px">→</span></td><td style="font-size:11px;color:var(--text3);">BW×12-12 <span style="font-size:10px">→</span></td><td style="font-size:11px;color:var(--text3);">BW×10-10 <span style="font-size:10px">→</span></td><td style="font-size:11px;color:var(--text3);">BW×10-8 <span style="font-size:10px">→</span></td><td style="color:var(--text3);font-size:10px">—</td><td style="font-size:11px;">BW×12-12</td><td style="font-size:11px;color:var(--text3);">BW×12-12 <span style="font-size:10px">→</span></td><td style="color:var(--text3);font-size:10px">—</td></tr>
+      </table></div></div>
+    <div class="card" style="margin-bottom:16px">
+      <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px"><div class="card-title" style="color:var(--yellow);margin-bottom:0">🟠 Lower</div><div style="display:flex;gap:4px"><button class="filter-btn active" data-n="5" onclick="filterCols('tbl-lo',5)">Last 5</button><button class="filter-btn" data-n="8" onclick="filterCols('tbl-lo',8)">Last 8</button><button class="filter-btn" data-n="all" onclick="filterCols('tbl-lo','all')">All</button></div></div>
+      <div style="overflow-x:auto">
+      <table id="tbl-lo" style="min-width:700px;font-size:12px">
+        <tr><th style="min-width:150px">Ćwiczenie</th><th>Zakres</th><th>Cel progresji</th><th style="font-size:10px;min-width:72px">17.03</th><th style="font-size:10px;min-width:72px">12.03</th><th style="font-size:10px;min-width:72px">06.03</th><th style="font-size:10px;min-width:72px">01.03</th><th style="font-size:10px;min-width:72px">22.02</th><th style="font-size:10px;min-width:72px">12.02</th><th style="font-size:10px;min-width:72px">08.02</th><th style="font-size:10px;min-width:72px">03.02</th></tr>
+      <tr><td class="pg-hd">⭐ Front squat</td><td class="pg-sub">3×10 (stab.)</td><td class="pg-cel">3×10 → +2,5kg</td><td style="font-size:11px;">—</td><td style="font-size:11px;color:var(--text3);">60×10-10-10 <span style="font-size:10px">→</span></td><td style="font-size:11px;color:var(--text3);">60×10-10-10 <span style="font-size:10px">→</span></td><td style="font-size:11px;color:var(--green);">55×10-10-10 <span style="font-size:10px">↑</span></td><td style="font-size:11px;color:var(--text3);">60×8-8-8-8 <span style="font-size:10px">→</span></td><td style="font-size:11px;">70×8-8-6-6</td><td style="font-size:11px;">60×8-8-6-6</td><td style="font-size:11px;">70×6-6-6-5</td></tr>
+      <tr><td class="pg-hd">⭐ Trap bar deadlift</td><td class="pg-sub">3–5×8–10</td><td class="pg-cel">3×10 → +5kg</td><td style="font-size:11px;color:var(--accent2);">85×8-8-8-8-8 <span style="font-size:10px">★</span></td><td style="font-size:11px;color:var(--green);">75×10-10-10 <span style="font-size:10px">↑</span></td><td style="font-size:11px;color:var(--text3);">75×10-10-10 <span style="font-size:10px">→</span></td><td style="font-size:11px;color:var(--text3);">75×10-10-10 <span style="font-size:10px">→</span></td><td style="font-size:11px;color:var(--text3);">80×8-8-8-8 <span style="font-size:10px">→</span></td><td style="font-size:11px;color:var(--red);">95×8-6-6-6 <span style="font-size:10px">↓</span></td><td style="font-size:11px;color:var(--red);">95×8-8-6-6 <span style="font-size:10px">↓</span></td><td style="font-size:11px;">90×8-8-8-8</td></tr>
+      <tr><td class="pg-hd">Leg press HS</td><td class="pg-sub">3×10–12</td><td class="pg-cel">2/3×12 → +5kg</td><td style="font-size:11px;color:var(--green);">115×12-12-12 <span style="font-size:10px">↑</span></td><td style="font-size:11px;color:var(--text3);">115×12-10-10 <span style="font-size:10px">→</span></td><td style="font-size:11px;color:var(--green);">105×12-12-12 <span style="font-size:10px">↑</span></td><td style="font-size:11px;">130×12-12-12</td><td style="font-size:11px;color:var(--text3);">130×12-12-12 <span style="font-size:10px">→</span></td><td style="font-size:11px;color:var(--red);">100×6-6 <span style="font-size:10px">↓</span></td><td style="font-size:11px;color:var(--green);">100×10-10-10 <span style="font-size:10px">↑</span></td><td style="font-size:11px;">100×10-8-7</td></tr>
+      <tr><td class="pg-hd">Zginanie siedząc</td><td class="pg-sub">4×12–15</td><td class="pg-cel">3/4×15 → +ciężar</td><td style="font-size:11px;color:var(--green);">75×15-15-12-12 <span style="font-size:10px">↑</span></td><td style="font-size:11px;color:var(--text3);">68×12-12-10-10 <span style="font-size:10px">→</span></td><td style="font-size:11px;">90×15-15-12-12</td><td style="font-size:11px;color:var(--text3);">85×12-12-12-12 <span style="font-size:10px">→</span></td><td style="font-size:11px;color:var(--green);">80×15-15-12-12 <span style="font-size:10px">↑</span></td><td style="font-size:11px;color:var(--text3);">80×15-12-12-12 <span style="font-size:10px">→</span></td><td style="font-size:11px;color:var(--text3);">80×15-12-12-10 <span style="font-size:10px">→</span></td><td style="font-size:11px;">80×12-12-12-12</td></tr>
+      <tr><td class="pg-hd">Zginanie leżące HS</td><td class="pg-sub">2×10–12</td><td class="pg-cel">2×12 → +ciężar</td><td style="font-size:11px;color:var(--green);">67×10-10 <span style="font-size:10px">↑</span></td><td style="font-size:11px;color:var(--green);">60×12-12 <span style="font-size:10px">↑</span></td><td style="font-size:11px;color:var(--text3);">60×12-12 <span style="font-size:10px">→</span></td><td style="font-size:11px;color:var(--text3);">65×10-10 <span style="font-size:10px">→</span></td><td style="font-size:11px;color:var(--text3);">65×10-10 <span style="font-size:10px">→</span></td><td style="font-size:11px;color:var(--text3);">65×10-8-8 <span style="font-size:10px">→</span></td><td style="font-size:11px;color:var(--text3);">60×10-10 <span style="font-size:10px">→</span></td><td style="font-size:11px;">55×12-10-10</td></tr>
+      <tr><td class="pg-hd">Hack squat HS</td><td class="pg-sub">4–5×10–12</td><td class="pg-cel">3/4×12 → +5kg</td><td style="font-size:11px;color:var(--green);">100×10-10-10-10-10 <span style="font-size:10px">↑</span></td><td style="font-size:11px;color:var(--green);">85×10-10-10-10 <span style="font-size:10px">↑</span></td><td style="font-size:11px;color:var(--green);">80×10-10-10-10 <span style="font-size:10px">↑</span></td><td style="font-size:11px;color:var(--green);">60×10-10-10-10 <span style="font-size:10px">↑</span></td><td style="font-size:11px;color:var(--text3);">60×10-10-10-10 <span style="font-size:10px">→</span></td><td style="font-size:11px;color:var(--green);">55×10-10-10-10 <span style="font-size:10px">↑</span></td><td style="font-size:11px;color:var(--green);">50×10-10-10-10 <span style="font-size:10px">↑</span></td><td style="font-size:11px;">50×10-10-10</td></tr>
+      <tr><td class="pg-hd">Wspięcia stojąc</td><td class="pg-sub">4×12–15</td><td class="pg-cel">3/4×15 → +2,5kg</td><td style="font-size:11px;color:var(--text3);">50×12-12-12-12 <span style="font-size:10px">→</span></td><td style="font-size:11px;color:var(--text3);">50×12-12-12-12 <span style="font-size:10px">→</span></td><td style="font-size:11px;">55×12-12-12-12</td><td style="font-size:11px;color:var(--text3);">55×12-12-12-12 <span style="font-size:10px">→</span></td><td style="font-size:11px;color:var(--text3);">55×12-12-12-12 <span style="font-size:10px">→</span></td><td style="font-size:11px;color:var(--text3);">55×15-12-12-10 <span style="font-size:10px">→</span></td><td style="font-size:11px;color:var(--green);">55×15-15-15-15 <span style="font-size:10px">↑</span></td><td style="font-size:11px;">55×15-15-15-15</td></tr>
+      <tr><td class="pg-hd">Podciąganie kolan</td><td class="pg-sub">4×15–20</td><td class="pg-cel">4×20 → +obciążenie</td><td style="font-size:11px;color:var(--green);">BW×20-20-15-15 <span style="font-size:10px">↑</span></td><td style="font-size:11px;color:var(--text3);">BW×20-20-15-15 <span style="font-size:10px">→</span></td><td style="font-size:11px;color:var(--text3);">BW×20-15-15 <span style="font-size:10px">→</span></td><td style="font-size:11px;color:var(--text3);">BW×15-15-12 <span style="font-size:10px">→</span></td><td style="font-size:11px;color:var(--text3);">BW×15-15-12 <span style="font-size:10px">→</span></td><td style="font-size:11px;color:var(--text3);">BW×15-15-12 <span style="font-size:10px">→</span></td><td style="font-size:11px;color:var(--text3);">BW×15-12-12 <span style="font-size:10px">→</span></td><td style="font-size:11px;">BW×15-12-12</td></tr>
+      <tr><td class="pg-hd">Skręty z linką</td><td class="pg-sub">3×12–15</td><td class="pg-cel">2/3×15 → +2,5kg</td><td style="font-size:11px;color:var(--text3);">15×15-12-10 <span style="font-size:10px">→</span></td><td style="font-size:11px;color:var(--text3);">15×12-12-12 <span style="font-size:10px">→</span></td><td style="font-size:11px;color:var(--text3);">15×12-12-12 <span style="font-size:10px">→</span></td><td style="font-size:11px;">25×12-12-12</td><td style="font-size:11px;color:var(--text3);">25×12-12-12 <span style="font-size:10px">→</span></td><td style="font-size:11px;color:var(--text3);">25×12-10-10 <span style="font-size:10px">→</span></td><td style="font-size:11px;color:var(--text3);">25×10-10-10 <span style="font-size:10px">→</span></td><td style="font-size:11px;">25×10-10-10</td></tr>
+      </table></div></div>
+      </div>
+    </details>
+
+      <div id="t-szablony" class="tab-panel">
     <div class="alert alert-info" style="margin-bottom:16px">
       <span class="alert-icon">💡</span>
       <span>Skopiuj prompt, wklej raport treningowy i wyślij do Claude — zaktualizuje wszystkie elementy strony automatycznie.</span>
     </div>
 
+        <details style="margin-bottom:8px">
+      <summary style="cursor:pointer;padding:10px 14px;background:var(--bg2);border:1px solid var(--border);border-radius:8px;font-size:13px;color:var(--text2);list-style:none;display:flex;justify-content:space-between;align-items:center;user-select:none">
+        <span>🔄 Prompt do aktualizacji</span><span style="font-size:10px;color:var(--text3)">▼</span>
+      </summary>
+      <div style="padding-top:8px">
     <h3>Prompt do aktualizacji</h3>
     <div class="template-box" id="tmpl-prompt">Nowy raport treningowy — zaktualizuj plik index.html.
 
+ZANIM ZACZNIESZ: przejrzyj zakładkę Progresja w Archiwum oraz zakładkę Poprzedni żeby wiedzieć co było na ostatnim treningu i jakie ikony (★↑→↓) mają ćwiczenia. Nie patrz punktowo — patrz na trend z ostatnich 3–5 sesji.
+
 [WKLEJ RAPORT TUTAJ]
 
-Lista elementów do aktualizacji:
-1. 🏠 DZIŚ — zmień następny trening, zaktualizuj 3 karty kolejnych treningów, Big 4 jeśli były progresje
-2. 💪 TRENINGI Następny — nowe ciężary po progresji
-3. 💪 TRENINGI Poprzedni — zastąp aktualnym treningiem (tabela z kolumną Progresja → plan, wnioski)
-4. 💪 TRENINGI Archiwum — dodaj wpis na górze tabeli
-5. 🏋️ PLAN — zaktualizuj ciężary w tabelach UA / UB / Lower zgodnie z progresją
-6. 📅 HARMONOGRAM — oznacz trening jako ✓ done, aktualizuj bilans
-7. ⚖️ WAGA — dodaj nowe pomiary wagi jeśli podane
-8. 🕐 Pasek na dole — zaktualizuj datę ostatniej aktualizacji
-9. Analiza: ocena gwiazdkowa, które progresje wykonane, co zostaje bez zmian, wskazówki</div>
-    <button class="copy-btn" onclick="copy('tmpl-prompt')">📋 Kopiuj prompt</button>
+════ LISTA WSZYSTKICH ELEMENTÓW DO AKTUALIZACJI ════
+Wykonaj każdy punkt. Nie pomijaj żadnego.
 
+── 1. TRENINGI → Następny ──────────────────────────
+- Zmień typ treningu i datę na kolejny zaplanowany
+- Zaktualizuj tabelę ćwiczeń: ciężary po progresji, zakresy serii/powt.
+- Zaktualizuj cel w alercie (co konkretnie chcemy osiągnąć na tym treningu)
+- Jeśli to deload: zmień ciężary na 60%, serie na 2
+
+── 2. TRENINGI → Poprzedni ─────────────────────────
+- Zastąp w całości aktualnym treningiem (stary idzie do Archiwum)
+- Nagłówek: typ · data · czas · kcal · tętno · obciążenie · ocena ★
+- Tabela wyników: # · ćwiczenie · ciężar · wynik serii · ocena · Progresja → plan
+- Wnioski: alerty success (✅ progresje), warn (⚠️ problemy), info (🔄 obserwacje)
+- Ocena sformułowana na podstawie CAŁEGO KONTEKSTU (nie tylko tej sesji)
+
+── 3. TRENINGI → Archiwum → Historia treningów ─────
+- Dodaj wiersz na GÓRZE tabeli
+- Format: data · typ · ★ocena · kcal · czas · kluczowe wyniki jednym zdaniem
+
+── 4. TRENINGI → Archiwum → Progresja Cyklu ────────
+- Znajdź tabelę odpowiedniego dnia (UA / UB / Lower)
+- Dodaj nową kolumnę z LEWEJ (najnowsza data)
+- Każda komórka: ciężar×serie np. 70×5-5-9
+- Ikony: ★ nowy rekord · ↑ progresja ciężaru · → plateau/bez zmiany · ↓ regresja
+- Ikona ↑ tylko gdy ciężar faktycznie wzrósł vs poprzednia sesja
+- Ikona ★ tylko gdy absolutny rekord w tym ćwiczeniu w całym cyklu
+- Usuń najstarszą kolumnę z PRAWEJ jeśli jest ich więcej niż 8
+- Reguła należnej progresji: 2/3 serii w górnym zakresie przez 2 sesje z rzędu → zanotuj
+
+── 5. PLAN → UA / UB / Lower ───────────────────────
+- Zaktualizuj kolumnę Ciężar dla ćwiczeń gdzie była progresja
+- Jeśli zmienił się zakres serii lub powt. — zaktualizuj też to
+- Sprawdź czy ciężar w szablonie (tmpl-ua/ub/l) jest aktualny — zaktualizuj jeśli nie
+
+── 6. HARMONOGRAM → Kalendarz ──────────────────────
+- Oznacz dzień na kalendarzu właściwego cyklu (Cykl 2 od kwietnia)
+- Użyj właściwego koloru: UA=niebieski · UB=zielony · L=żółty · EB=fioletowy · ER=różowy · C=szary · D·=deload
+- Jeśli zaczyna się nowy miesiąc — dodaj nową kartę miesiąca do kalendarza
+
+── 7. WAGA ─────────────────────────────────────────
+- Jeśli raport zawiera pomiary wagi: dodaj do tabeli Historia pomiarów (najnowsze na górze)
+- Zaktualizuj stat-box "Ostatni pomiar" i datę
+- Dodaj punkty do tablicy danych wykresu weightData w JS (format: ['RRRR-MM-DD', 00.00])
+- Zaktualizuj analizę trendu jeśli widać istotną zmianę kierunku
+
+── 8. PASEK NA DOLE ────────────────────────────────
+- Zaktualizuj datę i krótki opis ostatniej zmiany
+
+════ ANALIZA PO AKTUALIZACJI ════
+Po wykonaniu wszystkich zmian odpowiedz na pytania:
+
+PROGRESJA (patrz na trend 3–5 sesji, nie tylko ostatnią):
+- Które ćwiczenia mają reguła 2/3 spełnioną 1× (żółte — czekamy)
+- Które mają 2× z rzędu (należna progresja na następny trening)
+- Które są w plateau >4 sesje (rozważyć zmianę ćwiczenia w nowym cyklu)
+
+WZORCE:
+- Czy ostatnia sesja odbiega od trendu (lepsza / gorsza i dlaczego)
+- Czy widać zmęczenie CNS (sypanie się końcowych serii, spadek we wszystkich ćwiczeniach)
+- Sygnały przeciążenia (lędźwie, chwyt, stawy)
+
+NASTĘPNY TRENING:
+- Konkretne ćwiczenia do progresji ciężaru (2/3 reguła spełniona 2×)
+- Na co zwrócić uwagę (technika, kolejność, przerwy)
+- Czy to ostatni trening przed deloadem — jeśli tak, zanotuj</div>
+    <button class="copy-btn" onclick="copy('tmpl-prompt')">📋 Kopiuj prompt</button>
+      </div>
+    </details>
+
+        <details style="margin-bottom:8px">
+      <summary style="cursor:pointer;padding:10px 14px;background:var(--bg2);border:1px solid var(--border);border-radius:8px;font-size:13px;color:var(--text2);list-style:none;display:flex;justify-content:space-between;align-items:center;user-select:none">
+        <span>🔵 Szablon Upper A</span><span style="font-size:10px;color:var(--text3)">▼</span>
+      </summary>
+      <div style="padding-top:8px">
     <h3 style="margin-top:24px">Upper A</h3>
     <div class="template-box" id="tmpl-ua">Upper A [DATA] | Czas: ___ | Kcal: ___ | Obciążenie: ___ | Tętno: ___
 
-1. Ławka sztanga: __ kg×__-__-__-__
-2. Hantle skos (30°): __ kg×__-__-__
-3. SS1a Wyciskanie barki siedząc: __ kg×__-__-__
-4. SS1b Unoszenie bokiem siedząc: __ kg×__-__-__-__
-5. HS ISO Lateral High Row: __ kg×__-__-__-__
-6. Francuskie wyciskanie: __ kg×__-__-__
-7. Uginanie hantlami z rotacją: __ kg×__-__
-8. Ściąganie drążka podchwytem: __ kg×__-__-__
-9. SS2a Wiosłowanie na maszynie: __ kg×__-__
-10. SS2b Face pulls (HS): __ kg×__-__-__
-11. Prostowanie triceps nad głową (LifeFitness): __ stos×__-__-__
+1. Ławka sztanga [4×5–8 · 70kg]: __ kg×__-__-__-__
+2. Hantle skos (30°) [3×8–10 · 26,5kg]: __ kg×__-__-__
+3. SS1a Wyciskanie barki siedząc [3×8–10 · 20kg]: __ kg×__-__-__
+4. SS1b Unoszenie bokiem siedząc [4×12–15 · 12,5kg]: __ kg×__-__-__-__
+5. HS ISO Lateral High Row [4×8–12 · 90kg]: __ kg×__-__-__-__
+6. Francuskie wyciskanie [3×8–10 · 12,5kg]: __ kg×__-__-__
+7. Uginanie hantlami z rotacją [2×10–12 · 20kg]: __ kg×__-__
+8. Ściąganie drążka podchwytem [3×8–12 · 57kg]: __ kg×__-__-__
+9. SS2a Wiosłowanie na maszynie [2×10–12 · 35kg]: __ kg×__-__
+10. SS2b Face pulls (HS) [3×15 · 21kg]: __ kg×__-__-__
+11. Prostowanie triceps nad głową LifeFitness [3×12–15 · 24,5stos]: __ stos×__-__-__
 
-Uwagi: _____________________________________________</div>
+Lędźwie: __/10  |  Uwagi: _____________________________________________</div>
     <button class="copy-btn" onclick="copy('tmpl-ua')">📋 Kopiuj szablon UA</button>
+      </div>
+    </details>
 
+        <details style="margin-bottom:8px">
+      <summary style="cursor:pointer;padding:10px 14px;background:var(--bg2);border:1px solid var(--border);border-radius:8px;font-size:13px;color:var(--text2);list-style:none;display:flex;justify-content:space-between;align-items:center;user-select:none">
+        <span>🟢 Szablon Upper B</span><span style="font-size:10px;color:var(--text3)">▼</span>
+      </summary>
+      <div style="padding-top:8px">
     <h3 style="margin-top:20px">Upper B</h3>
     <div class="template-box" id="tmpl-ub">Upper B [DATA] | Czas: ___ | Kcal: ___ | Obciążenie: ___ | Tętno: ___
 
-1. Podciąganie (asysta): -__ kg×__-__-__-__-__
-2. Hantle płaska: __ kg×__-__-__-__
-3. HS Pectoral Fly (klatka): __ kg×__-__-__
-4. HS ISO Lateral Incline Press: __ kg×__-__-__
-5. Arnoldki: __ kg×__-__-__
-6. HS Pectoral Fly (tylne barki): __ kg×__-__-__
-7. Wyciąg dolny (HS): __ kg×__-__-__
-8. Unoszenie linka: __ kg×__-__-__-__
-9. Prostowanie triceps: __ kg×__-__-__-__
-10. Uginanie linka: __ kg×__-__
+1. Podciąganie nachwytem (asysta) [5×6–8 · -12kg]: -__ kg×__-__-__-__-__
+2. Wyciskanie hantli płaska [4×8–10 · 30kg]: __ kg×__-__-__-__
+3. Arnoldki [3×8–10 · 17,5kg]: __ kg×__-__-__
+4. SS · Rozpiętki Butterfly klatka [3×10–12 · 68kg]: __ kg×__-__-__
+5. SS · Odwrotne rozpiętki Butterfly [3×12–15 · 59kg]: __ kg×__-__-__
+6. Chest Press ISO Lateral Incline [3×10–12 · 45kg]: __ kg×__-__-__
+7. Wyciąg dolny siedząc [3×10–12 · 40kg]: __ kg×__-__-__
+8. Cable lateral raise jednorącz [4×10–12 · 7,5kg]: __ kg×__-__-__-__
+9. Prostowanie triceps warkocz [3×10–12 · 28kg]: __ kg×__-__-__
+10. Uginanie z linką [2×10–12 · 31kg]: __ kg×__-__
 O. Dipy: BW×__-__
 O. Podciąganie australijskie: BW×__-__
 
-Uwagi: _____________________________________________</div>
+Lędźwie: __/10  |  Uwagi: _____________________________________________</div>
     <button class="copy-btn" onclick="copy('tmpl-ub')">📋 Kopiuj szablon UB</button>
+      </div>
+    </details>
 
+        <details style="margin-bottom:8px">
+      <summary style="cursor:pointer;padding:10px 14px;background:var(--bg2);border:1px solid var(--border);border-radius:8px;font-size:13px;color:var(--text2);list-style:none;display:flex;justify-content:space-between;align-items:center;user-select:none">
+        <span>🟠 Szablon Lower</span><span style="font-size:10px;color:var(--text3)">▼</span>
+      </summary>
+      <div style="padding-top:8px">
     <h3 style="margin-top:20px">Lower</h3>
     <div class="template-box" id="tmpl-l">Lower [DATA] | Czas: ___ | Kcal: ___ | Obciążenie: ___ | Tętno: ___
 
 A. Glute bridge: BW×__-__
 B. Bird-dog: BW×__-__
-1. Front squat: __ kg×__-__-__
-2. Trap bar deadlift: __ kg×__-__-__
-3. Leg press HS: __ kg×__-__-__
-4. Zginanie nóg siedzące: __ kg×__-__-__-__
-5. Zginanie nóg leżące HS: __ kg×__-__
-6. Hack squat HS V Squat: __ kg×__-__-__-__
-7. Wspięcia siedząc: __ kg×__-__-__-__
-8. Podciąganie kolan: BW×__-__-__
-9. Skręty z linką: __ kg×__-__-__
+1. Front squat [3×10 · 60kg]: __ kg×__-__-__
+2. Trap bar deadlift [3–5×8–10 · 85kg]: __ kg×__-__-__
+3. Leg press HS [3×10–12 · 115kg]: __ kg×__-__-__
+4. Zginanie nóg siedzące [4×12–15 · 75kg]: __ kg×__-__-__-__
+5. Zginanie nóg leżące HS [2×10–12 · 67kg]: __ kg×__-__
+6. Hack squat HS V Squat [4–5×10–12 · 100kg]: __ kg×__-__-__-__
+7. Wspięcia stojąc [4×12–15 · 50kg]: __ kg×__-__-__-__
+8. Podciąganie kolan SS [4×12–15]: BW×__-__-__-__
+9. Skręty z linką [3×12–15 · 15kg]: __ kg×__-__-__
 
 Lędźwie: __/10  |  Uwagi: _____________________________________________</div>
     <button class="copy-btn" onclick="copy('tmpl-l')">📋 Kopiuj szablon Lower</button>
+      </div>
+    </details>
+
+        <details style="margin-bottom:8px">
+      <summary style="cursor:pointer;padding:10px 14px;background:var(--bg2);border:1px solid var(--border);border-radius:8px;font-size:13px;color:var(--text2);list-style:none;display:flex;justify-content:space-between;align-items:center;user-select:none">
+        <span>➕ Treningi dodatkowe (EB+L / ER+B / Cardio)</span><span style="font-size:10px;color:var(--text3)">▼</span>
+      </summary>
+      <div style="padding-top:8px">
+    <h3 style="margin-top:24px">Treningi dodatkowe</h3>
+    <div class="template-box" id="tmpl-extra">Trening dodatkowy [DATA] | Typ: EB+L / ER+B / C | Czas: ___ | Kcal: ___
+
+[EB+L — Extra Barki + Lędźwie]
+1. Face pulls: __ kg×__
+2. Cable reverse fly: __ kg×__
+3. Cable external rotation: __ kg×__
+4. Cable pull-through: __ kg×__
+5. Seated cable good morning: __ kg×__
+6. Upright row / Y-raise: __ kg×__
+7. TRX fallout: BW×__
+
+[ER+B — Extra Ramiona + Brzuch]
+SS1a HS Biceps Curl: __ kg×__
+SS1b HS Triceps Extension: __ kg×__
+Młotek z linką: __ kg×__
+Prostowanie nad głową jednorącz: __ kg×__
+HS Abdominal Crunch: __ kg×__
+Maszyna skośne: __ kg×__
+TRX knee raise: BW×__
+
+[C — Cardio]
+Sprzęt: ___ | Czas: ___ | Dystans/Kroki: ___ | Intensywność: ___
+
+Uwagi: _____________________________________________</div>
+    <button class="copy-btn" onclick="copy('tmpl-extra')">📋 Kopiuj szablon Extra</button>
+      </div>
+    </details>
+
+        <details style="margin-bottom:8px">
+      <summary style="cursor:pointer;padding:10px 14px;background:var(--bg2);border:1px solid var(--border);border-radius:8px;font-size:13px;color:var(--text2);list-style:none;display:flex;justify-content:space-between;align-items:center;user-select:none">
+        <span>📊 Analiza cyklu + projektowanie nowego</span><span style="font-size:10px;color:var(--text3)">▼</span>
+      </summary>
+      <div style="padding-top:8px">
+    <h3 style="margin-top:24px">📊 Analiza cyklu + projektowanie nowego</h3>
+    <div class="alert alert-info" style="margin-bottom:12px"><span class="alert-icon">💡</span><span>Wklej ten prompt do Claude na końcu każdego cyklu (przed deloadem lub w jego trakcie). Claude ma dostęp do pliku z pełną historią — prompt uruchamia analizę i projektowanie nowego cyklu.</span></div>
+    <div class="template-box" id="tmpl-analiza">Przeprowadź pełną analizę zakończonego cyklu i zaprojektuj nowy cykl. Masz dostęp do pliku index.html — korzystaj ze WSZYSTKICH sekcji: Archiwum → Progresja Cyklu (pełna historia sesji), Archiwum → Historia treningów, Plan (aktualne ciężary i zakresy), Waga (trend), Dieta (makro), Roadmap (cele etapów).
+
+Nie analizuj tylko ostatnich 1–2 treningów. Analizuj cały cykl jako całość.
+
+════ CZĘŚĆ 1: ANALIZA ZAKOŃCZONEGO CYKLU ════
+
+1. BIG 4 — PRZEGLĄD CYKLU
+   Dla każdego z 4 ćwiczeń (ławka / podciąganie / front squat / trap bar):
+   - Ciężar startowy → końcowy → delta
+   - Liczba sesji do kolejnej progresji (średnio ile tygodni między skokami)
+   - Ocena: za szybkie / optymalne / za wolne / plateau
+   - Czy cel na ten cykl osiągnięty?
+
+2. ĆWICZENIA POMOCNICZE — PEŁNA TABELA
+   Dla KAŻDEGO ćwiczenia w UA, UB i Lower (przejrzyj Progresja Cyklu):
+   - Trend przez cykl (patrz ikony ★↑→↓ w kolumnach)
+   - Ile sesji w plateau (→ z rzędu)
+   - Czy reguła 2/3 serii była regularnie osiągana czy nie
+   - Rekomendacja: kontynuuj / wymień / zmień zakres / zmień kolejność
+
+3. WZORCE I SYGNAŁY
+   - Które partie sypały się jako pierwsze na końcu treningu (zmęczenie CNS)
+   - Czy widać tygodnie z wyraźnie gorszymi wynikami (choroba / stres / brak snu)
+   - Sygnały przeciążenia w danych: lędźwie, chwyt, skok wagi po treningu
+   - Konsystencja: ile sesji opuszczonych i z jakiego powodu (patrz Historia treningów)
+
+4. DIETA vs WYNIKI
+   - Porównaj średnie kalorie / białko z trendami progresji
+   - Czy mini cut w tym cyklu był lub będzie — jak wpłynął / wpłynie na siłę
+   - Tygodnie z gorszą dietą → czy korelują z gorszymi treningami
+
+5. WAGA I REKOMPOZYCJA
+   - Trend wagi przez cykl (patrz wykres i tabela miesięczna)
+   - Zmiana szacunkowego BF% i LBM jeśli dostępne
+   - Czy cel rekompozycji był realizowany (waga stabilna przy wzroście siły)
+
+════ CZĘŚĆ 2: PROJEKTOWANIE NOWEGO CYKLU ════
+
+6. ĆWICZENIA DO ROTACJI
+   Na podstawie plateau >4 sesje i wzorców zmęczenia:
+   - Które 1–2 ćwiczenia wymienić w UA (propozycja zamiennika + uzasadnienie)
+   - Które 1–2 ćwiczenia wymienić w UB (propozycja zamiennika + uzasadnienie)
+   - Zmiany w Lower jeśli potrzebne
+   - Co zostaje bez zmian i dlaczego
+
+7. KOLEJNOŚĆ I STRUKTURA
+   - Czy zmienić kolejność ćwiczeń w UA lub UB (np. barki wcześniej / później)
+   - Czy zmienić liczbę serii lub zakres powt. dla konkretnych ćwiczeń
+   - Czy dodać / usunąć superserie
+
+8. CIĘŻARY STARTOWE — TABELA
+   Dla każdego ćwiczenia podaj:
+   - Ciężar startowy nowego cyklu (po deloadzie — zazwyczaj ostatni ciężar lub -5%)
+   - Zakres serii × powt.
+   - Cel na koniec cyklu
+
+9. DIETA NOWEGO CYKLU
+   - Kalorie dni treningowych / odpoczynku
+   - Cel białka (minimum)
+   - Jeśli mini cut: deficyt, czas trwania, kiedy przejść na maintenance
+
+10. HARMONOGRAM
+    - Długość cyklu (rekomendacja z uzasadnieniem)
+    - Rozkład tygodniowy UA/UB/Lower
+    - Kiedy zaplanować deload i checkpoint
+
+════ CZĘŚĆ 3: OUTPUT ════
+
+11. Podsumowanie decyzji:
+    ✅ Co zostawiamy identycznie
+    🔄 Co zmieniamy (ćwiczenie / ciężar / zakres / kolejność)
+    ⭐ Top 3 priorytety na nowy cykl
+    ⚠️ Ryzyka i na co uważać
+
+12. Po zatwierdzeniu przez Marcina — zaktualizuj plik:
+    - Plan → UA / UB / Lower: nowe ćwiczenia, ciężary startowe, zakresy
+    - Harmonogram → Kalendarz: nowy accordion dla Cyklu 2 z właściwymi miesiącami
+    - Szablony tmpl-ua / tmpl-ub / tmpl-l: zaktualizuj ćwiczenia i ciężary
+    - Treningi → Następny: pierwszy trening nowego cyklu
+    - Roadmap: zaktualizuj aktualny etap i cele
+    - Archiwum → Progresja: utwórz nowe tabele UA/UB/Lower dla Cyklu 2 (puste kolumny dat)</div>
+    <button class="copy-btn" onclick="copy('tmpl-analiza')">📋 Kopiuj prompt analizy</button>
+      </div>
+    </details>
+
   </div>
 
 </section>
@@ -423,8 +639,8 @@ Lędźwie: __/10  |  Uwagi: _____________________________________________</div>
     <button class="tab-btn" onclick="switchTab('plan','p-ub',this)">Upper B</button>
     <button class="tab-btn" onclick="switchTab('plan','p-lower',this)">Lower</button>
     <button class="tab-btn" onclick="switchTab('plan','p-core',this)">🏠 Core w domu</button>
-    <button class="tab-btn" onclick="switchTab('plan','p-dodatkowy',this)">➕ Dzień dodatkowy</button>
-    <button class="tab-btn" onclick="switchTab('plan','p-ramiona',this)">💪 Ramiona + brzuch</button>
+    <button class="tab-btn" onclick="switchTab('plan','p-dodatkowy',this)">🔵 EB+L — Barki + Lędźwie</button>
+    <button class="tab-btn" onclick="switchTab('plan','p-ramiona',this)">🟠 ER+B — Ramiona + Brzuch</button>
     <button class="tab-btn" onclick="switchTab('plan','p-rozgrzewka',this)">🔥 Rozgrzewka</button>
     <button class="tab-btn" onclick="switchTab('plan','p-zasady',this)">📐 Zasady</button>
   </div>
@@ -530,8 +746,8 @@ Lędźwie: __/10  |  Uwagi: _____________________________________________</div>
 
   <!-- DZIEŃ DODATKOWY -->
   <div id="p-dodatkowy" class="tab-panel">
-    <h3>➕ Dzień dodatkowy — barki + lędźwie &nbsp;<span class="badge badge-gray">~60–70 min</span></h3>
-    <div class="alert alert-info"><span class="alert-icon">💡</span><span>Uzupełnienie planu głównego. <strong>Minimum 1 dzień buforu przed kolejnym treningiem głównym.</strong> Ćwiczenia 1–6 przy wyciągu LifeFitness, 7 przy TRX, cardio na końcu.</span></div>
+    <h3>🔵 EB+L — Barki + Lędźwie &nbsp;<span class="badge badge-gray">~60–70 min</span></h3>
+    <div class="alert alert-info"><span class="alert-icon">💡</span><span>EB+L — uzupełnienie planu głównego: tylne barki, rotatory, lędźwie. <strong>Minimum 1 dzień buforu przed UA/UB/Lower.</strong></span></div>
 
     <!-- ROZGRZEWKA -->
     <div class="workout-table card">
@@ -586,8 +802,8 @@ Lędźwie: __/10  |  Uwagi: _____________________________________________</div>
 
   <!-- RAMIONA + BRZUCH -->
   <div id="p-ramiona" class="tab-panel">
-    <h3>💪 Dzień dodatkowy — ramiona + brzuch &nbsp;<span class="badge badge-gray">~35–45 min</span></h3>
-    <div class="alert alert-info"><span class="alert-icon">💡</span><span>Izolacja i czucie mięśnia — nie ciężar. <strong>Minimum 1 dzień buforu przed UA / UB.</strong> Biceps i triceps są już zmęczone po treningach głównych — tu chodzi o jakość, nie objętość.</span></div>
+    <h3>🟠 ER+B — Ramiona + Brzuch &nbsp;<span class="badge badge-gray">~35–45 min</span></h3>
+    <div class="alert alert-info"><span class="alert-icon">💡</span><span>ER+B — izolacja ramion i brzucha. <strong>Minimum 1 dzień buforu przed UA / UB.</strong> Tu chodzi o jakość i czucie mięśnia, nie ciężar.</span></div>
 
     <!-- BICEPS + TRICEPS -->
     <div class="workout-table card">
@@ -703,88 +919,87 @@ Lędźwie: __/10  |  Uwagi: _____________________________________________</div>
 <section id="harmonogram">
   <h2>📅 Harmonogram</h2>
 
-  <div class="card">
-    <div class="card-title">Cykl 10 tygodni + deload &nbsp;|&nbsp; Tydzień 9/10 &nbsp;|&nbsp; <span style="color:var(--yellow)">Deload: 23–29.03.2026</span></div>
-    <div style="display:grid;grid-template-columns:60px 80px 1fr 1fr 1fr 1fr 1fr;gap:6px;padding:8px 0;font-size:11px;color:var(--text3);text-transform:uppercase;letter-spacing:0.07em">
-      <div>Faza</div><div>#</div><div style="text-align:center">Wtorek</div><div style="text-align:center">Środa</div><div style="text-align:center">Czwartek</div><div style="text-align:center">Piątek</div><div style="text-align:center">Niedziela</div>
+        <!-- LEGENDA -->
+    <div class="card">
+      <div class="card-title">Legenda</div>
+      <div style="display:flex;flex-wrap:wrap;gap:10px;font-size:12px">
+        <span style="background:rgba(59,130,246,0.15);padding:4px 10px;border-radius:6px;color:var(--accent)">UA — Upper A</span>
+        <span style="background:rgba(34,197,94,0.15);padding:4px 10px;border-radius:6px;color:var(--green)">UB — Upper B</span>
+        <span style="background:rgba(245,158,11,0.15);padding:4px 10px;border-radius:6px;color:var(--yellow)">L — Lower</span>
+        <span style="background:rgba(139,92,246,0.15);padding:4px 10px;border-radius:6px;color:#a78bfa">EB — Barki+Lędźwie</span>
+        <span style="background:rgba(236,72,153,0.15);padding:4px 10px;border-radius:6px;color:#f472b6">ER — Ramiona+Brzuch</span>
+        <span style="background:rgba(100,116,139,0.15);padding:4px 10px;border-radius:6px;color:var(--text3)">C — Cardio</span>
+        <span style="background:rgba(245,158,11,0.2);padding:4px 10px;border-radius:6px;color:var(--yellow)">D· — Deload</span>
+        <span style="background:rgba(239,68,68,0.15);padding:4px 10px;border-radius:6px;color:var(--red)">CHECK</span>
+      </div>
     </div>
-    <div class="week-row" style="grid-template-columns:60px 80px 1fr 1fr 1fr 1fr 1fr"><div>Budowa</div><div style="color:var(--text3)">1 · 12–18.01</div><div class="training-cell t-done">✓ UA</div><div class="training-cell t-none">—</div><div class="training-cell t-done">✓ L</div><div class="training-cell t-none">—</div><div class="training-cell t-done">✓ UB</div></div>
-    <div class="week-row" style="grid-template-columns:60px 80px 1fr 1fr 1fr 1fr 1fr"><div>Budowa</div><div style="color:var(--text3)">2 · 19–25.01</div><div class="training-cell t-done">✓ L</div><div class="training-cell t-none">—</div><div class="training-cell t-done">✓ UA</div><div class="training-cell t-none">—</div><div class="training-cell t-none">— brak</div></div>
-    <div class="week-row" style="grid-template-columns:60px 80px 1fr 1fr 1fr 1fr 1fr"><div>Budowa</div><div style="color:var(--text3)">3 · 26.01–01.02</div><div class="training-cell t-none">— brak</div><div class="training-cell t-none">—</div><div class="training-cell t-none">— brak</div><div class="training-cell t-none">—</div><div class="training-cell t-done">✓ UB</div></div>
-    <div class="week-row" style="grid-template-columns:60px 80px 1fr 1fr 1fr 1fr 1fr"><div>Budowa</div><div style="color:var(--text3)">4 · 02–08.02</div><div class="training-cell t-done">✓ L</div><div class="training-cell t-none">—</div><div class="training-cell t-done">✓ UA</div><div class="training-cell t-none">—</div><div class="training-cell t-done">✓ L</div></div>
-    <div class="week-row" style="grid-template-columns:60px 80px 1fr 1fr 1fr 1fr 1fr"><div>Budowa</div><div style="color:var(--text3)">5 · 09–15.02</div><div class="training-cell t-done">✓ UB</div><div class="training-cell t-none">—</div><div class="training-cell t-done">✓ L</div><div class="training-cell t-none">—</div><div class="training-cell t-none">— brak</div></div>
-    <div class="week-row" style="grid-template-columns:60px 80px 1fr 1fr 1fr 1fr 1fr"><div>Budowa</div><div style="color:var(--text3)">6 · 16–22.02</div><div class="training-cell t-done">✓ UA</div><div class="training-cell t-none">—</div><div class="training-cell t-done">✓ UB</div><div class="training-cell t-none">—</div><div class="training-cell t-done">✓ L</div></div>
-    <div class="week-row" style="grid-template-columns:60px 80px 1fr 1fr 1fr 1fr 1fr">
-      <div style="color:var(--green)">✓ done</div><div style="color:var(--text3)">7 · 23.02–01.03</div>
-      <div class="training-cell t-done">✓ UA (24)</div>
-      <div class="training-cell" style="color:var(--green);font-size:12px">🏠 Core</div>
-      <div class="training-cell t-done">✓ UB (26)</div>
-      <div class="training-cell" style="color:var(--green);font-size:12px">🏠 Core</div>
-      <div class="training-cell t-done">✓ L (01)</div>
-    </div>
-    <div class="week-row" style="grid-template-columns:60px 80px 1fr 1fr 1fr 1fr 1fr">
-      <div style="color:var(--green)">✓ done</div><div style="color:var(--text3)">8 · 02–08.03</div>
-      <div class="training-cell t-done">✓ UA (04)</div>
-      <div class="training-cell" style="color:var(--green);font-size:12px">🏠 Core</div>
-      <div class="training-cell t-done">✓ L (06)</div>
-      <div class="training-cell" style="color:var(--green);font-size:12px">🏠 Core</div>
-      <div class="training-cell t-done">✓ UB (08)</div>
-    </div>
-    <div class="week-row current" style="grid-template-columns:60px 80px 1fr 1fr 1fr 1fr 1fr">
-      <div style="color:var(--accent)">← teraz</div><div style="color:var(--accent)">9 · 09–15.03</div>
-      <div class="training-cell t-done">✓ UA (10)</div>
-      <div class="training-cell" style="color:var(--text3);font-size:12px">🏠 Core</div>
-      <div class="training-cell t-done">✓ L (12)</div>
-      <div class="training-cell" style="color:var(--text3);font-size:12px">🏠 Core</div>
-      <div class="training-cell t-done">✓ UB (15)</div>
-    </div>
-    <div class="week-row" style="grid-template-columns:60px 80px 1fr 1fr 1fr 1fr 1fr">
-      <div>Budowa</div><div style="color:var(--text3)">10 · 16–22.03</div>
-      <div class="training-cell t-done">✓ L (17)</div>
-      <div class="training-cell" style="color:var(--text3);font-size:12px">🏠 Core</div>
-      <div class="training-cell t-done">✓ UA (19)</div>
-      <div class="training-cell" style="color:var(--text3);font-size:12px">🏠 Core</div>
-      <div class="training-cell t-done">✓ UB (22)</div>
-    </div>
-    <div class="week-row" style="grid-template-columns:60px 80px 1fr 1fr 1fr 1fr 1fr">
-      <div style="color:var(--yellow)">Deload</div><div style="color:var(--yellow)">— 23–29.03</div>
-      <div class="training-cell" style="color:var(--yellow)">L (24)</div>
-      <div class="training-cell" style="color:var(--text3);font-size:12px">🏠 Core</div>
-      <div class="training-cell" style="color:var(--yellow)">UA (26)</div>
-      <div class="training-cell t-none">—</div>
-      <div class="training-cell" style="color:var(--yellow)">UB (29)</div>
-    </div>
-  </div>
 
-  <div class="card">
-    <div class="card-title">📊 Bilans treningów</div>
-    <div class="stat-grid">
-      <div class="stat-box"><div class="stat-num">8</div><div style="font-size:11px;color:var(--text3);margin-top:2px">(plan: 10)</div><div class="stat-label">Upper A</div></div>
-      <div class="stat-box"><div class="stat-num">8</div><div style="font-size:11px;color:var(--text3);margin-top:2px">(plan: 9)</div><div class="stat-label">Upper B</div></div>
-      <div class="stat-box"><div class="stat-num">10</div><div style="font-size:11px;color:var(--text3);margin-top:2px">(plan: 12)</div><div class="stat-label">Lower</div></div>
+    <!-- ── NOWY CYKL (od kwietnia) ── -->
+    <div class="card" style="border:1px solid var(--accent2);margin-bottom:16px">
+      <div class="card-title" style="color:var(--accent2)">📅 Cykl 2 — start kwiecień 2026 &nbsp;<span style="font-weight:400;color:var(--text3);font-size:12px;text-transform:none;letter-spacing:0">Mini cut · 8 tygodni</span></div>
+      <div style="font-size:12px;color:var(--text3);padding:8px 0">Tutaj pojawią się treningi po checkpoincie 30.03.</div>
     </div>
-    <div class="alert alert-info">
-      <span class="alert-icon">📌</span>
-      <span>Cykl przedłużony z 8 do <strong>10 tygodni</strong> — dodatkowe 2 tyg. na wzmocnienie stabilizacji lędźwiowej przed deloadem. Core w domu: środy i piątki od tyg 7. &nbsp;|&nbsp; Tyg 7: 3/3 ✓ &nbsp;|&nbsp; Tyg 8: 3/3 ✓ &nbsp;|&nbsp; Tyg 9: 3/3 ✓ &nbsp;|&nbsp; Tyg 10: 3/3 ✓</span>
-    </div>
-  </div>
 
-  <div class="card">
-    <div class="card-title">📐 Deload — 23–29.03.2026</div>
-    <table>
-      <tr><th>Parametr</th><th>Normalny tydzień</th><th style="color:var(--yellow)">Deload</th></tr>
-      <tr><td>Ciężary</td><td>100%</td><td style="color:var(--yellow)">60%</td></tr>
-      <tr><td>Serie per ćwiczenie</td><td>3–5</td><td style="color:var(--yellow)">2</td></tr>
-      <tr><td>Powtórzenia</td><td>5–15</td><td style="color:var(--yellow)">10–12 lekkimi</td></tr>
-      <tr><td>Tempo</td><td>3-1-1-0</td><td style="color:var(--yellow)">2-1-2-0</td></tr>
-      <tr><td>Czas treningu</td><td>75–90 min</td><td style="color:var(--yellow)">45–55 min</td></tr>
-      <tr><td>Przerwy</td><td>normalnie</td><td style="color:var(--yellow)">krótsze — skupiasz się na technice</td></tr>
-    </table>
-    <div class="alert alert-success" style="margin-top:12px">
-      <span class="alert-icon">🎯</span>
-      <span><strong>Checkpoint po deloadzie (~30.03):</strong> waga + BF% + zdjęcia. Ocena postępu i decyzja o Mini cut #1. Nie czekać na 1 kwietnia.</span>
+    <!-- ── CYKL 1 — accordion ── -->
+    <div style="margin-bottom:8px">
+      <button onclick="const c=document.getElementById('cykl1');const i=document.getElementById('cykl1-icon');c.style.display=c.style.display==='none'?'block':'none';i.textContent=c.style.display==='none'?'▶':'▼'"
+        style="width:100%;text-align:left;background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:12px 16px;cursor:pointer;font-size:13px;color:var(--text2);display:flex;justify-content:space-between;align-items:center">
+        <span>📦 Cykl 1 — Styczeń–Marzec 2026 &nbsp;<span style="color:var(--text3);font-size:11px">10 tyg · UA×8 · UB×8 · L×10 · deload 23–29.03</span></span>
+        <span id="cykl1-icon">▶</span>
+      </button>
+      <div id="cykl1" style="display:none;padding-top:8px">
+        <div class="card" style="margin-bottom:12px">
+          <div style="display:flex;align-items:center;gap:20px;flex-wrap:wrap;font-size:13px">
+            <span style="color:var(--text3);font-weight:600">📊 Bilans:</span>
+            <span>Upper A <strong>8</strong><span style="color:var(--text3)">/10</span></span>
+            <span>Upper B <strong>8</strong><span style="color:var(--text3)">/9</span></span>
+            <span>Lower <strong>10</strong><span style="color:var(--text3)">/12</span></span>
+            <span style="color:var(--text3)">·</span>
+            <span>Łącznie <strong>26</strong><span style="color:var(--text3)">/31</span></span>
+          </div>
+        </div>
+    <div class="card" style="margin-bottom:12px">
+        <div class="card-title">🗓️ Marzec 2026</div>
+      <div style="display:grid;grid-template-columns:40px repeat(7,1fr);gap:3px;text-align:center;font-size:10px;color:var(--text3);margin-bottom:4px;font-weight:600">
+        <div></div><div>Pn</div><div>Wt</div><div>Śr</div><div>Czw</div><div>Pt</div><div>Sob</div><div>Nd</div>
+      </div>
+      <div style="display:grid;grid-template-columns:40px repeat(7,1fr);gap:3px;font-size:11px">
+        <div class="cal-wk" style="color:var(--red);font-weight:700">★</div><div style="padding:5px;background:rgba(239,68,68,0.15);border-radius:6px;color:var(--red);font-weight:700;text-align:center;font-size:11px">30</div><div class="cal-d">31</div><div class="cal-e"></div><div class="cal-e"></div><div class="cal-e"></div><div class="cal-e"></div><div class="cal-e"></div>
+        <div class="cal-wk" style="color:var(--yellow);font-weight:700">DL</div><div class="cal-d">23</div><div style="padding:5px;background:rgba(245,158,11,0.2);border-radius:6px;color:var(--yellow);font-weight:700;text-align:center;font-size:11px">24<br><span style="font-size:9px">D·L</span></div><div class="cal-d">25</div><div style="padding:5px;background:rgba(245,158,11,0.2);border-radius:6px;color:var(--yellow);font-weight:700;text-align:center;font-size:11px">26<br><span style="font-size:9px">D·UA</span></div><div class="cal-d">27</div><div class="cal-d">28</div><div style="padding:5px;background:rgba(245,158,11,0.2);border-radius:6px;color:var(--yellow);font-weight:700;text-align:center;font-size:11px">29<br><span style="font-size:9px">D·UB</span></div>
+        <div class="cal-wk" style="color:var(--accent2);font-weight:700">T10</div><div class="cal-d">16</div><div style="padding:5px;background:rgba(245,158,11,0.15);border-radius:6px;color:var(--yellow);font-weight:700;text-align:center;font-size:11px">17<br><span style="font-size:9px">L</span></div><div class="cal-d">18</div><div style="padding:5px;background:rgba(59,130,246,0.15);border-radius:6px;color:var(--accent);font-weight:700;text-align:center;font-size:11px">19<br><span style="font-size:9px">UA</span></div><div class="cal-d">20</div><div class="cal-d">21</div><div style="padding:5px;background:rgba(34,197,94,0.15);border-radius:6px;color:var(--green);font-weight:700;text-align:center;font-size:11px">22<br><span style="font-size:9px">UB</span></div>
+        <div class="cal-wk" style="color:var(--accent2);font-weight:700">T9</div><div class="cal-d">9</div><div style="padding:5px;background:rgba(59,130,246,0.15);border-radius:6px;color:var(--accent);font-weight:700;text-align:center;font-size:11px">10<br><span style="font-size:9px">UA</span></div><div class="cal-d">11</div><div style="padding:5px;background:rgba(245,158,11,0.15);border-radius:6px;color:var(--yellow);font-weight:700;text-align:center;font-size:11px">12<br><span style="font-size:9px">L</span></div><div class="cal-d">13</div><div class="cal-d">14</div><div style="padding:5px;background:rgba(34,197,94,0.15);border-radius:6px;color:var(--green);font-weight:700;text-align:center;font-size:11px">15<br><span style="font-size:9px">UB</span></div>
+        <div class="cal-wk" style="color:var(--accent2);font-weight:700">T8</div><div class="cal-d">2</div><div class="cal-d">3</div><div style="padding:5px;background:rgba(59,130,246,0.15);border-radius:6px;color:var(--accent);font-weight:700;text-align:center;font-size:11px">4<br><span style="font-size:9px">UA</span></div><div class="cal-d">5</div><div style="padding:5px;background:rgba(245,158,11,0.15);border-radius:6px;color:var(--yellow);font-weight:700;text-align:center;font-size:11px">6<br><span style="font-size:9px">L</span></div><div class="cal-d">7</div><div style="padding:5px;background:rgba(34,197,94,0.15);border-radius:6px;color:var(--green);font-weight:700;text-align:center;font-size:11px">8<br><span style="font-size:9px">UB</span></div>
+        <div class="cal-wk" style="color:var(--accent2);font-weight:700">T7</div><div class="cal-e"></div><div class="cal-e"></div><div class="cal-e"></div><div class="cal-e"></div><div class="cal-e"></div><div class="cal-e"></div><div style="padding:5px;background:rgba(245,158,11,0.15);border-radius:6px;color:var(--yellow);font-weight:700;text-align:center;font-size:11px">1<br><span style="font-size:9px">L</span></div>
+            </div>
     </div>
-  </div>
+    <div class="card" style="margin-bottom:12px">
+        <div class="card-title">🗓️ Luty 2026</div>
+      <div style="display:grid;grid-template-columns:40px repeat(7,1fr);gap:3px;text-align:center;font-size:10px;color:var(--text3);margin-bottom:4px;font-weight:600">
+        <div></div><div>Pn</div><div>Wt</div><div>Śr</div><div>Czw</div><div>Pt</div><div>Sob</div><div>Nd</div>
+      </div>
+      <div style="display:grid;grid-template-columns:40px repeat(7,1fr);gap:3px;font-size:11px">
+        <div class="cal-wk" style="color:var(--accent2);font-weight:700">T7</div><div class="cal-d">23</div><div style="padding:5px;background:rgba(59,130,246,0.15);border-radius:6px;color:var(--accent);font-weight:700;text-align:center;font-size:11px">24<br><span style="font-size:9px">UA</span></div><div class="cal-d">25</div><div style="padding:5px;background:rgba(34,197,94,0.15);border-radius:6px;color:var(--green);font-weight:700;text-align:center;font-size:11px">26<br><span style="font-size:9px">UB</span></div><div class="cal-d">27</div><div class="cal-d">28</div><div class="cal-e"></div>
+        <div class="cal-wk" style="color:var(--accent2);font-weight:700">T6</div><div style="padding:5px;background:rgba(100,116,139,0.15);border-radius:6px;color:var(--text2);font-weight:700;text-align:center;font-size:11px">16<br><span style="font-size:9px">C</span></div><div style="padding:5px;background:rgba(59,130,246,0.15);border-radius:6px;color:var(--accent);font-weight:700;text-align:center;font-size:11px">17<br><span style="font-size:9px">UA</span></div><div class="cal-d">18</div><div style="padding:5px;background:rgba(34,197,94,0.15);border-radius:6px;color:var(--green);font-weight:700;text-align:center;font-size:11px">19<br><span style="font-size:9px">UB</span></div><div class="cal-d">20</div><div class="cal-d">21</div><div style="padding:5px;background:rgba(245,158,11,0.15);border-radius:6px;color:var(--yellow);font-weight:700;text-align:center;font-size:11px">22<br><span style="font-size:9px">L</span></div>
+        <div class="cal-wk" style="color:var(--accent2);font-weight:700">T5</div><div class="cal-d">9</div><div style="padding:5px;background:rgba(34,197,94,0.15);border-radius:6px;color:var(--green);font-weight:700;text-align:center;font-size:11px">10<br><span style="font-size:9px">UB</span></div><div class="cal-d">11</div><div style="padding:5px;background:rgba(245,158,11,0.15);border-radius:6px;color:var(--yellow);font-weight:700;text-align:center;font-size:11px">12<br><span style="font-size:9px">L⚠️</span></div><div class="cal-d">13</div><div class="cal-d">14</div><div class="cal-d">15</div>
+        <div class="cal-wk" style="color:var(--accent2);font-weight:700">T4</div><div class="cal-d">2</div><div style="padding:5px;background:rgba(245,158,11,0.15);border-radius:6px;color:var(--yellow);font-weight:700;text-align:center;font-size:11px">3<br><span style="font-size:9px">L</span></div><div class="cal-d">4</div><div class="cal-d">5</div><div style="padding:5px;background:rgba(59,130,246,0.15);border-radius:6px;color:var(--accent);font-weight:700;text-align:center;font-size:11px">6<br><span style="font-size:9px">UA</span></div><div class="cal-d">7</div><div style="padding:5px;background:rgba(245,158,11,0.15);border-radius:6px;color:var(--yellow);font-weight:700;text-align:center;font-size:11px">8<br><span style="font-size:9px">L</span></div>
+        <div class="cal-wk" style="color:var(--accent2);font-weight:700">T3</div><div class="cal-e"></div><div class="cal-e"></div><div class="cal-e"></div><div class="cal-e"></div><div class="cal-e"></div><div class="cal-e"></div><div style="padding:5px;background:rgba(34,197,94,0.15);border-radius:6px;color:var(--green);font-weight:700;text-align:center;font-size:11px">1<br><span style="font-size:9px">UB</span></div>
+            </div>
+    </div>
+    <div class="card" style="margin-bottom:12px">
+        <div class="card-title">🗓️ Styczeń 2026</div>
+      <div style="display:grid;grid-template-columns:40px repeat(7,1fr);gap:3px;text-align:center;font-size:10px;color:var(--text3);margin-bottom:4px;font-weight:600">
+        <div></div><div>Pn</div><div>Wt</div><div>Śr</div><div>Czw</div><div>Pt</div><div>Sob</div><div>Nd</div>
+      </div>
+      <div style="display:grid;grid-template-columns:40px repeat(7,1fr);gap:3px;font-size:11px">
+        <div class="cal-wk" style="color:var(--accent2);font-weight:700">T3</div><div style="padding:5px;background:rgba(34,197,94,0.15);border-radius:6px;color:var(--green);font-weight:700;text-align:center;font-size:11px">26<br><span style="font-size:9px">UB</span></div><div class="cal-d">27</div><div class="cal-d">28</div><div class="cal-d">29</div><div class="cal-d">30</div><div class="cal-d">31</div><div class="cal-e"></div>
+        <div class="cal-wk" style="color:var(--accent2);font-weight:700">T2</div><div style="padding:5px;background:rgba(245,158,11,0.15);border-radius:6px;color:var(--yellow);font-weight:700;text-align:center;font-size:11px">19<br><span style="font-size:9px">L</span></div><div class="cal-d">20</div><div style="padding:5px;background:rgba(59,130,246,0.15);border-radius:6px;color:var(--accent);font-weight:700;text-align:center;font-size:11px">21<br><span style="font-size:9px">UA</span></div><div class="cal-d">22</div><div class="cal-d">23</div><div class="cal-d">24</div><div class="cal-d">25</div>
+        <div class="cal-wk" style="color:var(--accent2);font-weight:700">T1</div><div class="cal-d">12</div><div style="padding:5px;background:rgba(59,130,246,0.15);border-radius:6px;color:var(--accent);font-weight:700;text-align:center;font-size:11px">13<br><span style="font-size:9px">UA</span></div><div class="cal-d">14</div><div style="padding:5px;background:rgba(245,158,11,0.15);border-radius:6px;color:var(--yellow);font-weight:700;text-align:center;font-size:11px">15<br><span style="font-size:9px">L</span></div><div class="cal-d">16</div><div class="cal-d">17</div><div style="padding:5px;background:rgba(34,197,94,0.15);border-radius:6px;color:var(--green);font-weight:700;text-align:center;font-size:11px">18<br><span style="font-size:9px">UB</span></div>
+        <div class="cal-wk" style="color:var(--text3)">2</div><div class="cal-d">5</div><div class="cal-d">6</div><div class="cal-d">7</div><div class="cal-d">8</div><div class="cal-d">9</div><div class="cal-d">10</div><div class="cal-d">11</div>
+        <div class="cal-wk" style="color:var(--text3)">1</div><div class="cal-e"></div><div class="cal-e"></div><div class="cal-e"></div><div class="cal-d">1</div><div class="cal-d">2</div><div class="cal-d">3</div><div class="cal-d">4</div>
+            </div>
+    </div>
+      </div>
+    </div>
 
 </section>
 
@@ -794,7 +1009,7 @@ Lędźwie: __/10  |  Uwagi: _____________________________________________</div>
 
   <div class="stat-grid" style="margin-bottom:16px">
     <div class="stat-box"><div class="stat-num" style="color:var(--red)">91,5 kg</div><div class="stat-label">Max (10.09.2025)</div></div>
-    <div class="stat-box"><div class="stat-num" style="color:var(--accent2)">87,0 kg</div><div class="stat-label">Ostatni pomiar (08.03)</div></div>
+    <div class="stat-box"><div class="stat-num" style="color:var(--accent2)">86,9 kg</div><div class="stat-label">Ostatni pomiar (23.03)</div></div>
     <div class="stat-box"><div class="stat-num" style="color:var(--green)">-4,5 kg</div><div class="stat-label">Łącznie od szczytu</div></div>
   </div>
 
@@ -818,9 +1033,9 @@ Lędźwie: __/10  |  Uwagi: _____________________________________________</div>
 
   <div class="card">
     <div class="card-title">Analiza trendu</div>
-    <div class="alert alert-info"><span class="alert-icon">📉</span><span><strong>Od szczytu (91,5 kg, wrzesień 2025) do teraz: -4,5 kg</strong> — dobry długoterminowy trend spadkowy. LBM stabilna ~70 kg — rekompozycja przebiega prawidłowo.</span></div>
-    <div class="alert alert-info"><span class="alert-icon">📊</span><span><strong>Od startu planu (12.01.2026):</strong> waga stabilna 86,3–86,6 kg — zgodnie z celem rekompozycji. Tyg 7 i 8 identyczna średnia ~86,55 kg — plateau.</span></div>
-    <div class="alert alert-warn"><span class="alert-icon">⚠️</span><span><strong>07–08.03: skok do 87,0–87,2 kg</strong> — prawdopodobnie retencja wody po cheat meal / drink. Obserwować do 14.03 — jeśli nie wróci poniżej 86,5 kg, rozważyć obcięcie kalorii w dni odpoczynku.</span></div>
+    <div class="alert alert-info"><span class="alert-icon">📉</span><span><strong>Od szczytu (91,5 kg, wrzesień 2025) do teraz: -4,6 kg</strong> — dobry długoterminowy trend spadkowy. LBM stabilna ~70 kg — rekompozycja przebiega prawidłowo.</span></div>
+    <div class="alert alert-info"><span class="alert-icon">📊</span><span><strong>Marzec 2026 (pełny):</strong> średnia 86,60 kg · min 86,10 kg · max 87,20 kg. Wahania ±1 kg normalne. Trend 1–8.03 vs 17–23.03 praktycznie identyczny (~86,59 vs 86,67 kg) — brak postępu w dół ani w górę.</span></div>
+    <div class="alert alert-info"><span class="alert-icon">🎯</span><span><strong>Waga stabilna przez 10 tygodni cyklu (86,1–87,2 kg)</strong> — to oczekiwany efekt rekompozycji. Mini cut od poniedziałku powinien ruszyć wagę w dół. Cel: 84–85 kg do maja.</span></div>
     <table style="margin-top:12px">
       <tr><th>Miesiąc</th><th>Średnia wagi</th><th>Zmiana</th></tr>
       <tr><td>Wrzesień 2025</td><td>~90,3 kg</td><td style="color:var(--red)">start monitoringu</td></tr>
@@ -828,72 +1043,94 @@ Lędźwie: __/10  |  Uwagi: _____________________________________________</div>
       <tr><td>Listopad 2025</td><td>~87,4 kg</td><td style="color:var(--text3)">stabilnie</td></tr>
       <tr><td>Grudzień 2025</td><td>~86,5 kg</td><td style="color:var(--green)">-0,9 kg</td></tr>
       <tr><td>Styczeń 2026</td><td>~86,4 kg</td><td style="color:var(--text3)">stabilnie</td></tr>
-      <tr><td>Luty 2026</td><td>86,33 kg</td><td style="color:var(--text3)">+0,2 kg (stabilnie)</td></tr>
-      <tr><td>Marzec 2026 (1–8.03)</td><td>86,59 kg</td><td style="color:var(--red)">+0,3 kg ↑ — obserwuj</td></tr>
+      <tr><td>Luty 2026</td><td>86,33 kg</td><td style="color:var(--text3)">stabilnie</td></tr>
+      <tr><td style="color:var(--accent2);font-weight:600">Marzec 2026 (pełny)</td><td style="font-weight:600">86,60 kg</td><td style="color:var(--red)">+0,27 kg (plateau)</td></tr>
     </table>
   </div>
 
+  <details style="margin-bottom:12px">
+    <summary style="cursor:pointer;padding:12px 16px;background:var(--bg2);border:1px solid var(--border);border-radius:8px;font-size:13px;color:var(--text2);list-style:none;display:flex;justify-content:space-between;align-items:center;user-select:none">
+      <span>📋 Historia pomiarów — od startu planu (01.2026)</span><span style="font-size:10px;color:var(--text3)">▼</span>
+    </summary>
+    <div style="padding-top:8px">
   <div class="card">
     <div class="card-title">Historia pomiarów — od startu planu (01.2026)</div>
     <table style="font-size:12px">
       <tr><th>Data</th><th>Waga (kg)</th><th>Zmiana</th></tr>
-      <tr><td>07.01</td><td>86,35</td><td style="color:var(--text3)">—</td></tr>
-      <tr><td>08.01</td><td>86,45</td><td style="color:var(--red)">+0,10</td></tr>
-      <tr><td>09.01</td><td>86,05</td><td style="color:var(--green)">-0,40</td></tr>
-      <tr><td>10.01</td><td>86,35</td><td style="color:var(--red)">+0,30</td></tr>
-      <tr><td>11.01</td><td>86,65</td><td style="color:var(--red)">+0,30</td></tr>
-      <tr><td>12.01</td><td>86,20</td><td style="color:var(--green)">-0,45</td></tr>
-      <tr><td>13.01</td><td>86,95</td><td style="color:var(--red)">+0,75</td></tr>
-      <tr><td>14.01</td><td>87,00</td><td style="color:var(--red)">+0,05</td></tr>
-      <tr><td>15.01</td><td>86,80</td><td style="color:var(--green)">-0,20</td></tr>
-      <tr><td>16.01</td><td>86,30</td><td style="color:var(--green)">-0,50</td></tr>
-      <tr><td>17.01</td><td>86,55</td><td style="color:var(--red)">+0,25</td></tr>
-      <tr><td>18.01</td><td>86,20</td><td style="color:var(--green)">-0,35</td></tr>
-      <tr><td>19.01</td><td>87,45</td><td style="color:var(--red)">+1,25</td></tr>
-      <tr><td>20.01</td><td>86,50</td><td style="color:var(--green)">-0,95</td></tr>
-      <tr><td>21.01</td><td>86,65</td><td style="color:var(--red)">+0,15</td></tr>
-      <tr><td>22.01</td><td>86,45</td><td style="color:var(--green)">-0,20</td></tr>
-      <tr><td>23.01</td><td>86,25</td><td style="color:var(--green)">-0,20</td></tr>
-      <tr><td>24.01</td><td>86,55</td><td style="color:var(--red)">+0,30</td></tr>
-      <tr><td>25.01</td><td>86,30</td><td style="color:var(--green)">-0,25</td></tr>
-      <tr><td>02.02</td><td>86,10</td><td style="color:var(--green)">-0,20</td></tr>
-      <tr><td>03.02</td><td>85,95</td><td style="color:var(--green)">-0,15</td></tr>
-      <tr><td>04.02</td><td>86,30</td><td style="color:var(--red)">+0,35</td></tr>
-      <tr><td>05.02</td><td>86,20</td><td style="color:var(--green)">-0,10</td></tr>
-      <tr><td>06.02</td><td>85,95</td><td style="color:var(--green)">-0,25</td></tr>
-      <tr><td>07.02</td><td>86,35</td><td style="color:var(--red)">+0,40</td></tr>
-      <tr><td>08.02</td><td>86,65</td><td style="color:var(--red)">+0,30</td></tr>
-      <tr><td>09.02</td><td>86,65</td><td style="color:var(--text3)">0,00</td></tr>
-      <tr><td>10.02</td><td>86,80</td><td style="color:var(--red)">+0,15</td></tr>
-      <tr><td>11.02</td><td>86,45</td><td style="color:var(--green)">-0,35</td></tr>
-      <tr><td>12.02</td><td>86,20</td><td style="color:var(--green)">-0,25</td></tr>
-      <tr><td>13.02</td><td>86,20</td><td style="color:var(--text3)">0,00</td></tr>
-      <tr><td>14.02</td><td>86,35</td><td style="color:var(--red)">+0,15</td></tr>
-      <tr><td>15.02</td><td>86,30</td><td style="color:var(--green)">-0,05</td></tr>
-      <tr><td>16.02</td><td>86,55</td><td style="color:var(--red)">+0,25</td></tr>
-      <tr><td>17.02</td><td>86,00</td><td style="color:var(--green)">-0,55</td></tr>
-      <tr><td>18.02</td><td>86,15</td><td style="color:var(--red)">+0,15</td></tr>
-      <tr><td>19.02</td><td>85,95</td><td style="color:var(--green)">-0,20</td></tr>
-      <tr><td>20.02</td><td>86,15</td><td style="color:var(--red)">+0,20</td></tr>
-      <tr><td>21.02</td><td>86,20</td><td style="color:var(--red)">+0,05</td></tr>
-      <tr><td>22.02</td><td>86,55</td><td style="color:var(--red)">+0,35</td></tr>
-      <tr><td>23.02</td><td>86,70</td><td style="color:var(--red)">+0,15</td></tr>
-      <tr><td>24.02</td><td>87,05</td><td style="color:var(--red)">+0,35</td></tr>
-      <tr><td>25.02</td><td>86,00</td><td style="color:var(--green)">-1,05</td></tr>
-      <tr><td>26.02</td><td>86,55</td><td style="color:var(--red)">+0,55</td></tr>
-      <tr><td>27.02</td><td>86,35</td><td style="color:var(--green)">-0,20</td></tr>
-      <tr><td>28.02</td><td>86,30</td><td style="color:var(--green)">-0,05</td></tr>
-      <tr><td>01.03</td><td>86,85</td><td style="color:var(--red)">+0,55</td></tr>
-      <tr><td>02.03</td><td>86,50</td><td style="color:var(--green)">-0,35</td></tr>
-      <tr><td>03.03</td><td>86,60</td><td style="color:var(--red)">+0,10</td></tr>
-      <tr><td>04.03</td><td>86,25</td><td style="color:var(--green)">-0,35</td></tr>
-      <tr><td>05.03</td><td>86,10</td><td style="color:var(--green)">-0,15</td></tr>
-      <tr><td>06.03</td><td>86,20</td><td style="color:var(--red)">+0,10</td></tr>
-      <tr><td>07.03</td><td>87,20</td><td style="color:var(--red)">+1,00</td></tr>
-      <tr><td style="color:var(--accent2);font-weight:600">08.03</td><td style="font-weight:600">87,00</td><td style="color:var(--green)">-0,20</td></tr>
+      <tr><td style="color:var(--accent2);font-weight:600">23.03</td><td style="font-weight:600">86.90</td><td style="color:var(--text3)">0,00</td></tr>
+      <tr><td style="color:var(--accent2);font-weight:600">22.03</td><td style="font-weight:600">86.90</td><td style="color:var(--green)">-0.05</td></tr>
+      <tr><td style="color:var(--accent2);font-weight:600">21.03</td><td style="font-weight:600">86.95</td><td style="color:var(--red)">+0.30</td></tr>
+      <tr><td style="color:var(--accent2);font-weight:600">20.03</td><td style="font-weight:600">86.65</td><td style="color:var(--red)">+0.25</td></tr>
+      <tr><td style="color:var(--accent2);font-weight:600">19.03</td><td style="font-weight:600">86.40</td><td style="color:var(--green)">-0.25</td></tr>
+      <tr><td style="color:var(--accent2);font-weight:600">18.03</td><td style="font-weight:600">86.65</td><td style="color:var(--red)">+0.40</td></tr>
+      <tr><td style="color:var(--accent2);font-weight:600">17.03</td><td style="font-weight:600">86.25</td><td style="color:var(--green)">-0.80</td></tr>
+      <tr><td style="color:var(--accent2);font-weight:600">16.03</td><td style="font-weight:600">87.05</td><td style="color:var(--red)">+0.65</td></tr>
+      <tr><td style="color:var(--accent2);font-weight:600">15.03</td><td style="font-weight:600">86.40</td><td style="color:var(--green)">-0.35</td></tr>
+      <tr><td style="color:var(--accent2);font-weight:600">14.03</td><td style="font-weight:600">86.75</td><td style="color:var(--red)">+0.60</td></tr>
+      <tr><td style="color:var(--accent2);font-weight:600">13.03</td><td style="font-weight:600">86.15</td><td style="color:var(--red)">+0.05</td></tr>
+      <tr><td style="color:var(--accent2);font-weight:600">12.03</td><td style="font-weight:600">86.10</td><td style="color:var(--green)">-0.30</td></tr>
+      <tr><td style="color:var(--accent2);font-weight:600">11.03</td><td style="font-weight:600">86.40</td><td style="color:var(--green)">-0.45</td></tr>
+      <tr><td style="color:var(--accent2);font-weight:600">10.03</td><td style="font-weight:600">86.85</td><td style="color:var(--red)">+0.05</td></tr>
+      <tr><td style="color:var(--accent2);font-weight:600">09.03</td><td style="font-weight:600">86.80</td><td style="color:var(--green)">-0.20</td></tr>
+      <tr><td>08.03</td><td>87.00</td><td style="color:var(--green)">-0.20</td></tr>
+      <tr><td>07.03</td><td>87.20</td><td style="color:var(--red)">+1.00</td></tr>
+      <tr><td>06.03</td><td>86.20</td><td style="color:var(--red)">+0.10</td></tr>
+      <tr><td>05.03</td><td>86.10</td><td style="color:var(--green)">-0.15</td></tr>
+      <tr><td>04.03</td><td>86.25</td><td style="color:var(--green)">-0.35</td></tr>
+      <tr><td>03.03</td><td>86.60</td><td style="color:var(--red)">+0.10</td></tr>
+      <tr><td>02.03</td><td>86.50</td><td style="color:var(--green)">-0.35</td></tr>
+      <tr><td>01.03</td><td>86.85</td><td style="color:var(--red)">+0.55</td></tr>
+      <tr><td>28.02</td><td>86.30</td><td style="color:var(--green)">-0.05</td></tr>
+      <tr><td>27.02</td><td>86.35</td><td style="color:var(--green)">-0.20</td></tr>
+      <tr><td>26.02</td><td>86.55</td><td style="color:var(--red)">+0.55</td></tr>
+      <tr><td>25.02</td><td>86.00</td><td style="color:var(--green)">-1.05</td></tr>
+      <tr><td>24.02</td><td>87.05</td><td style="color:var(--red)">+0.35</td></tr>
+      <tr><td>23.02</td><td>86.70</td><td style="color:var(--red)">+0.15</td></tr>
+      <tr><td>22.02</td><td>86.55</td><td style="color:var(--red)">+0.35</td></tr>
+      <tr><td>21.02</td><td>86.20</td><td style="color:var(--red)">+0.05</td></tr>
+      <tr><td>20.02</td><td>86.15</td><td style="color:var(--red)">+0.20</td></tr>
+      <tr><td>19.02</td><td>85.95</td><td style="color:var(--green)">-0.20</td></tr>
+      <tr><td>18.02</td><td>86.15</td><td style="color:var(--red)">+0.15</td></tr>
+      <tr><td>17.02</td><td>86.00</td><td style="color:var(--green)">-0.55</td></tr>
+      <tr><td>16.02</td><td>86.55</td><td style="color:var(--red)">+0.25</td></tr>
+      <tr><td>15.02</td><td>86.30</td><td style="color:var(--green)">-0.05</td></tr>
+      <tr><td>14.02</td><td>86.35</td><td style="color:var(--red)">+0.15</td></tr>
+      <tr><td>13.02</td><td>86.20</td><td style="color:var(--text3)">0,00</td></tr>
+      <tr><td>12.02</td><td>86.20</td><td style="color:var(--green)">-0.25</td></tr>
+      <tr><td>11.02</td><td>86.45</td><td style="color:var(--green)">-0.35</td></tr>
+      <tr><td>10.02</td><td>86.80</td><td style="color:var(--red)">+0.15</td></tr>
+      <tr><td>09.02</td><td>86.65</td><td style="color:var(--text3)">0,00</td></tr>
+      <tr><td>08.02</td><td>86.65</td><td style="color:var(--red)">+0.30</td></tr>
+      <tr><td>07.02</td><td>86.35</td><td style="color:var(--red)">+0.40</td></tr>
+      <tr><td>06.02</td><td>85.95</td><td style="color:var(--green)">-0.25</td></tr>
+      <tr><td>05.02</td><td>86.20</td><td style="color:var(--green)">-0.10</td></tr>
+      <tr><td>04.02</td><td>86.30</td><td style="color:var(--red)">+0.35</td></tr>
+      <tr><td>03.02</td><td>85.95</td><td style="color:var(--green)">-0.15</td></tr>
+      <tr><td>02.02</td><td>86.10</td><td style="color:var(--green)">-0.20</td></tr>
+      <tr><td>25.01</td><td>86.30</td><td style="color:var(--green)">-0.25</td></tr>
+      <tr><td>24.01</td><td>86.55</td><td style="color:var(--red)">+0.30</td></tr>
+      <tr><td>23.01</td><td>86.25</td><td style="color:var(--green)">-0.20</td></tr>
+      <tr><td>22.01</td><td>86.45</td><td style="color:var(--green)">-0.20</td></tr>
+      <tr><td>21.01</td><td>86.65</td><td style="color:var(--red)">+0.15</td></tr>
+      <tr><td>20.01</td><td>86.50</td><td style="color:var(--green)">-0.95</td></tr>
+      <tr><td>19.01</td><td>87.45</td><td style="color:var(--red)">+1.25</td></tr>
+      <tr><td>18.01</td><td>86.20</td><td style="color:var(--green)">-0.35</td></tr>
+      <tr><td>17.01</td><td>86.55</td><td style="color:var(--red)">+0.25</td></tr>
+      <tr><td>16.01</td><td>86.30</td><td style="color:var(--green)">-0.50</td></tr>
+      <tr><td>15.01</td><td>86.80</td><td style="color:var(--green)">-0.20</td></tr>
+      <tr><td>14.01</td><td>87.00</td><td style="color:var(--red)">+0.05</td></tr>
+      <tr><td>13.01</td><td>86.95</td><td style="color:var(--red)">+0.75</td></tr>
+      <tr><td>12.01</td><td>86.20</td><td style="color:var(--green)">-0.45</td></tr>
+      <tr><td>11.01</td><td>86.65</td><td style="color:var(--red)">+0.30</td></tr>
+      <tr><td>10.01</td><td>86.35</td><td style="color:var(--red)">+0.30</td></tr>
+      <tr><td>09.01</td><td>86.05</td><td style="color:var(--green)">-0.40</td></tr>
+      <tr><td>08.01</td><td>86.45</td><td style="color:var(--red)">+0.10</td></tr>
+      <tr><td>07.01</td><td>86.35</td><td style="color:var(--text3)">0,00</td></tr>
     </table>
     <div style="margin-top:10px;font-size:12px;color:var(--text3)">💡 Nowe pomiary: dodaj do raportu treningowego — Claude zaktualizuje tabelę i wykres automatycznie.</div>
   </div>
+    </div>
+  </details>
 </section>
 
 <!-- ═══ DIETA ══════════════════════════════════════════════════════ -->
@@ -1455,6 +1692,11 @@ Lędźwie: __/10  |  Uwagi: _____________________________________________</div>
     ['2026-03-01',86.85],['2026-03-02',86.50],['2026-03-03',86.60],
     ['2026-03-04',86.25],['2026-03-05',86.10],['2026-03-06',86.20],
     ['2026-03-07',87.20],['2026-03-08',87.00],
+    ['2026-03-09',86.80],['2026-03-10',86.85],['2026-03-11',86.40],
+    ['2026-03-12',86.10],['2026-03-13',86.15],['2026-03-14',86.75],
+    ['2026-03-15',86.40],['2026-03-16',87.05],['2026-03-17',86.25],
+    ['2026-03-18',86.65],['2026-03-19',86.40],['2026-03-20',86.65],
+    ['2026-03-21',86.95],['2026-03-22',86.90],['2026-03-23',86.90],
   ];
 
   const MONTHS_PL = ['','Sty','Lut','Mar','Kwi','Maj','Cze','Lip','Sie','Wrz','Paź','Lis','Gru'];
@@ -1583,6 +1825,25 @@ Lędźwie: __/10  |  Uwagi: _____________________________________________</div>
     btn.classList.add('active');
   }
 
+  // ── PROGRESJA FILTERS ─────────────────────────────────────────
+  function filterCols(tableId, n) {
+    const table = document.getElementById(tableId);
+    if (!table) return;
+    const rows = table.querySelectorAll('tr');
+    rows.forEach(row => {
+      const cells = row.querySelectorAll('td, th');
+      // first 3 cols always visible (name, zakres, cel)
+      cells.forEach((cell, i) => {
+        if (i < 3) { cell.style.display = ''; return; }
+        const colIdx = i - 3; // 0 = newest
+        cell.style.display = (n === 'all' || colIdx < n) ? '' : 'none';
+      });
+    });
+    // update active button
+    const btns = table.closest('.card').querySelectorAll('.filter-btn');
+    btns.forEach(b => b.classList.toggle('active', b.dataset.n == n));
+  }
+
   // ── KOPIOWANIE SZABLONÓW ───────────────────────────────────────
   function copy(id) {
     const text = document.getElementById(id).innerText;
@@ -1590,6 +1851,17 @@ Lędźwie: __/10  |  Uwagi: _____________________________________________</div>
       const btn = event.target;
       btn.textContent = '✓ Skopiowano!';
       setTimeout(()=>btn.textContent='📋 Kopiuj szablon',2000);
+    });
+  }
+  // default filter on load
+  // Apply Last 5 filter when Archiwum tab is clicked (progresja is inside)
+  const _archBtn = document.querySelector("button[onclick*=\"t-archiwum\"]");
+  if (_archBtn) {
+    _archBtn.addEventListener('click', function() {
+      if (!this.dataset.filtered) {
+        ['tbl-ua','tbl-ub','tbl-lo'].forEach(id => filterCols(id, 5));
+        this.dataset.filtered = '1';
+      }
     });
   }
 </script>
