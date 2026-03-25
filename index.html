@@ -419,7 +419,19 @@ WZORCE:
 NASTĘPNY TRENING:
 - Konkretne ćwiczenia do progresji ciężaru (2/3 reguła spełniona 2×)
 - Na co zwrócić uwagę (technika, kolejność, przerwy)
-- Czy to ostatni trening przed deloadem — jeśli tak, zanotuj</div>
+- Czy to ostatni trening przed deloadem — jeśli tak, zanotuj
+
+════ KONTEKST DIETY — MINI CUT #1 (kwi–maj 2026) ════
+Etap: Mini cut równolegle z Cyklem 2 · start 31.03.2026 · 8 tygodni
+Cel wagowy: ~86,9 kg → 84–85 kg · BF% 16–17%
+Białko: ≥173g/dzień (2g/kg × 86,5 kg)
+Kalorie: dni odpoczynku ~2050–2100 kcal · dni treningowe ~2650–2750 kcal
+Deficyt: ~384 kcal/dzień → ~0,32–0,35 kg/tydzień
+
+SYGNAŁY ALARMOWE — sprawdzaj przy każdej analizie treningu:
+⚠️ Siła spada >15% przez 2 tygodnie z rzędu → zaproponuj +150 kcal w dniach odpoczynku
+⚠️ Waga nie spada przez 3 tygodnie z rzędu → zaproponuj -100 kcal z dni odpoczynku
+✅ Optymalne tempo spadku wagi: 0,3–0,4 kg/tydzień (średnia 7-dniowa, nie dzienny pomiar)</div>
     <button class="copy-btn" onclick="copy('tmpl-prompt')">📋 Kopiuj prompt</button>
       </div>
     </details>
@@ -1138,13 +1150,14 @@ Nie analizuj tylko ostatnich 1–2 treningów. Analizuj cały cykl jako całoś�
   <h2>🥗 Dieta</h2>
 
   <div class="tab-row">
-    <button class="tab-btn active" onclick="switchTab('dieta','d-rekompozycja',this)">Rekompozycja</button>
-    <button class="tab-btn" onclick="switchTab('dieta','d-minicut',this)">🔻 Mini cut</button>
+    <button class="tab-btn" onclick="switchTab('dieta','d-rekompozycja',this)">Rekompozycja</button>
+    <button class="tab-btn active" onclick="switchTab('dieta','d-minicut',this)">🔻 Mini cut</button>
     <button class="tab-btn" onclick="switchTab('dieta','d-produkty',this)">🧪 Produkty</button>
+    <button class="tab-btn" onclick="switchTab('dieta','d-przepisy',this)">👨‍🍳 Przepisy</button>
   </div>
 
   <!-- TAB: REKOMPOZYCJA -->
-  <div id="d-rekompozycja" class="tab-panel active">
+  <div id="d-rekompozycja" class="tab-panel">
 
   <div class="card">
     <div class="card-title">Strategia żywieniowa — rekompozycja sty–mar 2026</div>
@@ -1176,267 +1189,362 @@ Nie analizuj tylko ostatnich 1–2 treningów. Analizuj cały cykl jako całoś�
   </div>
 
   <h3>Posiłki — dni odpoczynku</h3>
-  <div class="card">
-    <div class="card-title">Poniedziałek &nbsp;<span class="badge badge-gray">~2444 kcal · ~177g białka</span></div>
-    <table>
-      <tr><th>Posiłek</th><th>Skład</th><th>Kcal</th><th>Białko</th></tr>
-      <tr><td>Śniadanie</td><td>Płatki owsiane 40g + orkiszowe 40g + gryczane 30g + WPC 20g + pasta orzechowa 20g + rodzynki 15g</td><td>648</td><td>35g</td></tr>
-      <tr><td>II śniadanie</td><td>Jogurt naturalny 200g + WPC 10g + banan 120g</td><td>283</td><td>18g</td></tr>
-      <tr><td>Obiad</td><td>Polędwiczki kurczaka 200g + ryż biały 70g (suchy) + warzywa 200g + oliwa 1 łyżka</td><td>622</td><td>52g</td></tr>
-      <tr><td>Przekąska</td><td>Zott Protein Drink 250ml</td><td>165</td><td>21g</td></tr>
-      <tr><td>Kolacja</td><td>Calvo tuńczyk sos pomidorowy 160g + 2 jajka + grahamka Putka 70g</td><td>646</td><td>49g</td></tr>
-      <tr><td>Inne</td><td>2× cappuccino</td><td>80</td><td>2g</td></tr>
-      <tr style="font-weight:600;border-top:1px solid var(--border)"><td colspan="2">SUMA</td><td>2444</td><td>177g</td></tr>
-    </table>
-  </div>
-  <div class="card">
-    <div class="card-title">Środa &nbsp;<span class="badge badge-gray">~2352 kcal · ~179g białka</span></div>
-    <table>
-      <tr><th>Posiłek</th><th>Skład</th><th>Kcal</th><th>Białko</th></tr>
-      <tr><td>Śniadanie</td><td>Płatki owsiane 40g + orkiszowe 40g + gryczane 30g + WPC 20g + pasta orzechowa 20g + rodzynki 15g</td><td>648</td><td>35g</td></tr>
-      <tr><td>II śniadanie</td><td>Jogurt naturalny 200g + WPC 10g + banan 120g</td><td>283</td><td>18g</td></tr>
-      <tr><td>Obiad</td><td>Dorsz atlantycki Lidl 200g + warzywa 200g + oliwa 1 łyżka (bez ryżu)</td><td>316</td><td>41g</td></tr>
-      <tr><td>Przekąska</td><td>Zott Protein Drink 250ml</td><td>165</td><td>21g</td></tr>
-      <tr><td>Kolacja</td><td>Szakszuka: 3 jajka + pomidory 200g + cebula + papryka + oliwa + mozzarella light Pilos 125g + grahamka Putka 70g</td><td>860</td><td>62g</td></tr>
-      <tr><td>Inne</td><td>2× cappuccino</td><td>80</td><td>2g</td></tr>
-      <tr style="font-weight:600;border-top:1px solid var(--border)"><td colspan="2">SUMA</td><td>2352</td><td>179g</td></tr>
-    </table>
-  </div>
-  <div class="card">
-    <div class="card-title">Piątek &nbsp;<span class="badge badge-gray">~2406 kcal · ~170g białka</span></div>
-    <table>
-      <tr><th>Posiłek</th><th>Skład</th><th>Kcal</th><th>Białko</th></tr>
-      <tr><td>Śniadanie</td><td>Płatki owsiane 40g + orkiszowe 40g + gryczane 30g + WPC 35g + pasta orzechowa 20g + rodzynki 15g</td><td>706</td><td>46g</td></tr>
-      <tr><td>II śniadanie</td><td>Jogurt naturalny 200g + WPC 10g + banan 120g</td><td>283</td><td>18g</td></tr>
-      <tr><td>Obiad</td><td>Rio Mare tuńczyk w oliwie 160g (odsączony ~104g) + makaron Lubella Pełne Ziarno Świdry 100g (suchy) + pomidory + ogórek</td><td>549</td><td>46g</td></tr>
-      <tr><td>Przekąska</td><td>Zott Protein Drink 250ml</td><td>165</td><td>21g</td></tr>
-      <tr><td>Kolacja</td><td>Jajecznica: 3 jajka + mozzarella light Pilos 25g + warzywa 200g + oliwa + grahamka Putka 70g</td><td>623</td><td>37g</td></tr>
-      <tr><td>Inne</td><td>2× cappuccino</td><td>80</td><td>2g</td></tr>
-      <tr style="font-weight:600;border-top:1px solid var(--border)"><td colspan="2">SUMA</td><td>2406</td><td>170g</td></tr>
-    </table>
-  </div>
-  <div class="card">
-    <div class="card-title">Sobota — odpoczynek + drink &nbsp;<span class="badge badge-gray">~2312 kcal + drink · ~172g białka</span></div>
-    <table>
-      <tr><th>Posiłek</th><th>Skład</th><th>Kcal</th><th>Białko</th></tr>
-      <tr><td>Śniadanie</td><td>Grahamka Putka 70g + szynka naturalna 40g + ser Gouda 20g + 2 jajka + warzywa 100g</td><td>533</td><td>35g</td></tr>
-      <tr><td>II śniadanie</td><td>Protein rice: ryż biały 50g (suchy) + WPC 35g + jogurt naturalny 200g</td><td>452</td><td>39g</td></tr>
-      <tr><td>Obiad</td><td>Łosoś atlantycki Lidl ze skórą 200g + warzywa 200g + oliwa 1 łyżka (bez frytek)</td><td>652</td><td>47g</td></tr>
-      <tr><td>Przekąska</td><td>Zott Protein Drink 250ml</td><td>165</td><td>21g</td></tr>
-      <tr><td>Kolacja</td><td>Omlet: 3 jajka + warzywa 150g + ser Gouda 20g + oliwa 1 łyżeczka</td><td>430</td><td>28g</td></tr>
-      <tr><td>Inne</td><td>2× cappuccino</td><td>80</td><td>2g</td></tr>
-      <tr style="font-weight:600;border-top:1px solid var(--border)"><td colspan="2">SUMA (bez drinka)</td><td>2312</td><td>172g</td></tr>
-    </table>
-  </div>
+
+  <details style="margin-bottom:8px">
+    <summary style="cursor:pointer;padding:12px 16px;background:var(--bg2);border:1px solid var(--border);border-radius:8px;font-size:13px;color:var(--text2);list-style:none;display:flex;justify-content:space-between;align-items:center;user-select:none">
+      <span>📅 Poniedziałek</span><span style="font-size:10px;color:var(--text3)">▼</span>
+    </summary>
+    <div style="padding-top:8px">
+    <div class="card">
+      <table>
+        <tr><th>Posiłek</th><th>Skład</th><th>Kcal</th><th>Białko</th></tr>
+        <tr><td>Śniadanie</td><td>Płatki owsiane 40g + orkiszowe 40g + gryczane 30g + WPC 20g + pasta orzechowa 20g + rodzynki 15g</td><td>648</td><td>35g</td></tr>
+        <tr><td>II śniadanie</td><td>Jogurt naturalny 200g + WPC 10g + banan 120g</td><td>283</td><td>18g</td></tr>
+        <tr><td>Obiad</td><td>Polędwiczki kurczaka 200g + ryż biały 70g (suchy) + warzywa 200g + oliwa 1 łyżka</td><td>622</td><td>52g</td></tr>
+        <tr><td>Przekąska</td><td>Zott Protein Drink 250ml</td><td>165</td><td>21g</td></tr>
+        <tr><td>Kolacja</td><td>Calvo tuńczyk sos pomidorowy 160g + 2 jajka + grahamka Putka 70g</td><td>646</td><td>49g</td></tr>
+        <tr><td>Inne</td><td>2× cappuccino</td><td>80</td><td>2g</td></tr>
+        <tr style="font-weight:600;border-top:1px solid var(--border)"><td colspan="2">SUMA</td><td>2444</td><td>177g</td></tr>
+      </table>
+    </div>
+    </div>
+  </details>
+
+  <details style="margin-bottom:8px">
+    <summary style="cursor:pointer;padding:12px 16px;background:var(--bg2);border:1px solid var(--border);border-radius:8px;font-size:13px;color:var(--text2);list-style:none;display:flex;justify-content:space-between;align-items:center;user-select:none">
+      <span>📅 Środa</span><span style="font-size:10px;color:var(--text3)">▼</span>
+    </summary>
+    <div style="padding-top:8px">
+    <div class="card">
+      <table>
+        <tr><th>Posiłek</th><th>Skład</th><th>Kcal</th><th>Białko</th></tr>
+        <tr><td>Śniadanie</td><td>Płatki owsiane 40g + orkiszowe 40g + gryczane 30g + WPC 20g + pasta orzechowa 20g + rodzynki 15g</td><td>648</td><td>35g</td></tr>
+        <tr><td>II śniadanie</td><td>Jogurt naturalny 200g + WPC 10g + banan 120g</td><td>283</td><td>18g</td></tr>
+        <tr><td>Obiad</td><td>Dorsz atlantycki Lidl 200g + warzywa 200g + oliwa 1 łyżka (bez ryżu)</td><td>316</td><td>41g</td></tr>
+        <tr><td>Przekąska</td><td>Zott Protein Drink 250ml</td><td>165</td><td>21g</td></tr>
+        <tr><td>Kolacja</td><td>Szakszuka: 3 jajka + pomidory 200g + cebula + papryka + oliwa + mozzarella light Pilos 125g + grahamka Putka 70g</td><td>860</td><td>62g</td></tr>
+        <tr><td>Inne</td><td>2× cappuccino</td><td>80</td><td>2g</td></tr>
+        <tr style="font-weight:600;border-top:1px solid var(--border)"><td colspan="2">SUMA</td><td>2352</td><td>179g</td></tr>
+      </table>
+    </div>
+    </div>
+  </details>
+
+  <details style="margin-bottom:8px">
+    <summary style="cursor:pointer;padding:12px 16px;background:var(--bg2);border:1px solid var(--border);border-radius:8px;font-size:13px;color:var(--text2);list-style:none;display:flex;justify-content:space-between;align-items:center;user-select:none">
+      <span>📅 Piątek</span><span style="font-size:10px;color:var(--text3)">▼</span>
+    </summary>
+    <div style="padding-top:8px">
+    <div class="card">
+      <table>
+        <tr><th>Posiłek</th><th>Skład</th><th>Kcal</th><th>Białko</th></tr>
+        <tr><td>Śniadanie</td><td>Płatki owsiane 40g + orkiszowe 40g + gryczane 30g + WPC 35g + pasta orzechowa 20g + rodzynki 15g</td><td>706</td><td>46g</td></tr>
+        <tr><td>II śniadanie</td><td>Jogurt naturalny 200g + WPC 10g + banan 120g</td><td>283</td><td>18g</td></tr>
+        <tr><td>Obiad</td><td>Rio Mare tuńczyk w oliwie 160g (odsączony ~104g) + makaron Lubella Pełne Ziarno Świdry 100g (suchy) + pomidory + ogórek</td><td>549</td><td>46g</td></tr>
+        <tr><td>Przekąska</td><td>Zott Protein Drink 250ml</td><td>165</td><td>21g</td></tr>
+        <tr><td>Kolacja</td><td>Jajecznica: 3 jajka + mozzarella light Pilos 25g + warzywa 200g + oliwa + grahamka Putka 70g</td><td>623</td><td>37g</td></tr>
+        <tr><td>Inne</td><td>2× cappuccino</td><td>80</td><td>2g</td></tr>
+        <tr style="font-weight:600;border-top:1px solid var(--border)"><td colspan="2">SUMA</td><td>2406</td><td>170g</td></tr>
+      </table>
+    </div>
+    </div>
+  </details>
+
+  <details style="margin-bottom:8px">
+    <summary style="cursor:pointer;padding:12px 16px;background:var(--bg2);border:1px solid var(--border);border-radius:8px;font-size:13px;color:var(--text2);list-style:none;display:flex;justify-content:space-between;align-items:center;user-select:none">
+      <span>📅 Sobota — odpoczynek + drink</span><span style="font-size:10px;color:var(--text3)">▼</span>
+    </summary>
+    <div style="padding-top:8px">
+    <div class="card">
+      <table>
+        <tr><th>Posiłek</th><th>Skład</th><th>Kcal</th><th>Białko</th></tr>
+        <tr><td>Śniadanie</td><td>Grahamka Putka 70g + szynka naturalna 40g + ser Gouda 20g + 2 jajka + warzywa 100g</td><td>533</td><td>35g</td></tr>
+        <tr><td>II śniadanie</td><td>Protein rice: ryż biały 50g (suchy) + WPC 35g + jogurt naturalny 200g</td><td>452</td><td>39g</td></tr>
+        <tr><td>Obiad</td><td>Łosoś atlantycki Lidl ze skórą 200g + warzywa 200g + oliwa 1 łyżka (bez frytek)</td><td>652</td><td>47g</td></tr>
+        <tr><td>Przekąska</td><td>Zott Protein Drink 250ml</td><td>165</td><td>21g</td></tr>
+        <tr><td>Kolacja</td><td>Omlet: 3 jajka + warzywa 150g + ser Gouda 20g + oliwa 1 łyżeczka</td><td>430</td><td>28g</td></tr>
+        <tr><td>Inne</td><td>2× cappuccino</td><td>80</td><td>2g</td></tr>
+        <tr style="font-weight:600;border-top:1px solid var(--border)"><td colspan="2">SUMA (bez drinka)</td><td>2312</td><td>172g</td></tr>
+      </table>
+    </div>
+    </div>
+  </details>
 
   <h3>Posiłki — dni treningowe</h3>
-  <div class="card">
-    <div class="card-title">Wtorek — Upper A / Upper B &nbsp;<span class="badge badge-blue">~2743 kcal · ~190g białka</span></div>
-    <table>
-      <tr><th>Posiłek</th><th>Skład</th><th>Kcal</th><th>Białko</th></tr>
-      <tr><td>Śniadanie</td><td>Płatki owsiane 40g + orkiszowe 40g + gryczane 30g + WPC 20g + pasta orzechowa 20g + rodzynki 15g</td><td>648</td><td>35g</td></tr>
-      <tr><td>II śniadanie</td><td>Jogurt naturalny 200g + WPC 10g + banan 120g</td><td>283</td><td>18g</td></tr>
-      <tr><td>Obiad</td><td>Polędwiczki kurczaka 200g + ryż biały 140g (suchy) + warzywa 200g + oliwa 1 łyżka</td><td>886</td><td>61g</td></tr>
-      <tr><td>Post-workout</td><td>Zott Protein Drink 250ml + banan 120g</td><td>272</td><td>22g</td></tr>
-      <tr><td>Kolacja</td><td>Twaróg chudy Pilos 200g + jogurt naturalny 200g + miód 15g + grahamka Putka 70g</td><td>574</td><td>52g</td></tr>
-      <tr><td>Inne</td><td>2× cappuccino</td><td>80</td><td>2g</td></tr>
-      <tr style="font-weight:600;border-top:1px solid var(--border)"><td colspan="2">SUMA</td><td>2743</td><td>190g</td></tr>
-    </table>
-  </div>
-  <div class="card">
-    <div class="card-title">Czwartek — Lower &nbsp;<span class="badge badge-blue">~2771 kcal · ~183g białka</span></div>
-    <table>
-      <tr><th>Posiłek</th><th>Skład</th><th>Kcal</th><th>Białko</th></tr>
-      <tr><td>Śniadanie</td><td>Płatki owsiane 40g + orkiszowe 40g + gryczane 30g + WPC 35g + pasta orzechowa 20g + rodzynki 15g</td><td>706</td><td>46g</td></tr>
-      <tr><td>II śniadanie</td><td>Jogurt naturalny 200g + WPC 10g + banan 120g</td><td>283</td><td>18g</td></tr>
-      <tr><td>Obiad</td><td>Dorsz atlantycki Lidl 200g + ryż biały 130g (suchy) + warzywa 200g + oliwa 1 łyżka</td><td>774</td><td>45g</td></tr>
-      <tr><td>Post-workout</td><td>Zott Protein Drink 250ml + banan 120g</td><td>272</td><td>22g</td></tr>
-      <tr><td>Kolacja</td><td>Pancake: WPC 20g + 2 jajka + mąka pszenna 50g + twaróg Pilos 50g + jogurt naturalny 150g + borówki 60g + banan 40g</td><td>656</td><td>50g</td></tr>
-      <tr><td>Inne</td><td>2× cappuccino</td><td>80</td><td>2g</td></tr>
-      <tr style="font-weight:600;border-top:1px solid var(--border)"><td colspan="2">SUMA</td><td>2771</td><td>183g</td></tr>
-    </table>
-  </div>
-  <div class="card">
-    <div class="card-title">Niedziela — Upper A / Upper B + cheat meal &nbsp;<span class="badge badge-blue">~2639 kcal · ~201g białka</span></div>
-    <table>
-      <tr><th>Posiłek</th><th>Skład</th><th>Kcal</th><th>Białko</th></tr>
-      <tr><td>Śniadanie</td><td>Grahamka Putka 70g + szynka naturalna 40g + ser Gouda 20g + 2 jajka + warzywa 100g</td><td>533</td><td>35g</td></tr>
-      <tr><td>II śniadanie</td><td>Protein rice: ryż biały 50g (suchy) + WPC 35g + jogurt naturalny 200g</td><td>452</td><td>39g</td></tr>
-      <tr><td>Pre-workout</td><td>Banan 120g</td><td>107</td><td>1g</td></tr>
-      <tr><td>Cheat meal</td><td>Kotlety z polędwiczek Wipasz w panierce 200g + frytki Aviko 150g + surówka 150g + masło klarowane 15g</td><td>819</td><td>61g</td></tr>
-      <tr><td>Post-workout</td><td>Zott Protein Drink 250ml</td><td>165</td><td>21g</td></tr>
-      <tr><td>Kolacja</td><td>Twaróg chudy Pilos 150g + jogurt naturalny 200g + miód 10g + grahamka Putka 60g</td><td>483</td><td>42g</td></tr>
-      <tr><td>Inne</td><td>2× cappuccino</td><td>80</td><td>2g</td></tr>
-      <tr style="font-weight:600;border-top:1px solid var(--border)"><td colspan="2">SUMA</td><td>2639</td><td>201g</td></tr>
-    </table>
-  </div>
+
+  <details style="margin-bottom:8px">
+    <summary style="cursor:pointer;padding:12px 16px;background:var(--bg2);border:1px solid rgba(59,130,246,0.4);border-radius:8px;font-size:13px;color:var(--text2);list-style:none;display:flex;justify-content:space-between;align-items:center;user-select:none">
+      <span>💪 Wtorek — Upper A / Upper B</span><span style="font-size:10px;color:var(--text3)">▼</span>
+    </summary>
+    <div style="padding-top:8px">
+    <div class="card">
+      <table>
+        <tr><th>Posiłek</th><th>Skład</th><th>Kcal</th><th>Białko</th></tr>
+        <tr><td>Śniadanie</td><td>Płatki owsiane 40g + orkiszowe 40g + gryczane 30g + WPC 20g + pasta orzechowa 20g + rodzynki 15g</td><td>648</td><td>35g</td></tr>
+        <tr><td>II śniadanie</td><td>Jogurt naturalny 200g + WPC 10g + banan 120g</td><td>283</td><td>18g</td></tr>
+        <tr><td>Obiad</td><td>Polędwiczki kurczaka 200g + ryż biały 140g (suchy) + warzywa 200g + oliwa 1 łyżka</td><td>886</td><td>61g</td></tr>
+        <tr><td>Post-workout</td><td>Zott Protein Drink 250ml + banan 120g</td><td>272</td><td>22g</td></tr>
+        <tr><td>Kolacja</td><td>Twaróg chudy Pilos 200g + jogurt naturalny 200g + miód 15g + grahamka Putka 70g</td><td>574</td><td>52g</td></tr>
+        <tr><td>Inne</td><td>2× cappuccino</td><td>80</td><td>2g</td></tr>
+        <tr style="font-weight:600;border-top:1px solid var(--border)"><td colspan="2">SUMA</td><td>2743</td><td>190g</td></tr>
+      </table>
+    </div>
+    </div>
+  </details>
+
+  <details style="margin-bottom:8px">
+    <summary style="cursor:pointer;padding:12px 16px;background:var(--bg2);border:1px solid rgba(59,130,246,0.4);border-radius:8px;font-size:13px;color:var(--text2);list-style:none;display:flex;justify-content:space-between;align-items:center;user-select:none">
+      <span>💪 Czwartek — Lower</span><span style="font-size:10px;color:var(--text3)">▼</span>
+    </summary>
+    <div style="padding-top:8px">
+    <div class="card">
+      <table>
+        <tr><th>Posiłek</th><th>Skład</th><th>Kcal</th><th>Białko</th></tr>
+        <tr><td>Śniadanie</td><td>Płatki owsiane 40g + orkiszowe 40g + gryczane 30g + WPC 35g + pasta orzechowa 20g + rodzynki 15g</td><td>706</td><td>46g</td></tr>
+        <tr><td>II śniadanie</td><td>Jogurt naturalny 200g + WPC 10g + banan 120g</td><td>283</td><td>18g</td></tr>
+        <tr><td>Obiad</td><td>Dorsz atlantycki Lidl 200g + ryż biały 130g (suchy) + warzywa 200g + oliwa 1 łyżka</td><td>774</td><td>45g</td></tr>
+        <tr><td>Post-workout</td><td>Zott Protein Drink 250ml + banan 120g</td><td>272</td><td>22g</td></tr>
+        <tr><td>Kolacja</td><td>Pancake: WPC 20g + 2 jajka + mąka pszenna 50g + twaróg Pilos 50g + jogurt naturalny 150g + borówki 60g + banan 40g</td><td>656</td><td>50g</td></tr>
+        <tr><td>Inne</td><td>2× cappuccino</td><td>80</td><td>2g</td></tr>
+        <tr style="font-weight:600;border-top:1px solid var(--border)"><td colspan="2">SUMA</td><td>2771</td><td>183g</td></tr>
+      </table>
+    </div>
+    </div>
+  </details>
+
+  <details style="margin-bottom:8px">
+    <summary style="cursor:pointer;padding:12px 16px;background:var(--bg2);border:1px solid rgba(59,130,246,0.4);border-radius:8px;font-size:13px;color:var(--text2);list-style:none;display:flex;justify-content:space-between;align-items:center;user-select:none">
+      <span>💪 Niedziela — Upper A / Upper B + cheat meal</span><span style="font-size:10px;color:var(--text3)">▼</span>
+    </summary>
+    <div style="padding-top:8px">
+    <div class="card">
+      <table>
+        <tr><th>Posiłek</th><th>Skład</th><th>Kcal</th><th>Białko</th></tr>
+        <tr><td>Śniadanie</td><td>Grahamka Putka 70g + szynka naturalna 40g + ser Gouda 20g + 2 jajka + warzywa 100g</td><td>533</td><td>35g</td></tr>
+        <tr><td>II śniadanie</td><td>Protein rice: ryż biały 50g (suchy) + WPC 35g + jogurt naturalny 200g</td><td>452</td><td>39g</td></tr>
+        <tr><td>Pre-workout</td><td>Banan 120g</td><td>107</td><td>1g</td></tr>
+        <tr><td>Cheat meal</td><td>Kotlety z polędwiczek Wipasz w panierce 200g + frytki Aviko 150g + surówka 150g + masło klarowane 15g</td><td>819</td><td>61g</td></tr>
+        <tr><td>Post-workout</td><td>Zott Protein Drink 250ml</td><td>165</td><td>21g</td></tr>
+        <tr><td>Kolacja</td><td>Twaróg chudy Pilos 150g + jogurt naturalny 200g + miód 10g + grahamka Putka 60g</td><td>483</td><td>42g</td></tr>
+        <tr><td>Inne</td><td>2× cappuccino</td><td>80</td><td>2g</td></tr>
+        <tr style="font-weight:600;border-top:1px solid var(--border)"><td colspan="2">SUMA</td><td>2639</td><td>201g</td></tr>
+      </table>
+    </div>
+    </div>
+  </details>
 
   </div><!-- /d-rekompozycja -->
 
   <!-- TAB: MINI CUT -->
-  <div id="d-minicut" class="tab-panel">
+  <div id="d-minicut" class="tab-panel active">
 
     <div class="card">
-      <div class="card-title">🔻 Mini cut #1 — kwiecień–maj 2026 &nbsp;<span class="badge badge-red">od ~30.03 po checkpoincie</span></div>
+      <div class="card-title">🔻 Mini cut #1 — kwiecień–maj 2026 &nbsp;<span class="badge badge-red">start 31.03 · Cykl 2 · 8 tygodni</span></div>
       <div class="alert alert-info">
         <span class="alert-icon">💡</span>
-        <span><strong>Zasada:</strong> dni treningowe bez zmian. Deficyt -350 kcal wyłącznie z dni odpoczynku — mniej ryżu/makaronu i mniejsze grahamki wieczorem. Białko absolutnie nieruszone.</span>
+        <span><strong>Zasada:</strong> deficyt przez cyklowanie kalorii — dni odpoczynku ~2050–2100 kcal, dni treningowe ~2650–2750 kcal. Białko ≥173g każdego dnia (2g/kg × 86,5 kg). Shake proteinowy zamiast Zott we wszystkich dniach.</span>
       </div>
       <div class="stat-grid" style="margin-top:4px">
-        <div class="stat-box"><div class="stat-num" style="font-size:20px;color:var(--red)">-350</div><div class="stat-label">kcal dni odpoczynku</div></div>
-        <div class="stat-box"><div class="stat-num" style="font-size:20px;color:var(--accent2)">bez zmian</div><div class="stat-label">dni treningowe</div></div>
-        <div class="stat-box"><div class="stat-num" style="font-size:20px;color:var(--green)">≥165g</div><div class="stat-label">białko każdy dzień</div></div>
+        <div class="stat-box"><div class="stat-num" style="font-size:20px;color:var(--red)">~2366</div><div class="stat-label">kcal średnia/dzień</div></div>
+        <div class="stat-box"><div class="stat-num" style="font-size:20px;color:var(--accent2)">~384</div><div class="stat-label">deficyt kcal/dzień</div></div>
+        <div class="stat-box"><div class="stat-num" style="font-size:20px;color:var(--green)">≥173g</div><div class="stat-label">białko minimum</div></div>
       </div>
     </div>
 
     <div class="card">
-      <div class="card-title">📊 Porównanie — rekompozycja vs mini cut</div>
+      <div class="card-title">📊 Podsumowanie tygodniowe — mini cut</div>
       <table>
-        <tr><th>Dzień</th><th>Rekompozycja</th><th style="color:var(--red)">Mini cut</th><th>Różnica</th><th>Białko cut</th></tr>
-        <tr><td>Poniedziałek <span class="badge badge-gray">odp.</span></td><td>~2444 kcal</td><td style="color:var(--red)">~2100 kcal</td><td style="color:var(--red)">-344</td><td style="color:var(--green)">~172g</td></tr>
-        <tr><td>Wtorek <span class="badge badge-blue">trening</span></td><td>~2743 kcal</td><td style="color:var(--green)">~2743 kcal</td><td style="color:var(--text3)">bez zmian</td><td style="color:var(--green)">190g</td></tr>
-        <tr><td>Środa <span class="badge badge-gray">odp.</span></td><td>~2352 kcal</td><td style="color:var(--red)">~2030 kcal</td><td style="color:var(--red)">-322</td><td style="color:var(--green)">~170g</td></tr>
-        <tr><td>Czwartek <span class="badge badge-blue">trening</span></td><td>~2771 kcal</td><td style="color:var(--green)">~2771 kcal</td><td style="color:var(--text3)">bez zmian</td><td style="color:var(--green)">183g</td></tr>
-        <tr><td>Piątek <span class="badge badge-gray">odp.</span></td><td>~2406 kcal</td><td style="color:var(--red)">~2110 kcal</td><td style="color:var(--red)">-296</td><td style="color:var(--green)">~166g</td></tr>
-        <tr><td>Sobota <span class="badge badge-gray">odp.</span></td><td>~2312 kcal</td><td style="color:var(--red)">~2010 kcal</td><td style="color:var(--red)">-302</td><td style="color:var(--green)">~165g</td></tr>
-        <tr><td>Niedziela <span class="badge badge-blue">trening</span></td><td>~2639 kcal</td><td style="color:var(--green)">~2639 kcal</td><td style="color:var(--text3)">bez zmian</td><td style="color:var(--green)">201g</td></tr>
-        <tr style="font-weight:600;border-top:2px solid var(--border)"><td>Średnia</td><td>~2524 kcal</td><td style="color:var(--red)">~2345 kcal</td><td style="color:var(--red)">-179 kcal/dzień</td><td style="color:var(--green)">≥165g ✓</td></tr>
+        <tr><th>Dzień</th><th>Typ</th><th style="color:var(--red)">Kcal</th><th style="color:var(--green)">Białko</th></tr>
+        <tr><td>Poniedziałek</td><td><span class="badge badge-gray">odpoczynek</span></td><td style="color:var(--red)">~2053</td><td style="color:var(--green)">~181g</td></tr>
+        <tr><td>Wtorek</td><td><span class="badge badge-blue">trening UA/B</span></td><td style="color:var(--green)">~2673</td><td style="color:var(--green)">~204g</td></tr>
+        <tr><td>Środa</td><td><span class="badge badge-gray">odpoczynek</span></td><td style="color:var(--red)">~2089</td><td style="color:var(--yellow)">~162g</td></tr>
+        <tr><td>Czwartek</td><td><span class="badge badge-blue">trening Lower</span></td><td style="color:var(--green)">~2705</td><td style="color:var(--green)">~189g</td></tr>
+        <tr><td>Piątek</td><td><span class="badge badge-gray">odpoczynek + lekki trening</span></td><td style="color:var(--red)">~2159</td><td style="color:var(--yellow)">~163g</td></tr>
+        <tr><td>Sobota</td><td><span class="badge badge-gray">odpoczynek + wieczór</span></td><td style="color:var(--yellow)">~2341</td><td style="color:var(--yellow)">~142g</td></tr>
+        <tr><td>Niedziela</td><td><span class="badge badge-blue">trening UA/B</span></td><td style="color:var(--green)">~2539</td><td style="color:var(--green)">~200g</td></tr>
+        <tr style="font-weight:600;border-top:2px solid var(--border)"><td>Średnia</td><td></td><td style="color:var(--red)">~2366</td><td style="color:var(--green)">~177g</td></tr>
       </table>
-      <div style="font-size:12px;color:var(--text3);margin-top:8px">Efektywny deficyt tygodniowy: ~1250 kcal → ~0,35 kg tłuszczu/tydzień — bezpieczne tempo.</div>
+      <div style="font-size:12px;color:var(--text3);margin-top:8px">Efektywny deficyt: ~384 kcal/dzień · ~2688 kcal/tydzień → <strong>~0,32–0,35 kg/tydzień</strong> · cel 84–85 kg osiągalny w 8 tygodniach ✓</div>
     </div>
 
-    <h3>Konkretne zmiany — dzień po dniu</h3>
-
     <div class="card">
-      <div class="card-title">Poniedziałek — -344 kcal</div>
+      <div class="card-title">📋 Strategia — mini cut vs rekompozycja</div>
       <table>
-        <tr><th>Posiłek</th><th>Rekompozycja</th><th style="color:var(--red)">Mini cut</th><th>Zmiana</th></tr>
-        <tr><td>Śniadanie</td><td colspan="2" style="color:var(--green)">bez zmian ✓</td><td>—</td></tr>
-        <tr><td>II śniadanie</td><td>jogurt 200g + WPC 10g + banan 120g</td><td>jogurt 200g + WPC 10g + <span style="color:var(--red)">banan 60g</span></td><td style="color:var(--red)">-45 kcal</td></tr>
-        <tr><td>Obiad</td><td>kurczak 200g + ryż 70g + warzywa + oliwa</td><td>kurczak 200g + <span style="color:var(--red)">ryż 40g</span> + warzywa + oliwa</td><td style="color:var(--red)">-108 kcal</td></tr>
-        <tr><td>Przekąska</td><td colspan="2" style="color:var(--green)">Zott 250ml — bez zmian ✓</td><td>—</td></tr>
-        <tr><td>Kolacja</td><td>tuńczyk + 2 jajka + grahamka 70g</td><td>tuńczyk + 2 jajka + <span style="color:var(--red)">grahamka 40g</span></td><td style="color:var(--red)">-179 kcal</td></tr>
-        <tr><td>Cappuccino</td><td colspan="2" style="color:var(--green)">bez zmian ✓</td><td>—</td></tr>
-        <tr style="font-weight:600;border-top:1px solid var(--border)"><td>SUMA</td><td>~2444 kcal · 177g</td><td style="color:var(--red)">~2100 kcal · ~172g</td><td style="color:var(--red)">-344 kcal</td></tr>
+        <tr><th>Parametr</th><th>Rekompozycja (sty–mar)</th><th style="color:var(--red)">Mini cut (kwi–maj)</th></tr>
+        <tr><td>Średnia kcal/dzień</td><td>~2524</td><td style="color:var(--red)">~2366</td></tr>
+        <tr><td>Dni odpoczynku</td><td>~2379 kcal</td><td style="color:var(--red)">~2060 kcal</td></tr>
+        <tr><td>Dni treningowe</td><td>~2718 kcal</td><td style="color:var(--yellow)">~2639 kcal</td></tr>
+        <tr><td>Białko minimum</td><td>~182g średnio</td><td style="color:var(--green)">≥173g (2g/kg)</td></tr>
+        <tr><td>Efektywny deficyt</td><td>~0 (rekompozycja)</td><td style="color:var(--red)">~384 kcal/dzień</td></tr>
+        <tr><td>Tempo redukcji</td><td>stabilizacja wagi</td><td style="color:var(--green)">~0,32–0,35 kg/tydzień</td></tr>
       </table>
     </div>
 
     <div class="card">
-      <div class="card-title">Środa — -322 kcal</div>
-      <table>
-        <tr><th>Posiłek</th><th>Rekompozycja</th><th style="color:var(--red)">Mini cut</th><th>Zmiana</th></tr>
-        <tr><td>Śniadanie</td><td colspan="2" style="color:var(--green)">bez zmian ✓</td><td>—</td></tr>
-        <tr><td>II śniadanie</td><td>jogurt 200g + WPC 10g + banan 120g</td><td>jogurt 200g + WPC 10g + <span style="color:var(--red)">banan 60g</span></td><td style="color:var(--red)">-45 kcal</td></tr>
-        <tr><td>Obiad</td><td>dorsz 200g + warzywa + oliwa 1 łyżka</td><td>dorsz 200g + warzywa + <span style="color:var(--red)">oliwa 1 łyżeczka</span></td><td style="color:var(--red)">-60 kcal</td></tr>
-        <tr><td>Przekąska</td><td colspan="2" style="color:var(--green)">Zott 250ml — bez zmian ✓</td><td>—</td></tr>
-        <tr><td>Kolacja</td><td>szakszuka + mozzarella 125g + grahamka 70g</td><td>szakszuka + <span style="color:var(--red)">mozzarella 75g</span> + <span style="color:var(--red)">grahamka 40g</span></td><td style="color:var(--red)">-217 kcal</td></tr>
-        <tr><td>Cappuccino</td><td colspan="2" style="color:var(--green)">bez zmian ✓</td><td>—</td></tr>
-        <tr style="font-weight:600;border-top:1px solid var(--border)"><td>SUMA</td><td>~2352 kcal · 179g</td><td style="color:var(--red)">~2030 kcal · ~170g</td><td style="color:var(--red)">-322 kcal</td></tr>
-      </table>
-    </div>
-
-    <div class="card">
-      <div class="card-title">Piątek — -296 kcal</div>
-      <table>
-        <tr><th>Posiłek</th><th>Rekompozycja</th><th style="color:var(--red)">Mini cut</th><th>Zmiana</th></tr>
-        <tr><td>Śniadanie</td><td colspan="2" style="color:var(--green)">bez zmian ✓</td><td>—</td></tr>
-        <tr><td>II śniadanie</td><td>jogurt 200g + WPC 10g + banan 120g</td><td>jogurt 200g + WPC 10g + <span style="color:var(--red)">banan 60g</span></td><td style="color:var(--red)">-45 kcal</td></tr>
-        <tr><td>Obiad</td><td>tuńczyk + makaron 100g + pomidory + ogórek</td><td>tuńczyk + <span style="color:var(--red)">makaron 60g</span> + pomidory + ogórek</td><td style="color:var(--red)">-136 kcal</td></tr>
-        <tr><td>Przekąska</td><td colspan="2" style="color:var(--green)">Zott 250ml — bez zmian ✓</td><td>—</td></tr>
-        <tr><td>Kolacja</td><td>jajecznica 3 jajka + mozzarella 25g + warzywa + grahamka 70g</td><td>jajecznica 3 jajka + mozzarella 25g + warzywa + <span style="color:var(--red)">grahamka 40g</span></td><td style="color:var(--red)">-115 kcal</td></tr>
-        <tr><td>Cappuccino</td><td colspan="2" style="color:var(--green)">bez zmian ✓</td><td>—</td></tr>
-        <tr style="font-weight:600;border-top:1px solid var(--border)"><td>SUMA</td><td>~2406 kcal · 170g</td><td style="color:var(--red)">~2110 kcal · ~166g</td><td style="color:var(--red)">-296 kcal</td></tr>
-      </table>
-    </div>
-
-    <div class="card">
-      <div class="card-title">Sobota — -302 kcal</div>
-      <table>
-        <tr><th>Posiłek</th><th>Rekompozycja</th><th style="color:var(--red)">Mini cut</th><th>Zmiana</th></tr>
-        <tr><td>Śniadanie</td><td colspan="2" style="color:var(--green)">bez zmian ✓</td><td>—</td></tr>
-        <tr><td>II śniadanie</td><td>protein rice: ryż 50g + WPC 35g + jogurt 200g</td><td>protein rice: <span style="color:var(--red)">ryż 30g</span> + WPC 35g + jogurt 200g</td><td style="color:var(--red)">-72 kcal</td></tr>
-        <tr><td>Obiad</td><td>łosoś 200g + warzywa + oliwa</td><td><span style="color:var(--red)">łosoś 160g</span> + warzywa + oliwa</td><td style="color:var(--red)">-100 kcal</td></tr>
-        <tr><td>Przekąska</td><td colspan="2" style="color:var(--green)">Zott 250ml — bez zmian ✓</td><td>—</td></tr>
-        <tr><td>Kolacja</td><td>omlet 3 jajka + warzywa + Gouda 20g + oliwa</td><td>omlet 3 jajka + warzywa + <span style="color:var(--red)">bez Goudy</span> + oliwa</td><td style="color:var(--red)">-83 kcal</td></tr>
-        <tr><td>Cappuccino</td><td colspan="2" style="color:var(--green)">bez zmian ✓</td><td>—</td></tr>
-        <tr style="font-weight:600;border-top:1px solid var(--border)"><td>SUMA</td><td>~2312 kcal · 172g</td><td style="color:var(--red)">~2010 kcal · ~165g</td><td style="color:var(--red)">-302 kcal</td></tr>
-      </table>
-    </div>
-
-    <div class="card">
-      <div class="card-title">🍽️ Jak radzić sobie z głodem na cucie</div>
-
+      <div class="card-title">🎯 Cel i szanse powodzenia</div>
       <div class="alert alert-info">
-        <span class="alert-icon">🧠</span>
-        <span><strong>Najważniejsze:</strong> przy deficycie -350 kcal pewien poziom głodu jest normalny i nie jest sygnałem że coś jest nie tak. To fizjologia — organizm sygnalizuje że jest deficyt. Cel to zarządzanie głodem, nie jego eliminacja.</span>
-      </div>
-
-      <div class="card-title" style="margin-top:16px">Strategie strukturalne — działają zanim głód się pojawi</div>
-      <table>
-        <tr><th>Strategia</th><th>Jak</th><th>Dlaczego działa</th></tr>
-        <tr>
-          <td style="color:var(--accent2);font-weight:600">Białko przy każdym posiłku</td>
-          <td style="font-size:12px">Już to robisz — każdy posiłek ma ≥15g białka</td>
-          <td style="font-size:12px;color:var(--text3)">Białko sycił 2× lepiej niż węglowodany — wydłuża czas do kolejnego głodu</td>
-        </tr>
-        <tr>
-          <td style="color:var(--accent2);font-weight:600">Objętość zamiast kalorii</td>
-          <td style="font-size:12px">Warzywa nieograniczone — ogórek, pomidory, papryka, sałata, brokuły</td>
-          <td style="font-size:12px;color:var(--text3)">~30 kcal/100g, rozciągają żołądek, dają poczucie pełności bez kalorii</td>
-        </tr>
-        <tr>
-          <td style="color:var(--accent2);font-weight:600">Woda przed posiłkiem</td>
-          <td style="font-size:12px">Szklanka wody 10–15 min przed jedzeniem</td>
-          <td style="font-size:12px;color:var(--text3)">Zmniejsza apetyt, często głód to zamaskowane pragnienie</td>
-        </tr>
-        <tr>
-          <td style="color:var(--accent2);font-weight:600">Stałe pory posiłków</td>
-          <td style="font-size:12px">Jesz o tych samych godzinach każdego dnia</td>
-          <td style="font-size:12px;color:var(--text3)">Organizm "uczy się" rytmu — hormon głodu (grelina) szczytuje zgodnie z rytmem, nie losowo</td>
-        </tr>
-        <tr>
-          <td style="color:var(--accent2);font-weight:600">Zott jako kotwica</td>
-          <td style="font-size:12px">Trzymaj go na moment największego głodu w ciągu dnia, nie o stałej porze</td>
-          <td style="font-size:12px;color:var(--text3)">165 kcal, 21g białka, płynny — szybko wypełnia, wysoko nasyca</td>
-        </tr>
-      </table>
-
-      <div class="card-title" style="margin-top:16px">Kiedy głód uderza między posiłkami</div>
-      <table>
-        <tr><th>Sytuacja</th><th>Co zrobić</th></tr>
-        <tr>
-          <td style="font-weight:600">Głód po obiedzie, do 2h po posiłku</td>
-          <td style="font-size:12px;color:var(--text3)">Najpierw szklanka wody lub czarna kawa / zielona herbata. Poczekaj 15 min — często mija. Jeśli nie — ogórek lub papryka (dosłownie 0 kcal efektywnych).</td>
-        </tr>
-        <tr>
-          <td style="font-weight:600">Głód wieczorny (po kolacji)</td>
-          <td style="font-size:12px;color:var(--text3)">Najtrudniejsza pora — tu najwięcej ludzi się łamie. Herbata ziołowa lub z imbirem (0 kcal). Jeśli naprawdę nie do wytrzymania: twaróg chudy Pilos 50g = 45 kcal, 9g białka — minimalna cena za spokój.</td>
-        </tr>
-        <tr>
-          <td style="font-weight:600">Głód w pracy / przy biurku</td>
-          <td style="font-size:12px;color:var(--text3)">Często to nuda lub stres, nie głód. Wstań, przejdź się, wypij wodę. Jeśli masz pod ręką jedzenie — będziesz je dojadał bez względu na głód.</td>
-        </tr>
-        <tr>
-          <td style="font-weight:600">"Mam ochotę coś podejść" wieczorem</td>
-          <td style="font-size:12px;color:var(--text3)">To właśnie hedonic hunger — apetyt, nie fizyczny głód. Rozróżnienie: fizyczny głód narasta stopniowo i nie jest selektywny. Apetyt pojawia się nagle i jest konkretny ("chcę czegoś słodkiego"). Na apetyt działa odkładanie w czasie — "zjem za 20 minut" — często mija.</td>
-        </tr>
-      </table>
-
-      <div class="card-title" style="margin-top:16px">Twój aktualny plan a głód — co można poprawić już teraz</div>
-      <div class="alert alert-warn">
-        <span class="alert-icon">🔍</span>
-        <span><strong>Skąd głód przy obecnym planie?</strong> Najbardziej prawdopodobna przyczyna to luka między przekąską (Zott) a kolacją — jeśli przekąska jest o 16:00 a kolacja o 20:00, to 4h przerwy bez jedzenia. Przestaw Zott na 17:00–17:30 i zjedz kolację wcześniej (19:00) jeśli możesz.</span>
+        <span class="alert-icon">📊</span>
+        <span><strong>Cel:</strong> zejście z ~86,9 kg do 84–85 kg w 8 tygodniach (kwi–maj 2026) przy BF% 16–17%. Deficyt ~2688 kcal tygodniowo → ~0,32–0,35 kg tłuszczu/tydzień → <strong>~2,5–2,8 kg w 8 tygodniach</strong> — cel w zasięgu ✓</span>
       </div>
       <div class="alert alert-success">
         <span class="alert-icon">✅</span>
-        <span><strong>Jedno ćwiczenie które naprawdę pomaga:</strong> przez pierwszy tydzień cutu zapisuj <em>kiedy</em> czujesz głód i co robiłeś przed chwilą. Po kilku dniach wzorzec będzie widoczny — i łatwiej go obejść strukturalnie niż walczyć z nim siłą woli.</span>
+        <span><strong>Co działa na korzyść:</strong> dni treningowe bez głębokiego cięcia chronią siłę i regenerację. Białko ≥173g przy każdym dniu chroni mięśnie. Pudding i shake dają sytość. Sobota z drinkami i Piątek z lekkim treningiem są wbudowane w plan — nie ma efektu "złamania diety".</span>
+      </div>
+      <div class="alert alert-warn">
+        <span class="alert-icon">⚠️</span>
+        <span><strong>Główne ryzyka:</strong> Środa i Piątek mają białko poniżej 173g — nadrabiają Wtorek i Czwartek. Sobota jest najsłabszym dniem białkowo (~142g) — świadomy kompromis. Przy marginesie błędu liczenia ~10% realny deficyt może być niższy — dlatego plan jest celowo ustawiony z buforem.</span>
       </div>
       <div class="alert alert-info">
-        <span class="alert-icon">☕</span>
-        <span><strong>Kawa i herbata</strong> — niedocenione narzędzie. Czarna kawa tłumi głód na 1–2h (kofeina + termogeneza). Możesz śmiało dodać jedną kawę między posiłkami gdy głód uderza. Twoje 2× cappuccino już są w budżecie — zostaw je na momenty gdy najbardziej potrzebujesz.</span>
+        <span class="alert-icon">📉</span>
+        <span><strong>Sygnał że cut idzie za agresywnie:</strong> siła spada &gt;15% przez 2 tygodnie z rzędu → dodaj 150 kcal w dniach odpoczynku. Waga nie spada przez 3 tygodnie → odejmij 100 kcal z dni odpoczynku.</span>
       </div>
-
     </div>
+
+    <h3>Posiłki — dni odpoczynku</h3>
+
+    <details style="margin-bottom:8px">
+      <summary style="cursor:pointer;padding:12px 16px;background:var(--bg2);border:1px solid var(--border);border-radius:8px;font-size:13px;color:var(--text2);list-style:none;display:flex;justify-content:space-between;align-items:center;user-select:none">
+        <span>📅 Poniedziałek</span><span style="font-size:10px;color:var(--text3)">▼</span>
+      </summary>
+      <div style="padding-top:8px">
+      <div class="card">
+        <table>
+          <tr><th>Posiłek</th><th>Skład</th><th>Kcal</th><th>Białko</th></tr>
+          <tr><td>Śniadanie</td><td>Płatki owsiane 40g + orkiszowe 40g + gryczane 30g + WPC 20g + pasta orzechowa 20g + rodzynki 15g</td><td>648</td><td>35g</td></tr>
+          <tr><td>Pudding</td><td>Ryż Arborio 30g + WPC 20g + jogurt Pilos 200g</td><td>306</td><td>26g</td></tr>
+          <tr><td>Obiad</td><td>Polędwiczki kurczaka 200g + marchewka kostka 225g + oliwa</td><td>420</td><td>50g</td></tr>
+          <tr><td>Shake</td><td>20g Xplode + 150ml mleka Pilos High Protein + 100ml wody</td><td>161</td><td>22g</td></tr>
+          <tr><td>Kolacja</td><td>Calvo tuńczyk sos pomidorowy 160g + 2 jajka</td><td>438</td><td>46g</td></tr>
+          <tr><td>Inne</td><td>2× cappuccino</td><td>80</td><td>2g</td></tr>
+          <tr style="font-weight:600;border-top:1px solid var(--border)"><td colspan="2">SUMA</td><td>~2053</td><td>~181g</td></tr>
+        </table>
+      </div>
+      </div>
+    </details>
+
+    <details style="margin-bottom:8px">
+      <summary style="cursor:pointer;padding:12px 16px;background:var(--bg2);border:1px solid var(--border);border-radius:8px;font-size:13px;color:var(--text2);list-style:none;display:flex;justify-content:space-between;align-items:center;user-select:none">
+        <span>📅 Środa</span><span style="font-size:10px;color:var(--text3)">▼</span>
+      </summary>
+      <div style="padding-top:8px">
+      <div class="card">
+        <table>
+          <tr><th>Posiłek</th><th>Skład</th><th>Kcal</th><th>Białko</th></tr>
+          <tr><td>Śniadanie</td><td>Płatki owsiane 40g + orkiszowe 40g + gryczane 30g + WPC 20g + pasta orzechowa 20g + rodzynki 15g</td><td>648</td><td>35g</td></tr>
+          <tr><td>Pudding</td><td>Ryż Arborio <strong>20g</strong> + WPC 20g + jogurt Pilos 200g</td><td>275</td><td>24g</td></tr>
+          <tr><td>Obiad</td><td>Dorsz atlantycki 200g + warzywa na patelnię 225g + oliwa</td><td>421</td><td>43g</td></tr>
+          <tr><td>Shake</td><td>20g Xplode + 150ml mleka Pilos High Protein + 100ml wody</td><td>161</td><td>22g</td></tr>
+          <tr><td>Kolacja</td><td>Szakszuka: 3 jajka + pomidory 200g + cebula + papryka + oliwa + mozzarella light 62g</td><td>504</td><td>36g</td></tr>
+          <tr><td>Inne</td><td>2× cappuccino</td><td>80</td><td>2g</td></tr>
+          <tr style="font-weight:600;border-top:1px solid var(--border)"><td colspan="2">SUMA</td><td>~2089</td><td>~162g</td></tr>
+        </table>
+      </div>
+      </div>
+    </details>
+
+    <details style="margin-bottom:8px">
+      <summary style="cursor:pointer;padding:12px 16px;background:var(--bg2);border:1px solid var(--border);border-radius:8px;font-size:13px;color:var(--text2);list-style:none;display:flex;justify-content:space-between;align-items:center;user-select:none">
+        <span>📅 Piątek</span><span style="font-size:10px;color:var(--text3)">▼</span>
+      </summary>
+      <div style="padding-top:8px">
+      <div class="card">
+        <table>
+          <tr><th>Posiłek</th><th>Skład</th><th>Kcal</th><th>Białko</th></tr>
+          <tr><td>Śniadanie</td><td>Płatki owsiane 40g + orkiszowe 40g + gryczane 30g + WPC 20g + pasta orzechowa 20g + rodzynki 15g</td><td>648</td><td>35g</td></tr>
+          <tr><td>Pudding</td><td>Ryż Arborio 30g + WPC 20g + jogurt Pilos 200g</td><td>306</td><td>26g</td></tr>
+          <tr><td>Obiad</td><td>3 jajka + 2 tortille proteinowe Lidl + warzywa + oliwa</td><td>526</td><td>34g</td></tr>
+          <tr><td>Shake</td><td>20g Xplode + 150ml mleka Pilos High Protein + 100ml wody</td><td>161</td><td>22g</td></tr>
+          <tr><td>Kolacja</td><td>Calvo tuńczyk sos pomidorowy 160g + 2 jajka</td><td>438</td><td>44g</td></tr>
+          <tr><td>Inne</td><td>2× cappuccino</td><td>80</td><td>2g</td></tr>
+          <tr style="font-weight:600;border-top:1px solid var(--border)"><td colspan="2">SUMA</td><td>~2159</td><td>~163g</td></tr>
+        </table>
+      </div>
+      </div>
+    </details>
+
+    <details style="margin-bottom:8px">
+      <summary style="cursor:pointer;padding:12px 16px;background:var(--bg2);border:1px solid var(--border);border-radius:8px;font-size:13px;color:var(--text2);list-style:none;display:flex;justify-content:space-between;align-items:center;user-select:none">
+        <span>📅 Sobota</span><span style="font-size:10px;color:var(--text3)">▼</span>
+      </summary>
+      <div style="padding-top:8px">
+      <div class="card">
+        <table>
+          <tr><th>Posiłek</th><th>Skład</th><th>Kcal</th><th>Białko</th></tr>
+          <tr><td>Śniadanie</td><td>Grahamka Putka 70g + szynka naturalna 40g + ser Gouda 20g + 2 jajka + warzywa 100g</td><td>533</td><td>35g</td></tr>
+          <tr><td>Pudding</td><td>Ryż Arborio 30g + WPC 20g + jogurt Pilos 200g</td><td>306</td><td>26g</td></tr>
+          <tr><td>Obiad</td><td>Łosoś atlantycki 150g + warzywa na patelnię 225g</td><td>511</td><td>35g</td></tr>
+          <tr><td>Shake</td><td>20g Xplode + 150ml mleka Pilos High Protein + 100ml wody</td><td>161</td><td>22g</td></tr>
+          <tr><td>Kolacja</td><td>Omlet: 2 jajka + warzywa 150g + oliwa 1 łyżeczka</td><td>277</td><td>17g</td></tr>
+          <tr><td>Inne</td><td>2× cappuccino + whiskey 2× 60ml + cola 0% 2× + paluszki beskidzkie 50g</td><td>553</td><td>7g</td></tr>
+          <tr style="font-weight:600;border-top:1px solid var(--border)"><td colspan="2">SUMA</td><td>~2341</td><td>~142g</td></tr>
+        </table>
+        <div style="font-size:12px;color:var(--text3);margin-top:8px">⚡ Okazjonalnie: antrykot 235g + warzywa na patelnię 225g zamiast łososia → ~732 kcal / ~52g białka</div>
+      </div>
+      </div>
+    </details>
+
+    <h3>Posiłki — dni treningowe</h3>
+
+    <details style="margin-bottom:8px">
+      <summary style="cursor:pointer;padding:12px 16px;background:var(--bg2);border:1px solid rgba(59,130,246,0.4);border-radius:8px;font-size:13px;color:var(--text2);list-style:none;display:flex;justify-content:space-between;align-items:center;user-select:none">
+        <span>💪 Wtorek — Upper A / Upper B</span><span style="font-size:10px;color:var(--text3)">▼</span>
+      </summary>
+      <div style="padding-top:8px">
+      <div class="card">
+        <table>
+          <tr><th>Posiłek</th><th>Skład</th><th>Kcal</th><th>Białko</th></tr>
+          <tr><td>Śniadanie</td><td>Płatki owsiane 40g + orkiszowe 40g + gryczane 30g + WPC 20g + pasta orzechowa 20g + rodzynki 15g</td><td>648</td><td>35g</td></tr>
+          <tr><td>Pudding</td><td>Ryż Arborio 30g + WPC 20g + jogurt Pilos 200g</td><td>306</td><td>26g</td></tr>
+          <tr><td>Obiad</td><td>Polędwiczki kurczaka 200g + czarny ryż tajski 120g + warzywa na patelnię 225g + oliwa</td><td>904</td><td>67g</td></tr>
+          <tr><td>Shake (post-workout)</td><td>20g Xplode + 150ml mleka Pilos High Protein + 100ml wody</td><td>161</td><td>22g</td></tr>
+          <tr><td>Kolacja</td><td>Twaróg chudy Pilos 200g + jogurt Pilos 200g + miód 15g + grahamka Putka 70g</td><td>574</td><td>52g</td></tr>
+          <tr><td>Inne</td><td>2× cappuccino</td><td>80</td><td>2g</td></tr>
+          <tr style="font-weight:600;border-top:1px solid var(--border)"><td colspan="2">SUMA</td><td>~2673</td><td>~204g</td></tr>
+        </table>
+      </div>
+      </div>
+    </details>
+
+    <details style="margin-bottom:8px">
+      <summary style="cursor:pointer;padding:12px 16px;background:var(--bg2);border:1px solid rgba(59,130,246,0.4);border-radius:8px;font-size:13px;color:var(--text2);list-style:none;display:flex;justify-content:space-between;align-items:center;user-select:none">
+        <span>💪 Czwartek — Lower</span><span style="font-size:10px;color:var(--text3)">▼</span>
+      </summary>
+      <div style="padding-top:8px">
+      <div class="card">
+        <table>
+          <tr><th>Posiłek</th><th>Skład</th><th>Kcal</th><th>Białko</th></tr>
+          <tr><td>Śniadanie</td><td>Płatki owsiane 40g + orkiszowe 40g + gryczane 30g + WPC 20g + pasta orzechowa 20g + rodzynki 15g</td><td>648</td><td>35g</td></tr>
+          <tr><td>Pudding</td><td>Ryż Arborio 30g + WPC 20g + jogurt Pilos 200g</td><td>306</td><td>26g</td></tr>
+          <tr><td>Obiad</td><td>Dorsz atlantycki 200g + czarny ryż tajski 100g + marchewka kostka 225g + oliwa</td><td>824</td><td>52g</td></tr>
+          <tr><td>Shake (post-workout)</td><td>20g Xplode + 150ml mleka Pilos High Protein + 100ml wody</td><td>161</td><td>22g</td></tr>
+          <tr><td>Kolacja</td><td>Pancake: WPC 20g + 2 jajka + mąka pszenna 50g + twaróg Pilos 50g + jogurt Pilos 200g + borówki 60g + banan 40g</td><td>686</td><td>52g</td></tr>
+          <tr><td>Inne</td><td>2× cappuccino</td><td>80</td><td>2g</td></tr>
+          <tr style="font-weight:600;border-top:1px solid var(--border)"><td colspan="2">SUMA</td><td>~2705</td><td>~189g</td></tr>
+        </table>
+        <div style="font-size:12px;color:var(--text3);margin-top:8px">💡 Miejsce na dokładanie owoców do pancake — ryż 100g zostawia ~141 kcal buforu do celu 2800 kcal</div>
+      </div>
+      </div>
+    </details>
+
+    <details style="margin-bottom:8px">
+      <summary style="cursor:pointer;padding:12px 16px;background:var(--bg2);border:1px solid rgba(59,130,246,0.4);border-radius:8px;font-size:13px;color:var(--text2);list-style:none;display:flex;justify-content:space-between;align-items:center;user-select:none">
+        <span>💪 Niedziela — Upper A / Upper B</span><span style="font-size:10px;color:var(--text3)">▼</span>
+      </summary>
+      <div style="padding-top:8px">
+      <div class="card">
+        <table>
+          <tr><th>Posiłek</th><th>Skład</th><th>Kcal</th><th>Białko</th></tr>
+          <tr><td>Śniadanie</td><td>Grahamka Putka 70g + szynka naturalna 40g + ser Gouda 20g + 2 jajka + warzywa 100g</td><td>533</td><td>35g</td></tr>
+          <tr><td>Pudding</td><td>Ryż Arborio 30g + WPC 20g + jogurt Pilos 200g</td><td>306</td><td>26g</td></tr>
+          <tr><td>Obiad</td><td>Polędwiczki kurczaka 200g w passacie (passata 200ml + czosnek + oliwa 1 łyżeczka + zioła) + ryż Arborio 150g</td><td>845</td><td>62g</td></tr>
+          <tr><td>Shake</td><td>20g Xplode + 150ml mleka Pilos High Protein + 100ml wody</td><td>161</td><td>22g</td></tr>
+          <tr><td>Kolacja</td><td>Twaróg chudy Pilos 200g + jogurt Pilos 200g + miód 10g + grahamka Putka 70g</td><td>574</td><td>52g</td></tr>
+          <tr><td>Inne</td><td>3× cappuccino</td><td>120</td><td>3g</td></tr>
+          <tr style="font-weight:600;border-top:1px solid var(--border)"><td colspan="2">SUMA</td><td>~2539</td><td>~200g</td></tr>
+        </table>
+      </div>
+      </div>
+    </details>
 
   </div><!-- /d-minicut -->
 
@@ -1447,22 +1555,226 @@ Nie analizuj tylko ostatnich 1–2 treningów. Analizuj cały cykl jako całoś�
     <table>
       <tr><th>Produkt</th><th>Porcja</th><th>Kcal</th><th>Białko</th><th>Uwagi</th></tr>
       <tr><td>Olimp WPC Protein Complex</td><td>20g / 35g</td><td>76 / 134</td><td>15g / 26g</td><td>75g białka/100g ⭐</td></tr>
-      <tr><td>Zott Protein Drink</td><td>250ml</td><td>165</td><td>21g</td><td>8,5g białka/100ml</td></tr>
-      <tr><td>Jogurt naturalny</td><td>200g</td><td>138</td><td>10g</td><td>4,9g białka/100g</td></tr>
+      <tr><td>Olimp Whey Protein Xplode Powder</td><td>30g (1 porcja)</td><td>121</td><td>15,3g</td><td>używany w shake · 15,3g białka/30g</td></tr>
+      <tr><td>Mleko Łaciate 0,5% UHT</td><td>100ml</td><td>34</td><td>3,4g</td><td>do shake · 150ml = 51 kcal / 5,1g białka</td></tr>
+      <tr><td>Shake proteinowy (gotowy)</td><td>30g Xplode + 150ml mleka + 100ml wody</td><td>172</td><td>20,4g</td><td>zamiennik Zott ⭐</td></tr>
+      <tr><td>Olimp Whey Protein Xplode Powder</td><td>20g (porcja shake)</td><td>81</td><td>10,2g</td><td>20g/porcja w shake · 15,3g białka/30g</td></tr>
+      <tr><td>Mleko Pilos High Protein (Lidl)</td><td>100ml / 150ml</td><td>54 / 80</td><td>8g / 12g</td><td>8g białka/100ml ⭐ · ~7,99 zł/1L</td></tr>
+      <tr><td>Shake proteinowy (gotowy)</td><td>20g Xplode + 150ml Pilos HP + 100ml wody</td><td>161</td><td>22,2g</td><td>nowa receptura ⭐</td></tr>
+      <tr><td>Jogurt naturalny Pilos</td><td>200g / 150g</td><td>122 / 92</td><td>8,6g / 6,5g</td><td>61 kcal/100g · 4,3g białka/100g</td></tr>
       <tr><td>Twaróg chudy Pilos</td><td>100g</td><td>89</td><td>17g</td><td>17,4g białka/100g ⭐</td></tr>
       <tr><td>Pasta orzechowa (100%)</td><td>20g</td><td>123</td><td>6g</td><td>613 kcal/100g</td></tr>
-      <tr><td>Calvo tuńczyk sos pomidorowy</td><td>160g</td><td>298</td><td>29g</td><td>olej słonecznikowy w sosie!</td></tr>
+      <tr><td>Calvo tuńczyk sos pomidorowy</td><td>160g</td><td>298</td><td>29g</td><td>olej słonecznikowy w sosie! · 186 kcal/100g</td></tr>
       <tr><td>Rio Mare tuńczyk w oliwie</td><td>160g (104g po odsączeniu)</td><td>173</td><td>29g</td><td>~166 kcal/100g odsączone</td></tr>
-      <tr><td>Grahamka Putka słonecznikowa</td><td>70g</td><td>209</td><td>7g</td><td>299 kcal/100g</td></tr>
+      <tr><td>Grahamka Putka słonecznikowa</td><td>70g / 35g</td><td>209 / 105</td><td>7g / 3,5g</td><td>299 kcal/100g</td></tr>
       <tr><td>Polędwiczki kurczaka Wipasz</td><td>100g</td><td>116</td><td>24g</td><td></td></tr>
       <tr><td>Dorsz atlantycki Lidl (Targ Rybny)</td><td>100g</td><td>83</td><td>19g</td><td>bardzo chude białko ⭐</td></tr>
-      <tr><td>Mozzarella light Pilos</td><td>125g (cała kulka)</td><td>196</td><td>30g</td><td>24g białka/100g</td></tr>
-      <tr><td>Łosoś atlantycki Lidl ze skórą</td><td>200g</td><td>502</td><td>40g</td><td>251 kcal/100g ze skórą</td></tr>
+      <tr><td>Mozzarella light Pilos</td><td>125g (cała kulka) / 62g (½)</td><td>196 / 98</td><td>30g / 15g</td><td>24g białka/100g</td></tr>
+      <tr><td>Łosoś atlantycki Lidl ze skórą</td><td>200g / 150g</td><td>502 / 376</td><td>40g / 30g</td><td>251 kcal/100g ze skórą</td></tr>
+      <tr><td>Czarny ryż tajski (suchy)</td><td>100g</td><td>350</td><td>8g</td><td>niski IG=42 · do obiadów treningowych ⭐</td></tr>
+      <tr><td>Ryż Arborio (suchy)</td><td>100g</td><td>350</td><td>7g</td><td>do puddingu i sosu · wchłania płyny ⭐</td></tr>
+      <tr><td>Tortilla proteinowa Lidl</td><td>1 szt (~40g)</td><td>118</td><td>7,3g</td><td>18g białka/100g ⭐ · nowość Lidl</td></tr>
+      <tr><td>Marchewka kostka (mrożona)</td><td>100g</td><td>30</td><td>0,9g</td><td>opakowanie 450g → 225g na 2 dni</td></tr>
+      <tr><td>Warzywa na patelnię z przyprawą włoską</td><td>100g</td><td>46</td><td>2,4g</td><td>opakowanie 450g → 225g porcja</td></tr>
+      <tr><td>Warzywa na patelnię z ziołami i papryką</td><td>100g</td><td>69</td><td>2,1g</td><td>opakowanie 450g → 225g porcja</td></tr>
+      <tr><td>Warzywa na patelnię (podstawowe)</td><td>100g</td><td>60</td><td>2,1g</td><td>opakowanie 450g → 225g porcja</td></tr>
+      <tr><td>Passata pomidorowa</td><td>100ml</td><td>~35</td><td>~1,5g</td><td>do kurczaka w sosie · Niedziela</td></tr>
+      <tr><td>Paluszki beskidzkie</td><td>50g (½ opakowania)</td><td>193</td><td>5g</td><td>opakowanie 100g · 386 kcal/100g</td></tr>
       <tr><td>Frytki Aviko Original</td><td>150g</td><td>218</td><td>4g</td><td>145 kcal/100g</td></tr>
       <tr><td>Makaron Lubella Pełne Ziarno Świdry</td><td>100g suchy</td><td>340</td><td>15g</td><td>dużo białka jak na makaron</td></tr>
     </table>
   </div>
   </div><!-- /d-produkty -->
+
+  <!-- TAB: PRZEPISY -->
+  <div id="d-przepisy" class="tab-panel">
+
+    <details style="margin-bottom:8px" open>
+      <summary style="cursor:pointer;padding:12px 16px;background:var(--bg2);border:1px solid rgba(59,130,246,0.4);border-radius:8px;font-size:13px;color:var(--text2);list-style:none;display:flex;justify-content:space-between;align-items:center;user-select:none">
+        <span>🍗 Kurczak w sosie pomidorowym (Niedziela obiad)</span><span style="font-size:10px;color:var(--text3)">▼</span>
+      </summary>
+      <div style="padding-top:8px">
+      <div class="card">
+        <div class="card-title">Makro &nbsp;<span class="badge badge-blue">~320 kcal · ~48g białka</span> &nbsp;<span class="badge badge-gray">bez ryżu</span></div>
+        <table style="margin-bottom:16px">
+          <tr><th>Składnik</th><th>Ilość</th><th>Uwagi</th></tr>
+          <tr><td>Polędwiczki kurczaka Wipasz</td><td>200g</td><td>pokrojone w kostkę lub paski</td></tr>
+          <tr><td>Passata pomidorowa</td><td>200ml</td><td>lub pomidory z puszki</td></tr>
+          <tr><td>Czosnek</td><td>1 ząbek</td><td>drobno posiekany</td></tr>
+          <tr><td>Oliwa z oliwek</td><td>1 łyżeczka</td><td>do smażenia</td></tr>
+          <tr><td>Oregano, bazylia, sól, pieprz</td><td>do smaku</td><td></td></tr>
+        </table>
+        <div class="card-title">Przygotowanie</div>
+        <div style="font-size:13px;color:var(--text2);line-height:2">
+          <div style="display:flex;gap:12px;margin-bottom:6px"><span style="color:var(--accent2);font-weight:700;min-width:24px">1.</span><span>Pokrój kurczaka, dopraw solą, pieprzem i oregano.</span></div>
+          <div style="display:flex;gap:12px;margin-bottom:6px"><span style="color:var(--accent2);font-weight:700;min-width:24px">2.</span><span>Rozgrzej patelnię, dodaj oliwę. Smaż kurczaka 4–5 min na średnim ogniu aż się zrumieni.</span></div>
+          <div style="display:flex;gap:12px;margin-bottom:6px"><span style="color:var(--accent2);font-weight:700;min-width:24px">3.</span><span>Dodaj czosnek, smaż 30 sekund.</span></div>
+          <div style="display:flex;gap:12px;margin-bottom:6px"><span style="color:var(--accent2);font-weight:700;min-width:24px">4.</span><span>Wlej passatę, dodaj bazylię. Duś na małym ogniu 8–10 min pod przykryciem.</span></div>
+          <div style="display:flex;gap:12px;margin-bottom:6px"><span style="color:var(--accent2);font-weight:700;min-width:24px">5.</span><span>Podaj z ryżem Arborio 150g (ugotowanym osobno).</span></div>
+        </div>
+        <div class="alert alert-info" style="margin-top:12px">
+          <span class="alert-icon">💡</span>
+          <span>Ryż Arborio wrzuć do sosu na ostatnie 2 min — wchłonie pomidory i będzie kremowy.</span>
+        </div>
+      </div>
+      </div>
+    </details>
+
+    <details style="margin-bottom:8px">
+      <summary style="cursor:pointer;padding:12px 16px;background:var(--bg2);border:1px solid rgba(59,130,246,0.4);border-radius:8px;font-size:13px;color:var(--text2);list-style:none;display:flex;justify-content:space-between;align-items:center;user-select:none">
+        <span>🍮 Pudding z ryżem Arborio (II śniadanie — każdy dzień)</span><span style="font-size:10px;color:var(--text3)">▼</span>
+      </summary>
+      <div style="padding-top:8px">
+      <div class="card">
+        <div class="card-title">Makro &nbsp;<span class="badge badge-blue">~306 kcal · ~26g białka</span> &nbsp;<span class="badge badge-gray">Środa: 20g ryżu → ~275 kcal · ~24g białka</span></div>
+        <table style="margin-bottom:16px">
+          <tr><th>Składnik</th><th>Ilość</th><th>Uwagi</th></tr>
+          <tr><td>Ryż Arborio (suchy)</td><td>30g <span style="color:var(--text3)">(Środa: 20g)</span></td><td>gotuj na 2–4 dni naraz</td></tr>
+          <tr><td>WPC Olimp Protein Complex</td><td>20g</td><td></td></tr>
+          <tr><td>Jogurt naturalny Pilos</td><td>200g</td><td>zawsze 200g</td></tr>
+        </table>
+
+        <div class="card-title">Gotowanie ryżu (na 2 dni — 60g suchego)</div>
+        <div style="font-size:13px;color:var(--text2);line-height:2">
+          <div style="display:flex;gap:12px;margin-bottom:6px"><span style="color:var(--accent2);font-weight:700;min-width:24px">1.</span><span>60g ryżu Arborio + 180ml wody do garnka — proporcja 1:3.</span></div>
+          <div style="display:flex;gap:12px;margin-bottom:6px"><span style="color:var(--accent2);font-weight:700;min-width:24px">2.</span><span>Zagotuj, zmniejsz ogień do minimum, gotuj pod przykryciem 20–25 min. Mieszaj co kilka minut — szczególnie pod koniec.</span></div>
+          <div style="display:flex;gap:12px;margin-bottom:6px"><span style="color:var(--accent2);font-weight:700;min-width:24px">3.</span><span>Zdejmij z ognia gdy ryż wchłonął wodę i jest lekko al dente — dogotuje się sam.</span></div>
+          <div style="display:flex;gap:12px;margin-bottom:6px"><span style="color:var(--accent2);font-weight:700;min-width:24px">4.</span><span>Ostudź 30 min bez przykrycia → szczelny pojemnik → lodówka. Dobry 4 dni.</span></div>
+        </div>
+
+        <div class="card-title" style="margin-top:16px">Składanie puddingu (2 min rano)</div>
+        <div style="font-size:13px;color:var(--text2);line-height:2">
+          <div style="display:flex;gap:12px;margin-bottom:6px"><span style="color:var(--accent2);font-weight:700;min-width:24px">1.</span><span>30g zimnego ryżu z lodówki do miseczki.</span></div>
+          <div style="display:flex;gap:12px;margin-bottom:6px"><span style="color:var(--accent2);font-weight:700;min-width:24px">2.</span><span>2–3 łyżki wrzącej wody → wymieszaj → 30 sekund (rozluźni strukturę).</span></div>
+          <div style="display:flex;gap:12px;margin-bottom:6px"><span style="color:var(--accent2);font-weight:700;min-width:24px">3.</span><span>WPC 20g → wymieszaj z ryżem (proszek lepiej się łączy z gęstym ryżem).</span></div>
+          <div style="display:flex;gap:12px;margin-bottom:6px"><span style="color:var(--accent2);font-weight:700;min-width:24px">4.</span><span>Jogurt Pilos 200g → wymieszaj. Gotowe.</span></div>
+        </div>
+        <div class="alert alert-warn" style="margin-top:12px">
+          <span class="alert-icon">⚠️</span>
+          <span><strong>Nie mieszaj wszystkiego z góry</strong> — jogurt z ryżem po 2–3 dniach robi się wodnisty. Ryż trzymaj osobno, składaj porcję na bieżąco.</span>
+        </div>
+      </div>
+      </div>
+    </details>
+
+    <details style="margin-bottom:8px">
+      <summary style="cursor:pointer;padding:12px 16px;background:var(--bg2);border:1px solid rgba(59,130,246,0.4);border-radius:8px;font-size:13px;color:var(--text2);list-style:none;display:flex;justify-content:space-between;align-items:center;user-select:none">
+        <span>🍚 Czarny ryż tajski (Wtorek / Czwartek obiad)</span><span style="font-size:10px;color:var(--text3)">▼</span>
+      </summary>
+      <div style="padding-top:8px">
+      <div class="card">
+        <div class="card-title">Makro &nbsp;<span class="badge badge-blue">~350 kcal / 100g suchego · ~8g białka</span></div>
+        <table style="margin-bottom:16px">
+          <tr><th>Składnik</th><th>Wtorek</th><th>Czwartek</th></tr>
+          <tr><td>Czarny ryż tajski (suchy)</td><td>120g</td><td>100g</td></tr>
+          <tr><td>Woda</td><td>~360ml</td><td>~300ml</td></tr>
+        </table>
+
+        <div class="card-title">Przygotowanie</div>
+        <div style="font-size:13px;color:var(--text2);line-height:2">
+          <div style="display:flex;gap:12px;margin-bottom:6px"><span style="color:var(--accent2);font-weight:700;min-width:24px">1.</span><span><strong>Opcjonalnie: namocz 30 min przed gotowaniem</strong> — przyspieszy gotowanie i poprawi teksturę.</span></div>
+          <div style="display:flex;gap:12px;margin-bottom:6px"><span style="color:var(--accent2);font-weight:700;min-width:24px">2.</span><span>Proporcja 1:3 (ryż:woda). Zagotuj, zmniejsz ogień do minimum.</span></div>
+          <div style="display:flex;gap:12px;margin-bottom:6px"><span style="color:var(--accent2);font-weight:700;min-width:24px">3.</span><span>Gotuj pod przykryciem <strong>30–35 min</strong> (dłużej niż biały — to pełne ziarno).</span></div>
+          <div style="display:flex;gap:12px;margin-bottom:6px"><span style="color:var(--accent2);font-weight:700;min-width:24px">4.</span><span>Odstaw na 10 min pod przykryciem — wchłonie resztę wody i nabierze właściwej tekstury.</span></div>
+        </div>
+        <div class="alert alert-info" style="margin-top:12px">
+          <span class="alert-icon">🎨</span>
+          <span><strong>Uwaga:</strong> czarny ryż barwi wodę i wszystko co z nim gotuje na ciemnofioletowo — to normalne. Dlatego nie mieszaj go z sosem pomidorowym (zarezerwuj Arborio do Niedzieli).</span>
+        </div>
+        <div class="alert alert-success" style="margin-top:8px">
+          <span class="alert-icon">💡</span>
+          <span><strong>Gotuj na oba dni naraz</strong> — Wt+Czw to 220g suchego ryżu. Ugotowany trzyma się w lodówce 4 dni. Podgrzej z łyżką wody na patelni lub w mikrofali.</span>
+        </div>
+      </div>
+      </div>
+    </details>
+
+  </div><!-- /d-przepisy -->
+
+  <!-- LISTA ZAKUPÓW -->
+  <details style="margin-top:16px;margin-bottom:8px">
+    <summary style="cursor:pointer;padding:14px 16px;background:var(--bg2);border:1px solid var(--accent2);border-radius:8px;font-size:13px;color:var(--accent2);list-style:none;display:flex;justify-content:space-between;align-items:center;user-select:none;font-weight:600">
+      <span>🛒 Lista zakupów — mini cut · 1 tydzień</span><span style="font-size:10px;color:var(--text3)">▼</span>
+    </summary>
+    <div style="padding-top:8px">
+    <div class="card">
+      <div class="card-title">🥩 Białko</div>
+      <table>
+        <tr><th>Produkt</th><th>Ilość</th><th>Uwagi</th></tr>
+        <tr><td>Polędwiczki kurczaka Wipasz</td><td><strong>600g</strong></td><td>Pon 200g + Wt 200g + Nd 200g</td></tr>
+        <tr><td>Dorsz atlantycki Lidl (Targ Rybny)</td><td><strong>400g</strong></td><td>Śr 200g + Czw 200g</td></tr>
+        <tr><td>Łosoś atlantycki Lidl ze skórą</td><td><strong>150g</strong></td><td>Sob 150g</td></tr>
+        <tr><td>Calvo tuńczyk sos pomidorowy</td><td><strong>2 puszki (320g)</strong></td><td>Pon 160g + Pt 160g</td></tr>
+        <tr><td>Jajka</td><td><strong>~18 szt</strong></td><td>Pon(2)+Śr(3)+Czw(2)+Pt(4)+Sob(2)+Nd(2)+Wt(0) + zapas</td></tr>
+        <tr><td>Szynka naturalna</td><td><strong>80g</strong></td><td>Sob 40g + Nd 40g</td></tr>
+      </table>
+    </div>
+    <div class="card">
+      <div class="card-title">🥛 Nabiał</div>
+      <table>
+        <tr><th>Produkt</th><th>Ilość</th><th>Uwagi</th></tr>
+        <tr><td>Jogurt naturalny Pilos</td><td><strong>~2000g (~10 szt)</strong></td><td>Pudding 200g × 7 + kolacje treningowe 200g × 3</td></tr>
+        <tr><td>Twaróg chudy Pilos</td><td><strong>450g</strong></td><td>Wt 200g + Czw 50g + Nd 200g</td></tr>
+        <tr><td>Mleko Pilos High Protein</td><td><strong>~1100ml (~2 kartony)</strong></td><td>Shake 150ml × 7 dni</td></tr>
+        <tr><td>Mozzarella light Pilos</td><td><strong>1 kulka (125g)</strong></td><td>Śr ½ kulki (62g)</td></tr>
+        <tr><td>Ser Gouda</td><td><strong>40g</strong></td><td>Sob 20g + Nd 20g</td></tr>
+      </table>
+    </div>
+    <div class="card">
+      <div class="card-title">🏋️ Odżywki</div>
+      <table>
+        <tr><th>Produkt</th><th>Ilość</th><th>Uwagi</th></tr>
+        <tr><td>Olimp WPC Protein Complex</td><td><strong>280g</strong></td><td>Śniadanie 20g × 7 + pudding 20g × 7</td></tr>
+        <tr><td>Olimp Whey Protein Xplode Powder</td><td><strong>140g</strong></td><td>Shake 20g × 7 dni</td></tr>
+      </table>
+    </div>
+    <div class="card">
+      <div class="card-title">🌾 Zboża / Węglowodany</div>
+      <table>
+        <tr><th>Produkt</th><th>Ilość</th><th>Uwagi</th></tr>
+        <tr><td>Płatki owsiane zwykłe</td><td><strong>280g</strong></td><td>Śniadanie 40g × 7</td></tr>
+        <tr><td>Płatki orkiszowe</td><td><strong>280g</strong></td><td>Śniadanie 40g × 7</td></tr>
+        <tr><td>Płatki gryczane</td><td><strong>210g</strong></td><td>Śniadanie 30g × 7</td></tr>
+        <tr><td>Ryż Arborio (suchy)</td><td><strong>~360g</strong></td><td>Pudding 30g × 6 + Śr 20g + Nd obiad 150g</td></tr>
+        <tr><td>Czarny ryż tajski (suchy)</td><td><strong>220g</strong></td><td>Wt 120g + Czw 100g</td></tr>
+        <tr><td>Grahamka Putka</td><td><strong>~3 szt (~210g)</strong></td><td>Wt 70g + Sob 70g + Nd 70g</td></tr>
+        <tr><td>Mąka pszenna</td><td><strong>50g</strong></td><td>Czw pancake</td></tr>
+        <tr><td>Tortille proteinowe Lidl</td><td><strong>2 szt</strong></td><td>Pt obiad</td></tr>
+      </table>
+    </div>
+    <div class="card">
+      <div class="card-title">🥦 Warzywa / Mrożonki</div>
+      <table>
+        <tr><th>Produkt</th><th>Ilość</th><th>Uwagi</th></tr>
+        <tr><td>Marchewka kostka (mrożona)</td><td><strong>1 opak. (450g)</strong></td><td>Pon 225g + Czw 225g</td></tr>
+        <tr><td>Warzywa na patelnię (mrożone)</td><td><strong>2 opak. (450g)</strong></td><td>Wt 225g + Śr 225g + Sob 225g</td></tr>
+        <tr><td>Pomidory + cebula + papryka</td><td><strong>~500g</strong></td><td>Śr szakszuka</td></tr>
+        <tr><td>Passata pomidorowa</td><td><strong>200ml</strong></td><td>Nd kurczak w sosie</td></tr>
+      </table>
+    </div>
+    <div class="card">
+      <div class="card-title">🍌 Owoce</div>
+      <table>
+        <tr><th>Produkt</th><th>Ilość</th><th>Uwagi</th></tr>
+        <tr><td>Banan</td><td><strong>1 szt (~40g)</strong></td><td>Czw pancake</td></tr>
+        <tr><td>Borówki</td><td><strong>60g</strong></td><td>Czw pancake</td></tr>
+      </table>
+    </div>
+    <div class="card">
+      <div class="card-title">🧂 Dodatki / Inne</div>
+      <table>
+        <tr><th>Produkt</th><th>Ilość</th><th>Uwagi</th></tr>
+        <tr><td>Pasta orzechowa (100%)</td><td><strong>140g</strong></td><td>Śniadanie 20g × 7</td></tr>
+        <tr><td>Rodzynki</td><td><strong>105g</strong></td><td>Śniadanie 15g × 7</td></tr>
+        <tr><td>Miód</td><td><strong>~80g</strong></td><td>Wt 15g + Nd 10g + ewentualnie Czw</td></tr>
+        <tr><td>Oliwa z oliwek</td><td><strong>butelka</strong></td><td>Codziennie do smażenia/przyprawiania</td></tr>
+        <tr><td>Paluszki beskidzkie</td><td><strong>1 opak. (100g)</strong></td><td>Sob wieczór</td></tr>
+        <tr><td>Whiskey + Cola 0%</td><td><strong>2 małe + 2 puszki</strong></td><td>Sob wieczór · 2× 60ml + 2× cola</td></tr>
+        <tr><td>Czosnek + zioła (oregano, bazylia)</td><td><strong>—</strong></td><td>Nd kurczak w passacie</td></tr>
+      </table>
+    </div>
+    </div>
+  </details>
 
 </section>
 
