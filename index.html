@@ -96,6 +96,14 @@
   .cal-d{padding:5px;opacity:0.3;text-align:center;font-size:11px}
   .cal-wk{font-size:9px;text-align:center;display:flex;align-items:center;justify-content:center;padding:2px}
 </style>
+
+<!-- PWA -->
+<link rel="manifest" href="/Trening/manifest.json">
+<meta name="theme-color" content="#0f1117">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Trening">
+<link rel="apple-touch-icon" href="/Trening/icons/icon-192.png">
 </head>
 <body>
 
@@ -2174,6 +2182,18 @@ Nie analizuj tylko ostatnich 1–2 treningów. Analizuj cały cykl jako całoś�
         ['tbl-ua','tbl-ub','tbl-lo'].forEach(id => filterCols(id, 5));
         this.dataset.filtered = '1';
       }
+    });
+  }
+</script>
+
+<!-- PWA Service Worker -->
+<script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker
+        .register('/Trening/service-worker.js')
+        .then(reg => console.log('[SW] Zarejestrowany, scope:', reg.scope))
+        .catch(err => console.warn('[SW] Błąd rejestracji:', err));
     });
   }
 </script>
